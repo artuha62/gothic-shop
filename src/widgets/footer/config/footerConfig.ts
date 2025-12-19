@@ -1,7 +1,6 @@
 type FooterLink = {
   label: string
   to: string
-  external?: boolean
 }
 
 export const footerMenus: Array<{ title: string; links: FooterLink[] }> = [
