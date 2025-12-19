@@ -1,8 +1,10 @@
-import { useState } from 'react'
 import type { CartItem } from '@/features/cart/model/types'
+import { useLocalStorage } from '@/shared/lib/hooks/useLocalStorage.ts'
+
+const STORAGE_KEY = 'cart'
 
 export const useCart = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([])
+  const [cartItems, setCartItems] = useLocalStorage<CartItem>(STORAGE_KEY, [])
 
   const addToCart = (productId: string) => {
     setCartItems((prev) => {
@@ -55,7 +57,10 @@ export const useCart = () => {
     setCartItems([])
   }
 
-  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0)
+  const totalQuantity = cartItems.reduce(
+    (sum, { quantity }) => sum + quantity,
+    0
+  )
 
   return {
     cartItems,

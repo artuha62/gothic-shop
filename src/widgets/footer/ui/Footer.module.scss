@@ -1,0 +1,121 @@
+.footer {
+  padding-block: rem(60);
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.inner {
+  padding-inline: rem(20);
+}
+
+// CTA
+.top {
+  @include flex-center;
+
+  flex-direction: column;
+  row-gap: rem(20);
+}
+
+.title {
+  font-size: rem(36);
+}
+
+.description {
+  color: var(--color-light-gray);
+}
+
+.tgButton {
+  display: flex;
+  column-gap: rem(5);
+}
+// Main
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: rem(40);
+  width: 100%;
+  margin-top: rem(100);
+  padding-block: rem(50);
+  border-block: 1px solid #404040;
+}
+// Лого
+.logo {
+  width: rem(180);
+}
+
+// Менюшки
+.menus {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: rem(20);
+  flex-wrap: nowrap;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: rem(350);
+  max-width: 100%;
+  row-gap: rem(20);
+}
+
+.menuTitle {
+  font-size: rem(18);
+  font-weight: 700;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(10);
+  text-align: center;
+}
+
+.item {
+  font-size: rem(15);
+  color: var(--color-light-gray);
+  text-decoration: none;
+  transition-duration: var(--transition-duration);
+
+  &:hover {
+    color: var(--color-green);
+  }
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: rem(20);
+  width: rem(350);
+}
+
+.email {
+  text-decoration: underline;
+  transition-duration: var(--transition-duration);
+
+  &:hover {
+    color: var(--color-green);
+  }
+}
+
+.tgButton {
+  font-size: rem(15);
+}
+// Копирайт
+.bottom {
+  font-size: rem(15);
+  padding-block: rem(20);
+}
+
+.copyright {
+  display: flex;
+  justify-content: space-between;
+}

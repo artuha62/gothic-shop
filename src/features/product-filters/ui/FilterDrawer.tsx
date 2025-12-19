@@ -1,11 +1,11 @@
+import type React from 'react'
 import { X } from 'lucide-react'
 import type { Filters } from '@/features/product-filters/model/types'
-import type React from 'react'
-import styles from './FilterDrawer.module.scss'
 import { Button } from '@/shared/ui/button'
 import { pluralizeRu } from '@/shared/lib/pluralize-ru/pluralizeRu'
-import { RadioOptions } from '@/features/product-filters/ui/ui'
+import { RadioOptions, SizeOptions } from '@/features/product-filters/ui/ui'
 import { FilterBlock } from '@/features/product-filters/ui/ui'
+import styles from './FilterDrawer.module.scss'
 
 type Props = {
   isOpen: boolean
@@ -29,6 +29,8 @@ const SORT_OPTIONS = [
   { value: 'PRICE_DESC', label: 'Цена ↓' },
 ] as const
 
+const SIZES = [36, 37, 38, 39, 40, 41, 42, 43] as const
+
 const FilterDrawer = ({
   isOpen,
   onClose,
@@ -37,7 +39,11 @@ const FilterDrawer = ({
   setFilters,
   filteredProductsCount,
 }: Props) => {
-  const updateFilter = <K extends keyof Filters>(key: K, value: Filters[K]) => {
+  const { sort, priceRange, sizes } = filters
+  const updateFilter = <TKey extends keyof Filters>(
+    key: TKey,
+    value: Filters[TKey]
+  ) => {
     setFilters((prev) => ({ ...prev, [key]: value }))
   }
 
@@ -88,7 +94,7 @@ const FilterDrawer = ({
               <RadioOptions
                 name="Сортировка"
                 options={SORT_OPTIONS}
-                value={filters.sort}
+                value={sort}
                 onChange={(value) => updateFilter('sort', value)}
               />
             </FilterBlock>
@@ -97,26 +103,18 @@ const FilterDrawer = ({
               <RadioOptions
                 name="Ценовой диапазон"
                 options={PRICE_OPTIONS}
-                value={filters.priceRange}
+                value={priceRange}
                 onChange={(value) => updateFilter('priceRange', value)}
               />
             </FilterBlock>
 
             <FilterBlock title="РАЗМЕР">
-              {Array.from({ length: 7 }, (_, i) => 36 + i).map((size) => {
-                const checked = filters.sizes.includes(size)
-                return (
-                  <label key={size}>
-                    <input
-                      onChange={() => toggleSize(size)}
-                      className={styles.checkbox}
-                      type="checkbox"
-                      checked={checked}
-                    />
-                    <span className={styles.sizeBox}>{size}</span>
-                  </label>
-                )
-              })}
+              <SizeOptions
+                name="Размеры"
+                sizes={SIZES}
+                selected={sizes}
+                onToggle={toggleSize}
+              />
             </FilterBlock>
           </div>
         </div>

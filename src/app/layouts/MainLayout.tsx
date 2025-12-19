@@ -2,6 +2,7 @@ import { PromoBanner } from '@/widgets/promo-banner'
 import { Header } from '@/widgets/header'
 import { Outlet } from 'react-router'
 import { CartDrawer } from '@/features/cart'
+import { Footer } from '@/widgets/footer'
 
 const MainLayout = () => {
   return (
@@ -17,6 +18,7 @@ const MainLayout = () => {
       <PromoBanner variant="green" padding="lg" repeat={5}>
         /// -30% ПО ПРОМОКОДУ ARTUHA62 ///
       </PromoBanner>
+      <Footer />
     </>
   )
 }

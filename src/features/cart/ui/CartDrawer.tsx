@@ -80,7 +80,7 @@ const CartDrawer = () => {
         <footer className={styles.footer}>
           {products.length === 0 ? (
             <Link to="/catalog">
-              <Button onClick={closeCart} variant="black" size="lg" fullWidth>
+              <Button onClick={closeCart} variant="black" size="md" fullWidth>
                 В КАТАЛОГ
               </Button>
             </Link>
@@ -95,10 +95,10 @@ const CartDrawer = () => {
                 <span>{formatPrice(totalPrice)}</span>
               </div>
               <div className={styles.actions}>
-                <Button onClick={closeCart} variant="white" size="lg">
+                <Button onClick={closeCart} variant="white" size="md">
                   ПРОДОЛЖИТЬ ОХОТУ
                 </Button>
-                <Button variant="black" size="lg">
+                <Button variant="black" size="md">
                   КУПИТЬ
                 </Button>
               </div>

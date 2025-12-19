@@ -23,7 +23,10 @@ const ProductPage = () => {
       {loading && <div>Loading...</div>}
       {!loading && !product && <NotFound>ТОВАР НЕ НАЙДЕН...</NotFound>}
       {!loading && product && (
-        <ProductDetails key={product.slug} product={product} />
+        <>
+          <h1 className="visually-hidden">{`Станица товара - ${product.name}`}</h1>
+          <ProductDetails key={product.slug} product={product} />
+        </>
       )}
     </>
   )

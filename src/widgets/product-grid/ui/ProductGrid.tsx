@@ -6,13 +6,10 @@ import { AddToCartIcon } from '@/features/add-to-cart'
 
 interface ProductGridProps {
   products: Product[]
-  variant?: 'catalog-page' | 'favorites'
+  variant?: 'catalog' | 'favorites'
 }
 
-const ProductGrid = ({
-  products,
-  variant = 'catalog-page',
-}: ProductGridProps) => {
+const ProductGrid = ({ products, variant = 'catalog' }: ProductGridProps) => {
   return (
     <div className="container">
       <div className={styles.productsGrid}>

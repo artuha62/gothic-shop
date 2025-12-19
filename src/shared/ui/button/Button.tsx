@@ -14,7 +14,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = ({
   variant = 'white',
-  size = 'lg',
+  size = 'md',
   fullWidth = false,
   className,
   disabled,

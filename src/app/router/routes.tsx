@@ -18,7 +18,7 @@ export const routes: IRoute[] = [
         path: '/',
         element: <div>MAIN PAGE</div>,
       },
-      { path: '/catalog-page', element: <CatalogPage /> },
+      { path: '/catalog', element: <CatalogPage /> },
       { path: '/favorites', element: <FavoritesPage /> },
       { path: '/product/:slug', element: <ProductPage /> },
     ],

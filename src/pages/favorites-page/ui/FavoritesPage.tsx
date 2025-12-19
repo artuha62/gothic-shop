@@ -18,6 +18,7 @@ const FavoritesPage = () => {
 
   return (
     <>
+      <h1 className="visually-hidden">Избранные товары</h1>
       <ProductGrid variant="favorites" products={favoriteProducts} />
       {favoritesIds.length === 0 && (
         <>

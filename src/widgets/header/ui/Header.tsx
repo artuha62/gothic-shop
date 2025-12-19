@@ -21,7 +21,7 @@ const Header = () => {
               <Menu strokeWidth={1.5} size={17} />
             </IconButton>
             <nav className={styles.navigation}>
-              <Link to={'/catalog-page'} className={styles.navigationLink}>
+              <Link to={'/catalog'} className={styles.navigationLink}>
                 Каталог
               </Link>
               <Link to={'/'} className={styles.navigationLink}>

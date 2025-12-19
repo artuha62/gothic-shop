@@ -38,6 +38,7 @@ const CatalogPage = () => {
 
   return (
     <>
+      <h1 className="visually-hidden">Каталог обуви</h1>
       <FilterDrawer
         isOpen={isOpen}
         onClose={closeFilters}

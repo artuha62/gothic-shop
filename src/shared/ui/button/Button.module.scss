@@ -16,11 +16,14 @@
 }
 
 .md {
+  height: rem(48);
+  padding: rem(16);
+  min-width: rem(180);
 }
 
 .lg {
   height: rem(48);
-  padding: rem(16) rem(32);
+  min-width: rem(300);
 }
 
 // Variants
