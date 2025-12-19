@@ -1,0 +1,38 @@
+.productsGrid {
+  padding-block: rem(50);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* каталог */
+.catalog {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* избранное */
+.favorites {
+  align-items: start;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.message {
+  padding: 2rem 0;
+  text-align: center;
+  color: var(--muted-foreground);
+  font-size: 1rem;
+}
+
+//.dense {
+//  grid-template-columns: repeat(3, 1fr);
+//}
+//
+//.gridView {
+//  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+//}
+//
+//.spacious {
+//  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+//}

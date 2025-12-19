@@ -1,0 +1,25 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--color-black);
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input,
+label,
+button {
+  transition-duration: var(--transition-duration);
+}
+
+h2 {
+  font-size: rem(32);
+}

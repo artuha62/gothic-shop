@@ -1,0 +1,22 @@
+.inner {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  padding-top: rem(40);
+}
+
+.gallery {
+  display: flex;
+  gap: rem(5);
+}
+
+.thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: rem(5);
+  width: rem(50);
+}
+
+.mainImage {
+  max-width: rem(700);
+}

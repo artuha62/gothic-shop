@@ -1,0 +1,42 @@
+.promo {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.inner {
+  display: inline-block;
+  animation: slide 20s linear infinite;
+}
+
+.text {
+  font-size: rem(16);
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+// Padding
+.sm {
+  padding-inline: rem(10);
+}
+
+.lg {
+  padding-inline: rem(100);
+}
+
+// Variants
+.black {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.green {
+  background-color: var(--color-green);
+  color: var(--color-black);
+}

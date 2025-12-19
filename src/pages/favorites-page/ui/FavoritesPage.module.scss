@@ -1,0 +1,11 @@
+.noFavorites {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  row-gap: rem(20);
+
+  padding-bottom: rem(100);
+}

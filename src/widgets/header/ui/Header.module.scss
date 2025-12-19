@@ -1,0 +1,94 @@
+.header {
+  position: relative;
+  padding-top: rem(40);
+  background: var(--color-white);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: var(--small-gray-border);
+}
+
+/* ЛЕВАЯ ЧАСТЬ */
+.left {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-right: var(--small-gray-border);
+}
+
+.navigation {
+  display: flex;
+  height: rem(48);
+}
+
+.navigationLink {
+  display: flex;
+  align-items: center;
+  padding-inline: 16px;
+  width: 100%;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: var(--color-black);
+  transition: color 0.2s ease;
+
+  border-left: var(--small-gray-border);
+
+  &:hover {
+    color: var(--color-white);
+    background-color: var(--color-black);
+  }
+}
+
+/* ЛОГО */
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: rem(180);
+
+  opacity: 1;
+  z-index: 1;
+}
+
+/* ПРАВАЯ ЧАСТЬ */
+.actions {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.actions button:first-child {
+  border-left: var(--small-gray-border);
+}
+
+.actions button + button {
+  border-left: var(--small-gray-border);
+}
+
+.userActive {
+  background-color: var(--color-black);
+  color: var(--color-green);
+}
+
+.badge {
+  @include square(rem(16));
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-green);
+  font-weight: 400;
+  font-size: rem(16);
+  margin-left: rem(5);
+
+  color: var(--color-black);
+}

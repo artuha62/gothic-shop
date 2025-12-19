@@ -1,0 +1,29 @@
+.IconButton {
+  @include flex-center;
+  line-height: 0;
+}
+
+.header {
+  height: rem(48);
+  min-width: rem(48);
+  padding: rem(12);
+  color: var(--color-black);
+  border-left: var(--small-gray-border);
+
+  &:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+}
+
+.card svg {
+  color: var(--color-light-gray);
+  stroke: var(--color-light-gray);
+  fill: transparent;
+  transition-duration: var(--transition-duration);
+
+  &:hover {
+    transform: scale(1.04);
+    fill: var(--color-light-gray);
+  }
+}

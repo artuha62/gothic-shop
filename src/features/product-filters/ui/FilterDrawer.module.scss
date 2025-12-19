@@ -1,0 +1,150 @@
+.drawer {
+  @include hide;
+
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+
+  align-items: stretch;
+  justify-content: flex-end;
+
+  &.isOpen {
+    @include show;
+  }
+}
+
+.overlay {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  width: 460px;
+  max-width: 100%;
+  height: 100vh;
+  padding: rem(32) rem(20);
+  background-color: var(--color-white);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: rem(12);
+}
+
+.title {
+  font-weight: 400;
+  font-size: rem(24);
+}
+
+.close {
+  line-height: 0;
+  &:hover {
+    color: var(--color-green);
+  }
+}
+
+.body {
+  flex: 1;
+  border-block: var(--small-gray-border);
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(20);
+  padding-block: rem(20);
+}
+
+.subtitle {
+  font-weight: 500;
+  font-size: rem(20);
+  padding-bottom: rem(20);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: start;
+  gap: rem(10);
+}
+
+.fieldset {
+  all: unset;
+  display: contents;
+}
+
+// Радиокнопки
+.legend {
+  @include visually-hidden;
+}
+
+.radio {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+.radio:checked + .optionBox {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.optionBox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  border: var(--small-gray-border);
+  height: rem(38);
+  padding: rem(11);
+  font-size: rem(14);
+  min-width: rem(100);
+  transition-duration: var(--transition-duration);
+
+  &:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+}
+
+// Размер - чекбокс
+.checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+.checkbox:checked + .sizeBox {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.sizeBox {
+  @include square(rem(50));
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-black);
+  transition-duration: var(--transition-duration);
+
+  &:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+}
+
+.footer {
+  padding-top: rem(40);
+  display: flex;
+  column-gap: rem(10);
+}

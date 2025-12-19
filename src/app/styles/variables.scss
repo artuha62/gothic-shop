@@ -1,0 +1,18 @@
+:root {
+  --color-white: #fff;
+  --color-black: #000;
+  --color-green: #7fff00;
+  --color-dark-green: rgb(111, 236, 0);
+  --color-light-gray: #cdcdcd;
+  --color-whitesmoke: #e8e8e8;
+  --color-gray-alt: #afafaf;
+  --color-dark-gray: #1f1f1f;
+  --color-dark-gray-2: #3f3f3f;
+
+  --small-gray-border: 1px solid var(--color-light-gray);
+  --small-smoke-border: 1px solid var(--color-whitesmoke);
+  --product-card-border: 1px solid var(--color-black);
+
+  --transition-duration: 0.2s;
+  --transition-duration-product-images: 0.3s;
+}

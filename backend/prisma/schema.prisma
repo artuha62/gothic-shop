@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  price       Int
+  oldPrice    Int?
+  category    Category
+  color       String
+  sku         String   @unique
+  description String?
+  images      String[] // массив изображений
+  sizes       Int[]    // массив размеров
+  stock       Int      @default(0)
+  featured    Boolean  @default(false) // для главной страницы
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@index([sku])
+}
+
+enum Category {
+  HIGHBOOTS
+  BOOTS
+  SANDALS
+}

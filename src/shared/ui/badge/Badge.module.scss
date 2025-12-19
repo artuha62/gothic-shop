@@ -1,0 +1,13 @@
+.badge {
+  @include square(rem(16));
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-green);
+  font-weight: 400;
+  font-size: rem(16);
+  margin-left: rem(5);
+
+  color: var(--color-black);
+}
