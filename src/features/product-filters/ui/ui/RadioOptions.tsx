@@ -3,6 +3,7 @@ import styles from '../FilterDrawer.module.scss'
 export type RadioOption<TValue extends string> = {
   value: TValue
   label: string
+  previewColor?: string
 }
 
 type Props<TValue extends string> = {
@@ -35,7 +36,17 @@ const RadioOptions = <TValue extends string>({
               checked={isSelected}
               onChange={() => onChange(option.value)}
             />
-            <span className={styles.optionBox}>{option.label}</span>
+
+            <span className={styles.optionBox}>
+              {option.previewColor && (
+                <span
+                  className={styles.colorPreview}
+                  style={{ backgroundColor: option.previewColor }}
+                  aria-hidden="true"
+                />
+              )}
+              {option.label}
+            </span>
           </label>
         )
       })}

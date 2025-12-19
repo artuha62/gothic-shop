@@ -13,7 +13,7 @@ const CatalogPage = () => {
     category: null,
     priceRange: 'ALL',
     sizes: [],
-    color: null,
+    color: '',
     sort: 'ALL',
   })
   const { products, loading } = useProducts()
@@ -27,7 +27,7 @@ const CatalogPage = () => {
       category: null,
       priceRange: 'ALL',
       sizes: [],
-      color: null,
+      color: '',
       sort: 'ALL',
     })
   }

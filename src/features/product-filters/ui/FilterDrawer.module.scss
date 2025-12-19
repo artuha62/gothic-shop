@@ -91,41 +91,33 @@
   margin: -1px;
 }
 
-.radio:checked + .optionBox {
-  background-color: var(--color-black);
-  color: var(--color-white);
-}
-
 .optionBox {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-weight: 400;
+  column-gap: rem(5);
   border: var(--small-gray-border);
   height: rem(38);
   padding: rem(11);
   font-size: rem(14);
   min-width: rem(100);
   transition-duration: var(--transition-duration);
-
-  &:hover {
-    background-color: var(--color-black);
-    color: var(--color-white);
-  }
+}
+// Квадрат превью цвета
+.colorPreview {
+  width: rem(35);
+  height: rem(20);
+  display: inline-block;
 }
 
-// Размер - чекбокс
+// Стили кнопок Размеров
 .checkbox {
   position: absolute;
   opacity: 0;
   width: 1px;
   height: 1px;
   margin: -1px;
-}
-
-.checkbox:checked + .sizeBox {
-  background-color: var(--color-black);
-  color: var(--color-white);
 }
 
 .sizeBox {
@@ -136,13 +128,23 @@
   justify-content: center;
   border: 1px solid var(--color-black);
   transition-duration: var(--transition-duration);
-
-  &:hover {
-    background-color: var(--color-black);
-    color: var(--color-white);
-  }
 }
 
+// АНИМАЦИИ
+// CHECKED СОСТОЯНИЕ ЧЕКБОКСА И РАДИОКНОПКИ
+.radio:checked + .optionBox,
+.checkbox:checked + .sizeBox {
+  background-color: var(--color-dark-gray);
+  color: var(--color-white);
+}
+// HOVER ЧЕКБОСА И РАДИОКНОПКИ
+.sizeBox:hover,
+.optionBox:hover {
+  background-color: var(--color-dark-gray);
+  color: var(--color-white);
+}
+
+// Низ Drawer'а
 .footer {
   padding-top: rem(40);
   display: flex;

@@ -9,6 +9,7 @@ import styles from './FilterDrawer.module.scss'
 import {
   PRICE_OPTIONS,
   SORT_OPTIONS,
+  COLOR_OPTIONS,
   SIZES,
 } from '@/features/product-filters/model/constants'
 
@@ -29,7 +30,7 @@ const FilterDrawer = ({
   setFilters,
   filteredProductsCount,
 }: Props) => {
-  const { sort, priceRange, sizes } = filters
+  const { sort, priceRange, sizes, color } = filters
   const updateFilter = <TKey extends keyof Filters>(
     key: TKey,
     value: Filters[TKey]
@@ -95,6 +96,15 @@ const FilterDrawer = ({
                 options={PRICE_OPTIONS}
                 value={priceRange}
                 onChange={(value) => updateFilter('priceRange', value)}
+              />
+            </FilterBlock>
+
+            <FilterBlock title="ЦВЕТ">
+              <RadioOptions
+                name="Цвет"
+                options={COLOR_OPTIONS}
+                value={color ?? ''}
+                onChange={(value) => updateFilter('color', value)}
               />
             </FilterBlock>
 
