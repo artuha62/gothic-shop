@@ -1,6 +1,12 @@
+import { PRICE_OPTIONS, SORT_OPTIONS, SIZES } from './constants'
+
 export type Category = 'HIGHBOOTS' | 'BOOTS' | 'SANDALS'
-export type PriceRange = 'ALL' | 'LT_10K' | 'BETWEEN_10K_15K' | 'GT_15K'
-export type Sort = 'ALL' | 'PRICE_ASC' | 'PRICE_DESC'
+
+export type PriceRange = (typeof PRICE_OPTIONS)[number]['value']
+
+export type Sizes = (typeof SIZES)[number]
+
+export type Sort = (typeof SORT_OPTIONS)[number]['value']
 
 export type Filters = {
   category: Category | null

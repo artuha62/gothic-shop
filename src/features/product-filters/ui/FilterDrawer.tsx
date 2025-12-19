@@ -6,6 +6,11 @@ import { pluralizeRu } from '@/shared/lib/pluralize-ru/pluralizeRu'
 import { RadioOptions, SizeOptions } from '@/features/product-filters/ui/ui'
 import { FilterBlock } from '@/features/product-filters/ui/ui'
 import styles from './FilterDrawer.module.scss'
+import {
+  PRICE_OPTIONS,
+  SORT_OPTIONS,
+  SIZES,
+} from '@/features/product-filters/model/constants'
 
 type Props = {
   isOpen: boolean
@@ -15,21 +20,6 @@ type Props = {
   setFilters: React.Dispatch<React.SetStateAction<Filters>>
   filteredProductsCount: number
 }
-
-const PRICE_OPTIONS = [
-  { value: 'ALL', label: 'Все' },
-  { value: 'LT_10K', label: 'До 10 000 ₽' },
-  { value: 'BETWEEN_10K_15K', label: '10 000 - 15 000 ₽' },
-  { value: 'GT_15K', label: 'От 15 000 ₽' },
-] as const
-
-const SORT_OPTIONS = [
-  { value: 'ALL', label: 'Популярные' },
-  { value: 'PRICE_ASC', label: 'Цена ↑' },
-  { value: 'PRICE_DESC', label: 'Цена ↓' },
-] as const
-
-const SIZES = [36, 37, 38, 39, 40, 41, 42, 43] as const
 
 const FilterDrawer = ({
   isOpen,

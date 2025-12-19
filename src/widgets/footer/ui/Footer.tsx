@@ -1,6 +1,6 @@
 import { Button } from '@/shared/ui/button'
 import { RiTelegram2Fill } from 'react-icons/ri'
-import { footerMenus, contacts } from '../config/footerConfig'
+import { footerMenus, contacts } from '../model/constants'
 import styles from './Footer.module.scss'
 import { Link } from 'react-router'
 
