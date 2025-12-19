@@ -16,7 +16,7 @@ const MainLayout = () => {
         <Outlet />
       </main>
       <PromoBanner variant="green" padding="lg" repeat={5}>
-        /// -30% ПО ПРОМОКОДУ ARTUHA62 ///
+        /// -62% ПО ПРОМОКОДУ ARTUHA62 ///
       </PromoBanner>
       <Footer />
     </>
