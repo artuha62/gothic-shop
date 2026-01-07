@@ -1,0 +1,17 @@
+.filterBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: rem(26);
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  column-gap: rem(20);
+}
+
+.viewControls {
+  display: flex;
+  column-gap: rem(10);
+}

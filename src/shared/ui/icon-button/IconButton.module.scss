@@ -3,6 +3,9 @@
   line-height: 0;
 }
 
+// Variants
+
+// header icons
 .header {
   height: rem(48);
   min-width: rem(48);
@@ -15,7 +18,7 @@
     color: var(--color-white);
   }
 }
-
+// card icons
 .card svg {
   color: var(--color-light-gray);
   stroke: var(--color-light-gray);
@@ -26,4 +29,16 @@
     transform: scale(1.04);
     fill: var(--color-light-gray);
   }
+}
+
+// grid view controller icons
+.grid svg {
+  color: var(--color-light-gray);
+  stroke: var(--color-light-gray);
+  fill: transparent;
+}
+
+.grid.active svg {
+  color: var(--color-black);
+  stroke: var(--color-black);
 }

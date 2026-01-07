@@ -1,5 +1,5 @@
 .productsGrid {
-  padding-block: rem(50);
+  padding-block: rem(26);
 }
 
 .grid {
@@ -7,15 +7,24 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
-/* каталог */
-.catalog {
+.grid3 {
+  grid-template-columns: repeat(3, 1fr);
+  --card-aspect-ratio: 3 / 3.6;
+}
+
+.grid4 {
   grid-template-columns: repeat(4, 1fr);
+  --card-aspect-ratio: 3 / 4;
+}
+
+.grid8 {
+  grid-template-columns: repeat(8, 1fr);
+  --card-aspect-ratio: 3 / 10;
 }
 
 /* избранное */
 .favorites {
   align-items: start;
-  grid-template-columns: repeat(4, 1fr);
 }
 
 .message {

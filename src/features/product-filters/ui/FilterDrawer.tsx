@@ -1,4 +1,3 @@
-import type React from 'react'
 import { X } from 'lucide-react'
 import type { Filters } from '@/features/product-filters/model/types'
 import { Button } from '@/shared/ui/button'
@@ -11,6 +10,7 @@ import {
   SORT_OPTIONS,
   COLOR_OPTIONS,
   SIZES,
+  CATEGORY,
 } from '@/features/product-filters/model/constants'
 
 type Props = {
@@ -18,7 +18,7 @@ type Props = {
   onClose: () => void
   onClear: () => void
   filters: Filters
-  setFilters: React.Dispatch<React.SetStateAction<Filters>>
+  setFilters: (filters: Filters) => void
   filteredProductsCount: number
 }
 
@@ -30,23 +30,19 @@ const FilterDrawer = ({
   setFilters,
   filteredProductsCount,
 }: Props) => {
-  const { sort, priceRange, sizes, color } = filters
-  const updateFilter = <TKey extends keyof Filters>(
-    key: TKey,
-    value: Filters[TKey]
-  ) => {
-    setFilters((prev) => ({ ...prev, [key]: value }))
+  const { category, sort, priceRange, sizes, color } = filters
+
+  const updateFilter = <T extends keyof Filters>(key: T, value: Filters[T]) => {
+    setFilters({ ...filters, [key]: value })
   }
 
   const toggleSize = (size: number) => {
-    setFilters((prev) => {
-      const checked = prev.sizes.includes(size)
-      return {
-        ...prev,
-        sizes: checked
-          ? prev.sizes.filter((s) => s !== size)
-          : [...prev.sizes, size],
-      }
+    const checked = filters.sizes.includes(size)
+    setFilters({
+      ...filters,
+      sizes: checked
+        ? filters.sizes.filter((s) => s !== size)
+        : [...filters.sizes, size],
     })
   }
 
@@ -87,6 +83,15 @@ const FilterDrawer = ({
                 options={SORT_OPTIONS}
                 value={sort}
                 onChange={(value) => updateFilter('sort', value)}
+              />
+            </FilterBlock>
+
+            <FilterBlock title="КАТЕГОРИИ">
+              <RadioOptions
+                name="Категории"
+                options={CATEGORY}
+                value={category ?? ''}
+                onChange={(value) => updateFilter('category', value || null)}
               />
             </FilterBlock>
 

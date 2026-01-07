@@ -37,7 +37,7 @@ export function generateSlug(text: string): string {
       .replace(/я/g, 'ya')
       // пробелы → дефисы
       .replace(/\s+/g, '-')
-      // всё, что не буквы/цифры/дефис — выкинуть
+      // всё, что не буквы/цифры/дефис убрать
       .replace(/[^a-z0-9\-]/g, '')
   )
 }

@@ -1,0 +1,42 @@
+.fieldset {
+  padding-bottom: rem(20);
+  border: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(10);
+}
+
+.legend {
+  font-size: rem(20);
+  font-weight: bold;
+  padding: 0 0 rem(30) 0;
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+
+  &:checked + .sizeBox {
+    background-color: var(--color-dark-gray);
+    color: var(--color-white);
+  }
+}
+
+.sizeBox {
+  @include square(rem(36));
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: rem(13);
+  border: 1px solid var(--color-gray-alt);
+  transition-duration: var(--transition-duration);
+
+  &:hover {
+    background-color: var(--color-dark-gray);
+    color: var(--color-white);
+  }
+}

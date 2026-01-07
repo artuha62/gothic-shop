@@ -9,9 +9,6 @@ import styles from './Header.module.scss'
 const Header = () => {
   const { openCart } = useCartDrawerContext()
 
-  const handleClick = () => {
-    openCart()
-  }
   return (
     <header className={styles.header}>
       <div className="container">
@@ -50,7 +47,7 @@ const Header = () => {
               </IconButton>
             </Link>
             <IconButton
-              onClick={handleClick}
+              onClick={openCart}
               variant="header"
               aria-label="Корзина"
             >

@@ -1,22 +1,19 @@
-import { useEffect, useState } from 'react'
-import type { Product } from '@/entities/product/model/types'
+import { useEffect } from 'react'
 import { getAllProducts } from '@/entities/product/api/products'
+import { useFetching } from '@/shared/hooks/useFetching'
 
 export const useProducts = () => {
-  const [products, setProducts] = useState<Product[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<Error | null>(null)
+  const { data, loading, error, fetching } = useFetching(getAllProducts)
 
   useEffect(() => {
-    getAllProducts()
-      .then(setProducts)
-      .catch(setError)
-      .finally(() => setLoading(false))
+    fetching().catch(console.error)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return {
-    products,
+    products: data ?? [],
     loading,
     error,
+    retry: fetching,
   }
 }

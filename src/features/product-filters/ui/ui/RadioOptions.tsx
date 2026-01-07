@@ -1,24 +1,24 @@
 import styles from '../FilterDrawer.module.scss'
 
-export type RadioOption<TValue extends string> = {
-  value: TValue
+export type RadioOption<T extends string> = {
+  value: T
   label: string
   previewColor?: string
 }
 
-type Props<TValue extends string> = {
+type Props<T extends string> = {
   name: string
-  options: readonly RadioOption<TValue>[]
-  value: TValue
-  onChange: (next: TValue) => void
+  options: readonly RadioOption<T>[]
+  value: T
+  onChange: (next: T) => void
 }
 
-const RadioOptions = <TValue extends string>({
+const RadioOptions = <T extends string>({
   name,
   options,
   value,
   onChange,
-}: Props<TValue>) => {
+}: Props<T>) => {
   return (
     <fieldset className={styles.fieldset}>
       <legend className={styles.legend}>{name}</legend>

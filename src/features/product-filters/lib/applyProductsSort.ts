@@ -5,9 +5,9 @@ export const applyProductsSort = (
   products: Product[],
   sort: Sort
 ): Product[] => {
-  if (sort === 'PRICE_ASC')
+  if (sort === 'price_asc')
     return [...products].sort((a, b) => a.price - b.price)
-  if (sort === 'PRICE_DESC')
+  if (sort === 'price_desc')
     return [...products].sort((a, b) => b.price - a.price)
   return products
 }

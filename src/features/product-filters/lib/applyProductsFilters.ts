@@ -10,13 +10,13 @@ export const applyProductsFilters = (
     if (filters.category && product.category !== filters.category) return false
 
     //Price
-    if (filters.priceRange === 'LT_10K' && product.price >= 10000) return false
+    if (filters.priceRange === 'to10' && product.price >= 10000) return false
     if (
-      filters.priceRange === 'BETWEEN_10K_15K' &&
+      filters.priceRange === '10to15' &&
       (product.price < 10000 || product.price > 15000)
     )
       return false
-    if (filters.priceRange === 'GT_15K' && product.price <= 15000) return false
+    if (filters.priceRange === 'from15' && product.price <= 15000) return false
 
     // Color
     if (filters.color) {
@@ -25,9 +25,16 @@ export const applyProductsFilters = (
     }
 
     // Sizes
-    return !(
-      filters.sizes.length > 0 &&
-      !filters.sizes.some((size) => product.sizes.includes(size))
-    )
+    if (filters.sizes.length > 0) {
+      const hasMatchingSize = filters.sizes.some((filterSize) =>
+        product.sizeStock.some((sizeStock) => sizeStock.size === filterSize)
+      )
+
+      if (!hasMatchingSize) {
+        return false
+      }
+    }
+
+    return true
   })
 }

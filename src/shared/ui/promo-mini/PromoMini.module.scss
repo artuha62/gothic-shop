@@ -1,0 +1,23 @@
+.promoMini {
+  display: flex;
+  align-items: center;
+  padding: rem(5);
+  column-gap: rem(10);
+  font-size: rem(16);
+  background-color: var(--color-green);
+}
+
+.sm {
+  width: 280px;
+  height: 30px;
+}
+
+.md {
+  width: 420px;
+  height: 36px;
+}
+
+.text {
+  margin: 0;
+  padding: 0;
+}

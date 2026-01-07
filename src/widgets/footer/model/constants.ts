@@ -9,7 +9,7 @@ export const footerMenus: Array<{ title: string; links: FooterLink[] }> = [
     links: [
       { label: 'Ботинки', to: '/catalog?category=boots' },
       { label: 'Сапоги', to: '/catalog?category=high-boots' },
-      { label: 'Туфли', to: '/catalog?category=shoes' },
+      { label: 'Туфли', to: '/catalog?category=sandals' },
     ],
   },
   {

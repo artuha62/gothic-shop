@@ -1,6 +1,12 @@
-import { PRICE_OPTIONS, SORT_OPTIONS, COLOR_OPTIONS, SIZES } from './constants'
+import {
+  PRICE_OPTIONS,
+  SORT_OPTIONS,
+  COLOR_OPTIONS,
+  SIZES,
+  CATEGORY,
+} from './constants'
 
-export type Category = 'HIGHBOOTS' | 'BOOTS' | 'SANDALS'
+export type Category = (typeof CATEGORY)[number]['value']
 
 export type PriceRange = (typeof PRICE_OPTIONS)[number]['value']
 

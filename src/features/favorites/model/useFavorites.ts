@@ -1,4 +1,4 @@
-import { useLocalStorage } from '@/shared/lib/hooks/useLocalStorage'
+import { useLocalStorage } from '@/shared/hooks/useLocalStorage'
 
 const STORAGE_KEY = 'favorites'
 

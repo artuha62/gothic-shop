@@ -1,1 +1,1 @@
-export { default as AddToCartIcon } from './ui/AddToCartIcon'
+export { default as AddToCartButton } from './ui/AddToCartButton'

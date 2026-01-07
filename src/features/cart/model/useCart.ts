@@ -1,5 +1,5 @@
 import type { CartItem } from '@/features/cart/model/types'
-import { useLocalStorage } from '@/shared/lib/hooks/useLocalStorage.ts'
+import { useLocalStorage } from '@/shared/hooks/useLocalStorage.ts'
 
 const STORAGE_KEY = 'cart'
 

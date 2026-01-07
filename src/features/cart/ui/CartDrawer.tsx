@@ -1,4 +1,4 @@
-import { CircleAlert, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import { useCartContext } from '@/features/cart/model/CartContext'
 import { CartItemRow } from '@/features/cart'
 import { formatPrice } from '@/shared/lib/format-price/formatPrice'
@@ -7,6 +7,7 @@ import { useProductsByIds } from '@/entities/product/model/useProductsByIds'
 import { Button } from '@/shared/ui/button'
 import { Link } from 'react-router'
 import styles from './CartDrawer.module.scss'
+import { PromoMini } from '@/shared/ui/promo-mini'
 
 const CartDrawer = () => {
   const { cartItems, totalQuantity, removeFromCart, increase, decrease } =
@@ -78,7 +79,7 @@ const CartDrawer = () => {
           )}
         </div>
         <footer className={styles.footer}>
-          {products.length === 0 ? (
+          {cartItems.length === 0 ? (
             <Link to="/catalog">
               <Button onClick={closeCart} variant="black" size="md" fullWidth>
                 В КАТАЛОГ
@@ -86,10 +87,7 @@ const CartDrawer = () => {
             </Link>
           ) : (
             <>
-              <div className={styles.promo}>
-                <CircleAlert strokeWidth={2} size={18} />
-                <span>Доставка бесплатна!</span>
-              </div>
+              <PromoMini size="md">Доставка бесплатна!</PromoMini>
               <div className={styles.summary}>
                 <span>ИТОГО: </span>
                 <span>{formatPrice(totalPrice)}</span>

@@ -74,8 +74,16 @@
 }
 
 .fieldset {
-  all: unset;
-  display: contents;
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(10);
+
+  &.product {
+    padding-bottom: rem(20);
+  }
 }
 
 // Радиокнопки
@@ -137,6 +145,7 @@
   background-color: var(--color-dark-gray);
   color: var(--color-white);
 }
+
 // HOVER ЧЕКБОСА И РАДИОКНОПКИ
 .sizeBox:hover,
 .optionBox:hover {

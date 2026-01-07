@@ -8,24 +8,36 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(uuid())
+  id          String        @id @default(uuid())
   name        String
-  slug        String   @unique
+  slug        String        @unique
   price       Int
   oldPrice    Int?
   category    Category
   color       String
-  sku         String   @unique
+  sku         String        @unique
   description String?
-  images      String[] // массив изображений
-  sizes       Int[]    // массив размеров
-  stock       Int      @default(0)
-  featured    Boolean  @default(false) // для главной страницы
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  images      String[]
+  sizeStock   SizeStock[]
+  featured    Boolean       @default(false)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 
   @@index([category])
   @@index([sku])
+}
+
+model SizeStock {
+  id        String   @id @default(uuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  size      Int
+  stock     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([productId, size])
+  @@index([productId])
 }
 
 enum Category {

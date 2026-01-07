@@ -1,4 +1,4 @@
-import { PromoBanner } from '@/widgets/promo-banner'
+import { PromoBanner } from '@/shared/ui/promo-banner'
 import { Header } from '@/widgets/header'
 import { Outlet } from 'react-router'
 import { CartDrawer } from '@/features/cart'

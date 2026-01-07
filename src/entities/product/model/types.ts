@@ -7,6 +7,16 @@ export interface Product {
   category: string
   images: string[]
   description: string
-  sizes: number[]
+  sizeStock: SizeStock[]
   color: string
+  stock: number
+}
+
+export interface SizeStock {
+  id: string
+  productId: string
+  size: number
+  stock: number
+  createdAt: string
+  updatedAt: string
 }

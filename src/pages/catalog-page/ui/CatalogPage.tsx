@@ -1,36 +1,23 @@
 import { ProductGrid } from '@/widgets/product-grid'
 import { useProducts } from '@/entities/product/model/useProducts'
 import { useState } from 'react'
-import { Button } from '@/shared/ui/button'
 import { FilterDrawer } from '@/features/product-filters'
-import type { Filters } from '@/features/product-filters/model/types'
 import { applyProductsFilters } from '@/features/product-filters/lib/applyProductsFilters'
 import { applyProductsSort } from '@/features/product-filters/lib/applyProductsSort'
 import { filtersCounter } from '@/features/product-filters/lib/filtersCounter'
+import { FilterBar } from '@/widgets/filter-bar'
+import { useFiltersFromURL } from '@/features/product-filters/model/useFiltersFromURL'
+import { useGridViewFromURL } from '@/features/product-filters/model/useGridViewFromURL'
 
 const CatalogPage = () => {
-  const [filters, setFilters] = useState<Filters>({
-    category: null,
-    priceRange: 'ALL',
-    sizes: [],
-    color: '',
-    sort: 'ALL',
-  })
+  const { filters, updateFilters, clearFilters } = useFiltersFromURL()
+  const { gridView, setGridView } = useGridViewFromURL()
   const { products, loading } = useProducts()
+
   const filtered = applyProductsFilters(products, filters)
   const filteredProducts = applyProductsSort(filtered, filters.sort)
   const filtersCount = filtersCounter(filters)
   const filteredProductsCount = filteredProducts.length
-
-  const clearFilters = () => {
-    setFilters({
-      category: null,
-      priceRange: 'ALL',
-      sizes: [],
-      color: '',
-      sort: 'ALL',
-    })
-  }
 
   const [isOpen, setIsOpen] = useState(false)
   const openFilters = () => setIsOpen(true)
@@ -39,21 +26,25 @@ const CatalogPage = () => {
   return (
     <>
       <h1 className="visually-hidden">Каталог обуви</h1>
+      <FilterBar
+        filtersCount={filtersCount}
+        openFilters={openFilters}
+        currentView={gridView}
+        onChangeGrid={setGridView}
+      />
       <FilterDrawer
         isOpen={isOpen}
         onClose={closeFilters}
         onClear={clearFilters}
         filters={filters}
-        setFilters={setFilters}
+        setFilters={updateFilters}
         filteredProductsCount={filteredProductsCount}
       />
-      <Button onClick={openFilters}>
-        <span>ФИЛЬТРЫ{filtersCount > 0 ? ` • ${filtersCount}` : ''}</span>
-      </Button>
+
       {loading ? (
         <div className="container">Loading...</div>
       ) : (
-        <ProductGrid products={filteredProducts} />
+        <ProductGrid products={filteredProducts} view={gridView} />
       )}
     </>
   )

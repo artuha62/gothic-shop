@@ -7,7 +7,7 @@ interface Props {
   productId: string
 }
 
-const AddToCartIcon = ({ productId }: Props) => {
+const AddToCartButton = ({ productId }: Props) => {
   const { addToCart } = useCartContext()
   const { openCart } = useCartDrawerContext()
 
@@ -25,4 +25,4 @@ const AddToCartIcon = ({ productId }: Props) => {
   )
 }
 
-export default AddToCartIcon
+export default AddToCartButton

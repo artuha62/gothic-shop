@@ -3,19 +3,26 @@ import styles from './IconButton.module.scss'
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
-  variant?: 'default' | 'card' | 'header'
+  variant?: 'default' | 'card' | 'header' | 'grid'
+  isActive?: boolean
 }
 
 const IconButton = ({
   children,
   className,
   variant = 'default',
+  isActive,
   ...props
 }: IconButtonProps) => {
   return (
     <button
       type="button"
-      className={[styles.IconButton, styles[variant], className]
+      className={[
+        styles.IconButton,
+        styles[variant],
+        isActive && styles.active,
+        className,
+      ]
         .filter(Boolean)
         .join(' ')}
       {...props}
