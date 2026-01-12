@@ -34,9 +34,16 @@
   padding-bottom: rem(10);
 }
 
+.productHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .name {
   margin: 0;
-  font-size: rem(30);
+  font-weight: 400;
+  font-size: rem(26);
   text-align: right;
 }
 
@@ -65,4 +72,7 @@
   column-gap: rem(10);
   font-size: rem(16);
   background-color: var(--color-green);
+}
+
+.telegramLink {
 }

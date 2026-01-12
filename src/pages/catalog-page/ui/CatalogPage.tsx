@@ -8,6 +8,7 @@ import { filtersCounter } from '@/features/product-filters/lib/filtersCounter'
 import { FilterBar } from '@/widgets/filter-bar'
 import { useFiltersFromURL } from '@/features/product-filters/model/useFiltersFromURL'
 import { useGridViewFromURL } from '@/features/product-filters/model/useGridViewFromURL'
+import { Loader } from '@/shared/ui/loader'
 
 const CatalogPage = () => {
   const { filters, updateFilters, clearFilters } = useFiltersFromURL()
@@ -22,6 +23,10 @@ const CatalogPage = () => {
   const [isOpen, setIsOpen] = useState(false)
   const openFilters = () => setIsOpen(true)
   const closeFilters = () => setIsOpen(false)
+
+  if (loading) {
+    return <Loader />
+  }
 
   return (
     <>
@@ -40,12 +45,7 @@ const CatalogPage = () => {
         setFilters={updateFilters}
         filteredProductsCount={filteredProductsCount}
       />
-
-      {loading ? (
-        <div className="container">Loading...</div>
-      ) : (
-        <ProductGrid products={filteredProducts} view={gridView} />
-      )}
+      <ProductGrid products={filteredProducts} view={gridView} />
     </>
   )
 }

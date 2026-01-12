@@ -1,0 +1,27 @@
+.loader {
+  width: 100%;
+  min-width: 1420px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: rem(50);
+
+  &::after {
+    content: '';
+    animation: dots 1s steps(3, end) infinite;
+  }
+}
+
+@keyframes dots {
+  0% {
+    content: '';
+  }
+  33% {
+    content: '.';
+  }
+  66% {
+    content: '..';
+  }
+  100% {
+    content: '...';
+  }
+}

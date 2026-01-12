@@ -2,8 +2,10 @@ import { ProductCard } from '@/entities/product/ui/product-card'
 import type { Product } from '@/entities/product/model/types'
 import styles from './ProductGrid.module.scss'
 import { AddToFavoritesButton } from '@/features/add-to-favorites'
-import { AddToCartButton } from '@/features/add-to-cart'
 import type { GridView } from '@/shared/types/grid'
+import { ShoppingCart } from 'lucide-react'
+import { IconButton } from '@/shared/ui/icon-button'
+import { Link } from 'react-router'
 
 interface ProductGridProps {
   products: Product[]
@@ -22,13 +24,17 @@ const ProductGrid = ({
         <div className={[styles.grid, styles[view], styles[variant]].join(' ')}>
           {products.map((product) => (
             <ProductCard
-              key={product.slug}
+              key={product.id}
               product={product}
               view={view}
               actions={
                 <>
                   <AddToFavoritesButton productId={product.id} />
-                  <AddToCartButton productId={product.id} />
+                  <Link to={`/product/${product.slug}`}>
+                    <IconButton variant="card" aria-label="Добавить в корзину">
+                      <ShoppingCart strokeWidth={1.25} size={24} />
+                    </IconButton>
+                  </Link>
                 </>
               }
             />

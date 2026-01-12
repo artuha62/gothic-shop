@@ -5,13 +5,22 @@ import styles from './ProductDetails.module.scss'
 import { pluralizeRu } from '@/shared/lib/pluralize-ru/pluralizeRu.ts'
 import { PromoMini } from '@/shared/ui/promo-mini'
 import { ProductSizeOptions } from '@/entities/product/ui/product-size-options'
+import { Button } from '@/shared/ui/button'
+import { contacts } from '@/widgets/footer/model/constants.ts'
+import { useCartContext } from '@/features/cart/model/CartContext'
+import { useCartDrawerContext } from '@/features/cart/model/CartDrawerContext'
+import { AddToFavoritesButton } from '@/features/add-to-favorites'
 
 interface ProductLayoutProps {
   product: Product
 }
 
 const ProductDetails = ({ product }: ProductLayoutProps) => {
-  const { images, name, price, sizeStock } = product
+  const { id, images, name, price, sizeStock } = product
+  const { telegramUrl } = contacts
+  const { addToCart } = useCartContext()
+  const { openCart } = useCartDrawerContext()
+
   const [currentImage, setCurrentImage] = useState<string | null>(null)
   const [selectedSize, setSelectedSize] = useState<number | null>(() => {
     const firstAvailableSize = sizeStock.find((item) => item.stock > 0)
@@ -26,6 +35,13 @@ const ProductDetails = ({ product }: ProductLayoutProps) => {
 
   const handleSizeToggle = (size: number) => {
     setSelectedSize(size === selectedSize ? null : size)
+  }
+
+  const handleAddToCart = () => {
+    if (selectedSize) {
+      addToCart(id, selectedSize)
+      openCart()
+    }
   }
 
   return (
@@ -56,8 +72,9 @@ const ProductDetails = ({ product }: ProductLayoutProps) => {
         </div>
 
         <div className={styles.info}>
-          <div>
-            <h2 className={styles.name}>/// {name}</h2>
+          <div className={styles.productHeader}>
+            <h2 className={styles.name}>/// {name.toUpperCase()}</h2>
+            <AddToFavoritesButton productId={id} />
           </div>
 
           <div className={styles.priceBlock}>
@@ -80,6 +97,24 @@ const ProductDetails = ({ product }: ProductLayoutProps) => {
                 : 'Нет в наличии'}
             </PromoMini>
           )}
+
+          <Button
+            variant="black"
+            onClick={handleAddToCart}
+            disabled={!selectedSize || selectedSizeStock === 0}
+          >
+            В КОРЗИНУ
+          </Button>
+          <Button
+            as="a"
+            href={telegramUrl}
+            target="_blank"
+            rel="noreferrer"
+            variant="white"
+            className={styles.tgButton}
+          >
+            Написать менеджеру
+          </Button>
         </div>
       </div>
     </div>

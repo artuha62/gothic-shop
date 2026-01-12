@@ -4,7 +4,9 @@
   justify-content: center;
   font-weight: 400;
   font-size: rem(18);
+  text-transform: uppercase;
   border: var(--small-gray-border);
+  transition-duration: var(--transition-duration);
 }
 
 // Size
@@ -60,6 +62,7 @@
 
 .tsgreen {
   background-color: transparent;
+  text-transform: none;
   color: var(--color-white);
   border-color: var(--color-green);
 

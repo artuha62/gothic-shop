@@ -60,19 +60,27 @@ const CartDrawer = () => {
               </span>
             </div>
           ) : (
-            cartItems.map(({ productId, quantity }) => {
+            cartItems.map(({ productId, size, quantity }) => {
               const product = productsMap.get(productId)
 
               if (!product) return null
 
+              const sizeData = product.sizeStock.find(
+                (item) => item.size === size
+              )
+
+              const maxQuantity = sizeData?.stock ?? 0
+
               return (
                 <CartItemRow
-                  key={productId}
+                  key={`${productId}-${size}`}
                   product={product}
+                  size={size}
                   quantity={quantity}
-                  onIncrease={() => increase(productId)}
-                  onDecrease={() => decrease(productId)}
-                  onRemove={() => removeFromCart(productId)}
+                  isDisabled={quantity >= maxQuantity}
+                  onIncrease={() => increase(productId, size, maxQuantity)}
+                  onDecrease={() => decrease(productId, size)}
+                  onRemove={() => removeFromCart(productId, size)}
                 />
               )
             })

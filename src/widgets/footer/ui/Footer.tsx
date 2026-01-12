@@ -14,16 +14,17 @@ const Footer = () => {
           <div className={styles.description}>
             <p>// Только секретная информация, без спама.</p>
           </div>
-          <Button variant="green" size="lg">
-            <a
-              className={styles.tgButton}
-              href={telegramUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <RiTelegram2Fill size={24} />
-              <span>ПОДКЛЮЧИТЬСЯ</span>
-            </a>
+          <Button
+            as="a"
+            href={telegramUrl}
+            target="_blank"
+            rel="noreferrer"
+            variant="green"
+            size="lg"
+            className={styles.tgButton}
+          >
+            <RiTelegram2Fill size={24} />
+            <span>ПОДКЛЮЧИТЬСЯ</span>
           </Button>
         </div>
 
@@ -54,15 +55,15 @@ const Footer = () => {
               <a className={styles.email} href={`mailto:${email}`}>
                 {email}
               </a>
-              <Button variant="tsgreen">
-                <a
-                  className={styles.tgButton}
-                  href={telegramUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Написать в тг
-                </a>
+              <Button
+                as="a"
+                href={telegramUrl}
+                target="_blank"
+                rel="noreferrer"
+                variant="tsgreen"
+                className={styles.tgButton}
+              >
+                Написать в тг
               </Button>
             </div>
           </nav>

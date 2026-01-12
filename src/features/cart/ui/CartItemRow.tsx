@@ -7,7 +7,9 @@ import styles from './CartItemRow.module.scss'
 
 interface CartItemRowProps {
   product: Product
+  size: number
   quantity: number
+  isDisabled: boolean
   onIncrease: () => void
   onDecrease: () => void
   onRemove: () => void
@@ -15,10 +17,12 @@ interface CartItemRowProps {
 
 const CartItemRow = ({
   product,
+  size,
   quantity,
   onIncrease,
   onDecrease,
   onRemove,
+  isDisabled,
 }: CartItemRowProps) => {
   const { slug, price, images, name } = product
   const { closeCart } = useCartDrawerContext()
@@ -39,9 +43,12 @@ const CartItemRow = ({
       </Link>
       <div className={styles.content}>
         <header className={styles.header}>
-          <div className={styles.name}>{name.toUpperCase()}</div>
+          <div className={styles.name}>
+            {name.toUpperCase()} - {size}
+          </div>
           <div className={styles.price}>{formatPrice(subtotal)}</div>
         </header>
+        <div className={styles.size}>{`Размер: ${size} ${quantity} Шт.`}</div>
         <div className={styles.actions}>
           <div className={styles.quantity}>
             <button
@@ -56,6 +63,10 @@ const CartItemRow = ({
               className={styles.button}
               type="button"
               onClick={onIncrease}
+              style={{
+                opacity: isDisabled ? 0.2 : 1,
+                cursor: isDisabled ? 'not-allowed' : 'pointer',
+              }}
             >
               +
             </button>

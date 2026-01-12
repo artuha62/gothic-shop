@@ -1,5 +1,4 @@
 import { formatPrice } from '@/shared/lib/format-price/formatPrice.ts'
-import { getImageURL } from '@/shared/lib/get-image-URL/getImageURL.ts'
 import { Link } from 'react-router'
 import type React from 'react'
 import type { GridView } from '@/shared/types/grid'
@@ -24,13 +23,13 @@ const ProductCard = ({ product, actions, view }: ProductCardProps) => {
       <div className={styles.imageWrapper}>
         <Link to={`/product/${slug}`}>
           <img
-            src={getImageURL(images[0])}
+            src={images[0]}
             alt={name}
             className={`${styles.image} ${styles.front}`}
             loading="lazy"
           />
           <img
-            src={getImageURL(images[1])}
+            src={images[1]}
             alt={name}
             className={`${styles.image} ${styles.back}`}
             loading="lazy"

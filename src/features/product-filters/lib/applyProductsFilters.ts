@@ -27,7 +27,9 @@ export const applyProductsFilters = (
     // Sizes
     if (filters.sizes.length > 0) {
       const hasMatchingSize = filters.sizes.some((filterSize) =>
-        product.sizeStock.some((sizeStock) => sizeStock.size === filterSize)
+        product.sizeStock.some(
+          (sizeStock) => sizeStock.size === filterSize && sizeStock.stock > 0
+        )
       )
 
       if (!hasMatchingSize) {

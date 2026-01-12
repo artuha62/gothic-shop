@@ -176,7 +176,39 @@ async function main() {
     },
   })
 
-  console.log('Created 5 products with size stocks')
+  const sweetDamage = await prisma.product.create({
+    data: {
+      name: 'SWEET DAMAGE',
+      slug: generateSlug('сапоги с шипами 1'),
+      price: 14499,
+      oldPrice: 14499,
+      category: Category.HIGHBOOTS,
+      color: 'black',
+      sku: 'SD-011',
+      description: '',
+      images: [
+        'http://localhost:3001/images/SWEET_DAMAGE/image-1.webp',
+        'http://localhost:3001/images/SWEET_DAMAGE/image-2.webp',
+        'http://localhost:3001/images/SWEET_DAMAGE/image-3.webp',
+        'http://localhost:3001/images/SWEET_DAMAGE/image-4.webp',
+        'http://localhost:3001/images/SWEET_DAMAGE/image-5.webp',
+      ],
+      featured: true,
+      sizeStock: {
+        create: [
+          { size: 36, stock: 15 },
+          { size: 37, stock: 8 },
+          { size: 38, stock: 0 },
+          { size: 39, stock: 7 },
+          { size: 40, stock: 1 },
+          { size: 41, stock: 9 },
+          { size: 42, stock: 25 },
+        ],
+      },
+    },
+  })
+
+  console.log('Created products with size stocks')
 }
 
 main()
