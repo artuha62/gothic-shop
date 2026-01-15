@@ -9,7 +9,7 @@ const ProductPage = () => {
   const { product, isLoading, isError } = useProduct(slug)
 
   if (isLoading) {
-    return <Loader />
+    return <Loader>Загружаем артефакт</Loader>
   }
 
   if (isError || !product) {
