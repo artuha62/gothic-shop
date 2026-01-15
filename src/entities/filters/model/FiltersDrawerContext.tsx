@@ -1,5 +1,5 @@
 import { useFiltersDrawer } from '@/entities/filters/model/useFiltersDrawer.ts'
-import { createContext, type ReactNode, useContext, useMemo } from 'react'
+import { createContext, type ReactNode, useContext } from 'react'
 
 const FiltersDrawerContext = createContext<ReturnType<
   typeof useFiltersDrawer
@@ -10,12 +10,10 @@ export const FiltersDrawerProvider = ({
 }: {
   children: ReactNode
 }) => {
-  const cartDrawer = useFiltersDrawer()
-
-  const value = useMemo(() => cartDrawer, [cartDrawer])
+  const filtersDrawer = useFiltersDrawer()
 
   return (
-    <FiltersDrawerContext.Provider value={value}>
+    <FiltersDrawerContext.Provider value={filtersDrawer}>
       {children}
     </FiltersDrawerContext.Provider>
   )

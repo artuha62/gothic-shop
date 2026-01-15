@@ -1,4 +1,5 @@
 import { useLocalStorage } from '@/shared/hooks/useLocalStorage.ts'
+import { useCallback } from 'react'
 
 const STORAGE_KEY = 'favorites'
 
@@ -8,17 +9,23 @@ export const useFavorites = () => {
     []
   )
 
-  const toggleFavorite = (productId: string) => {
-    setFavoritesIds((prev) =>
-      prev.includes(productId)
-        ? prev.filter((id) => id !== productId)
-        : [...prev, productId]
-    )
-  }
+  const toggleFavorite = useCallback(
+    (productId: string) => {
+      setFavoritesIds((prev) =>
+        prev.includes(productId)
+          ? prev.filter((id) => id !== productId)
+          : [...prev, productId]
+      )
+    },
+    [setFavoritesIds]
+  )
 
-  const isFavorite = (productId: string) => {
-    return favoritesIds.includes(productId)
-  }
+  const isFavorite = useCallback(
+    (productId: string) => {
+      return favoritesIds.includes(productId)
+    },
+    [favoritesIds]
+  )
 
   return {
     favoritesIds,

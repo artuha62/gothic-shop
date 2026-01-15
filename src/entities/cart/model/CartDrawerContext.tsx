@@ -1,4 +1,4 @@
-import { createContext, type ReactNode, useContext, useMemo } from 'react'
+import { createContext, type ReactNode, useContext } from 'react'
 import { useCartDrawer } from './useCartDrawer.ts'
 
 const CartDrawerContext = createContext<ReturnType<
@@ -8,10 +8,8 @@ const CartDrawerContext = createContext<ReturnType<
 export const CartDrawerProvider = ({ children }: { children: ReactNode }) => {
   const cartDrawer = useCartDrawer()
 
-  const value = useMemo(() => cartDrawer, [cartDrawer])
-
   return (
-    <CartDrawerContext.Provider value={value}>
+    <CartDrawerContext.Provider value={cartDrawer}>
       {children}
     </CartDrawerContext.Provider>
   )

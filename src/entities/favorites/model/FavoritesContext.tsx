@@ -1,6 +1,6 @@
 import { useFavorites } from '@/entities/favorites/model/useFavorites.ts'
 import type { ReactNode } from 'react'
-import { createContext, useContext, useMemo } from 'react'
+import { createContext, useContext } from 'react'
 
 type FavoritesContextValue = ReturnType<typeof useFavorites>
 
@@ -15,10 +15,8 @@ interface FavoritesProviderProps {
 export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
   const favorites = useFavorites()
 
-  const value = useMemo(() => favorites, [favorites])
-
   return (
-    <FavoritesContext.Provider value={value}>
+    <FavoritesContext.Provider value={favorites}>
       {children}
     </FavoritesContext.Provider>
   )
