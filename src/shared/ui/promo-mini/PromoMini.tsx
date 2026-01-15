@@ -1,7 +1,7 @@
-import { CircleAlert } from 'lucide-react'
-import styles from './PromoMini.module.scss'
-import type { ReactNode } from 'react'
 import cn from 'classnames'
+import { CircleAlert } from 'lucide-react'
+import type { ReactNode } from 'react'
+import styles from './PromoMini.module.scss'
 
 type PromoMiniSize = 'sm' | 'md'
 

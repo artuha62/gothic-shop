@@ -1,11 +1,21 @@
+import type { Prisma } from '@prisma/client'
+import { Category } from '@prisma/client'
 import { Request, Response } from 'express'
 import prisma from '../prisma'
-import { Category } from '@prisma/client'
-import type { Prisma } from '@prisma/client'
 
 export const getAllProducts = async (req: Request, res: Response) => {
   try {
-    const { category, minPrice, maxPrice, search } = req.query
+    const {
+      category,
+      minPrice,
+      maxPrice,
+      color,
+      sizes,
+      sort,
+      search,
+      page,
+      limit,
+    } = req.query
 
     const where: Prisma.ProductWhereInput = {}
 
@@ -19,6 +29,21 @@ export const getAllProducts = async (req: Request, res: Response) => {
       if (maxPrice) where.price.lte = parseInt(maxPrice as string)
     }
 
+    if (color) {
+      where.color = { equals: color as string, mode: 'insensitive' }
+    }
+
+    // Фильтр по размерам: товар должен иметь хотя бы один из указанных размеров в наличии
+    if (sizes) {
+      const sizeArray = (sizes as string).split(',').map(Number)
+      where.sizeStock = {
+        some: {
+          size: { in: sizeArray },
+          stock: { gt: 0 },
+        },
+      }
+    }
+
     if (search) {
       where.OR = [
         { name: { contains: search as string, mode: 'insensitive' } },
@@ -27,17 +52,44 @@ export const getAllProducts = async (req: Request, res: Response) => {
       ]
     }
 
-    const products = await prisma.product.findMany({
-      where,
-      include: {
-        sizeStock: {
-          orderBy: { size: 'asc' },
-        },
-      },
-      orderBy: { createdAt: 'desc' },
-    })
+    // Определяем сортировку
+    let orderBy: Prisma.ProductOrderByWithRelationInput = { createdAt: 'desc' }
+    if (sort === 'price_asc') {
+      orderBy = { price: 'asc' }
+    } else if (sort === 'price_desc') {
+      orderBy = { price: 'desc' }
+    }
 
-    res.json(products)
+    const pageNumber = parseInt(page as string) || 1
+    const pageSize = parseInt(limit as string) || 12
+    const skip = (pageNumber - 1) * pageSize
+
+    const [products, totalCount] = await Promise.all([
+      prisma.product.findMany({
+        where,
+        include: {
+          sizeStock: { orderBy: { size: 'asc' } },
+        },
+        orderBy,
+        skip,
+        take: pageSize,
+      }),
+      prisma.product.count({ where }),
+    ])
+
+    const totalPages = Math.ceil(totalCount / pageSize)
+
+    res.json({
+      data: products,
+      meta: {
+        page: pageNumber,
+        limit: pageSize,
+        total: totalCount,
+        totalPages,
+        hasNext: pageNumber < totalPages,
+        hasPrev: pageNumber > 1,
+      },
+    })
   } catch (error) {
     console.error('Error fetching products:', error)
     res.status(500).json({ error: 'Failed to fetch products' })

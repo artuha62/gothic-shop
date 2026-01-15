@@ -1,31 +1,78 @@
-import { ProductGrid } from '@/widgets/product-grid'
-import { useProducts } from '@/entities/product/model/useProducts'
-import { useState } from 'react'
-import { FilterDrawer } from '@/features/product-filters'
-import { applyProductsFilters } from '@/features/product-filters/lib/applyProductsFilters'
-import { applyProductsSort } from '@/features/product-filters/lib/applyProductsSort'
-import { filtersCounter } from '@/features/product-filters/lib/filtersCounter'
-import { FilterBar } from '@/widgets/filter-bar'
-import { useFiltersFromURL } from '@/features/product-filters/model/useFiltersFromURL'
-import { useGridViewFromURL } from '@/features/product-filters/model/useGridViewFromURL'
+import { filtersCounter } from '@/entities/filters/lib/filtersCounter.ts'
+import { useFiltersFromURL } from '@/entities/filters/model/useFiltersFromURL.ts'
+import { useGridViewFromURL } from '@/entities/filters/model/useGridViewFromURL.ts'
+import { useProducts } from '@/entities/product/model/useProducts.ts'
+import { Button } from '@/shared/ui/button'
 import { Loader } from '@/shared/ui/loader'
+import { FilterBar } from '@/widgets/filter-bar'
+import { FilterDrawer } from '@/widgets/filter-drawer'
+import { ProductGrid } from '@/widgets/product-grid'
+import { useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
 
 const CatalogPage = () => {
   const { filters, updateFilters, clearFilters } = useFiltersFromURL()
   const { gridView, setGridView } = useGridViewFromURL()
-  const { products, loading } = useProducts()
 
-  const filtered = applyProductsFilters(products, filters)
-  const filteredProducts = applyProductsSort(filtered, filters.sort)
+  const {
+    products,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    totalProducts,
+  } = useProducts({ filters })
+
+  const { ref, inView } = useInView()
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage()
+    }
+  }, [inView, fetchNextPage])
+
   const filtersCount = filtersCounter(filters)
-  const filteredProductsCount = filteredProducts.length
 
-  const [isOpen, setIsOpen] = useState(false)
-  const openFilters = () => setIsOpen(true)
-  const closeFilters = () => setIsOpen(false)
+  const renderContent = () => {
+    if (isLoading) {
+      return <Loader>загружаем артефакты</Loader>
+    }
 
-  if (loading) {
-    return <Loader />
+    if (products.length === 0) {
+      return (
+        <div
+          style={{
+            maxHeight: '200px',
+            textAlign: 'center',
+            padding: '30px 20px',
+          }}
+        >
+          <p style={{ fontSize: '20px', marginBottom: '16px' }}>
+            По вашему запросу ничего не найдено
+          </p>
+          <Button onClick={clearFilters} variant="white">
+            Сбросить фильтры
+          </Button>
+        </div>
+      )
+    }
+
+    return (
+      <>
+        <ProductGrid
+          products={products}
+          view={gridView}
+          hasNext={hasNextPage}
+        />
+        {hasNextPage && (
+          <div ref={ref}>
+            {isFetchingNextPage && (
+              <Loader variant="withoutPadding">загружаем еще</Loader>
+            )}
+          </div>
+        )}
+      </>
+    )
   }
 
   return (
@@ -33,19 +80,16 @@ const CatalogPage = () => {
       <h1 className="visually-hidden">Каталог обуви</h1>
       <FilterBar
         filtersCount={filtersCount}
-        openFilters={openFilters}
         currentView={gridView}
         onChangeGrid={setGridView}
       />
       <FilterDrawer
-        isOpen={isOpen}
-        onClose={closeFilters}
         onClear={clearFilters}
         filters={filters}
         setFilters={updateFilters}
-        filteredProductsCount={filteredProductsCount}
+        filteredProductsCount={totalProducts}
       />
-      <ProductGrid products={filteredProducts} view={gridView} />
+      {renderContent()}
     </>
   )
 }

@@ -53,9 +53,9 @@ body,
 }
 
 :where(fieldset[class]) {
-  border: none;
   margin-left: 0;
   padding: 0;
+  border: none;
 }
 
 /**
@@ -95,8 +95,8 @@ p {
 img,
 video {
   display: block;
-  height: auto;
   max-width: 100%;
+  height: auto;
 }
 
 /**
@@ -133,15 +133,15 @@ html,
 
 body {
   /**
-    Унифицированный интерлиньяж
-   */
-  line-height: 1.5;
-
-  /**
     Пригодится в большинстве ситуаций
     (когда, например, нужно будет "прижать" футер к низу сайта)
    */
   min-height: 100%;
+
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
 }
 
 /**
@@ -188,8 +188,8 @@ svg * {
   Приведение рамок таблиц в классический 'collapse' вид
  */
 :where(table) {
-  border-collapse: collapse;
   border-color: currentcolor;
+  border-collapse: collapse;
 }
 
 /**
@@ -200,9 +200,9 @@ svg * {
   *,
   ::before,
   ::after {
+    transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
   }
 }

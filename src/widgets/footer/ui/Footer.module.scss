@@ -1,11 +1,11 @@
 .footer {
-  padding-block: rem(60);
-  background-color: var(--color-black);
+  padding-block: 60px;
   color: var(--color-white);
+  background-color: var(--color-black);
 }
 
 .inner {
-  padding-inline: rem(20);
+  padding-inline: 20px;
 }
 
 // CTA
@@ -13,11 +13,11 @@
   @include flex-center;
 
   flex-direction: column;
-  row-gap: rem(20);
+  row-gap: 20px;
 }
 
 .title {
-  font-size: rem(36);
+  font-size: 36px;
 }
 
 .description {
@@ -26,61 +26,61 @@
 
 .tgButton {
   display: flex;
-  column-gap: rem(5);
+  column-gap: 5px;
 }
+
 // Main
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: rem(40);
+  row-gap: 40px;
   width: 100%;
-  margin-top: rem(100);
-  padding-block: rem(50);
+  margin-top: 100px;
+  padding-block: 50px;
   border-block: 1px solid #404040;
 }
+
 // Лого
 .logo {
-  width: rem(180);
+  width: 180px;
 }
 
 // Менюшки
 .menus {
-  width: 100%;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: rem(20);
   flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
 }
 
 .menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
 
-  width: rem(350);
+  flex-direction: column;
+  row-gap: 20px;
+  width: 350px;
   max-width: 100%;
-  row-gap: rem(20);
 }
 
 .menuTitle {
-  font-size: rem(18);
+  font-size: 18px;
   font-weight: 700;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  row-gap: rem(10);
+  row-gap: 10px;
   text-align: center;
 }
 
 .item {
-  font-size: rem(15);
-  color: var(--color-light-gray);
+  font-size: 15px;
   text-decoration: none;
+  color: var(--color-light-gray);
   transition-duration: var(--transition-duration);
 
   &:hover {
@@ -89,12 +89,11 @@
 }
 
 .contacts {
-  display: flex;
+  @include flex-center;
+
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  row-gap: rem(20);
-  width: rem(350);
+  row-gap: 20px;
+  width: 350px;
 }
 
 .email {
@@ -107,12 +106,13 @@
 }
 
 .tgButton {
-  font-size: rem(15);
+  font-size: 15px;
 }
+
 // Копирайт
 .bottom {
-  font-size: rem(15);
-  padding-block: rem(20);
+  padding-block: 20px;
+  font-size: 15px;
 }
 
 .copyright {

@@ -1,7 +1,7 @@
-import { IconButton } from '@/shared/ui/icon-button/index.js'
+import { useFavoritesContext } from '@/entities/favorites/model/FavoritesContext.tsx'
+import { IconButton } from '@/shared/ui/icon-button/index'
 import { Heart } from 'lucide-react'
 import styles from './AddToFavoritesButton.module.scss'
-import { useFavoritesContext } from '@/features/favorites/model/FavoritesContext'
 
 interface Props {
   productId: string

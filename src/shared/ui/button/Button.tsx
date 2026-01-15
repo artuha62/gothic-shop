@@ -1,9 +1,9 @@
+import cn from 'classnames'
 import type {
-  ButtonHTMLAttributes,
   AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
   ReactNode,
 } from 'react'
-import cn from 'classnames'
 import styles from './Button.module.scss'
 
 type ButtonVariant = 'white' | 'black' | 'green' | 'tsgreen'

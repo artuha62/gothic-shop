@@ -1,6 +1,6 @@
-import styles from './PromoBanner.module.scss'
-import type { ReactNode } from 'react'
 import cn from 'classnames'
+import type { ReactNode } from 'react'
+import styles from './PromoBanner.module.scss'
 
 type PromoBannerVariant = 'black' | 'green'
 type PromoBannerPadding = 'sm' | 'lg'

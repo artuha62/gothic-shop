@@ -1,11 +1,7 @@
 .noFavorites {
-  display: flex;
+  @include flex-center;
+
   flex-direction: column;
-
-  justify-content: center;
-  align-items: center;
-
-  row-gap: rem(20);
-
-  padding-bottom: rem(100);
+  row-gap: 20px;
+  padding-bottom: 100px;
 }

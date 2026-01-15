@@ -1,9 +1,8 @@
 .button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center(true);
+
+  font-size: 18px;
   font-weight: 400;
-  font-size: rem(18);
   text-transform: uppercase;
   border: var(--small-gray-border);
   transition-duration: var(--transition-duration);
@@ -11,38 +10,38 @@
 
 // Size
 .sm {
-  height: rem(38);
-  padding: rem(11);
-  font-size: rem(14);
-  min-width: rem(100);
+  min-width: 100px;
+  height: 38px;
+  padding: 11px;
+  font-size: 14px;
 }
 
 .md {
-  height: rem(48);
-  padding: rem(16);
-  min-width: rem(180);
+  min-width: 180px;
+  height: 48px;
+  padding: 16px;
 }
 
 .lg {
-  height: rem(48);
-  min-width: rem(300);
+  min-width: 300px;
+  height: 48px;
 }
 
 // Variants
 .white {
-  background-color: var(--color-white);
   color: var(--color-black);
+  background-color: var(--color-white);
 
   &:hover {
-    background-color: var(--color-black);
     color: var(--color-white);
+    background-color: var(--color-black);
     border-color: var(--color-black);
   }
 }
 
 .black {
-  background-color: var(--color-black);
   color: var(--color-white);
+  background-color: var(--color-black);
   border: none;
 
   &:hover {
@@ -51,8 +50,8 @@
 }
 
 .green {
-  background-color: var(--color-green);
   color: var(--color-black);
+  background-color: var(--color-green);
   border: none;
 
   &:hover {
@@ -61,14 +60,14 @@
 }
 
 .tsgreen {
-  background-color: transparent;
   text-transform: none;
   color: var(--color-white);
+  background-color: transparent;
   border-color: var(--color-green);
 
   &:hover {
-    background-color: var(--color-green);
     color: var(--color-black);
+    background-color: var(--color-green);
   }
 }
 

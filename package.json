@@ -9,15 +9,20 @@
     "dev:back": "npm run dev --prefix ./backend",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "lint:css": "stylelint \"src/**/*.{css,scss}\"",
+    "lint:css:fix": "stylelint \"src/**/*.{css,scss}\" --fix",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.90.17",
+    "@tanstack/react-virtual": "^3.13.18",
     "classnames": "^2.5.1",
     "lucide-react": "^0.557.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
-    "react-router": "^7.10.1"
+    "react-intersection-observer": "^10.0.0",
+    "react-router": "^7.12.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -31,7 +36,13 @@
     "globals": "^16.5.0",
     "npm-run-all": "^4.1.5",
     "prettier": "3.7.4",
+    "prettier-plugin-organize-imports": "^4.3.0",
     "sass-embedded": "^1.93.3",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard-scss": "^16.0.0",
+    "stylelint-order": "^7.0.1",
+    "stylelint-scss": "^6.14.0",
+    "stylelint-selector-bem-pattern": "^4.0.1",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4"

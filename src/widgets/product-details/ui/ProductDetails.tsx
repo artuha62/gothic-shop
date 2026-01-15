@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import { formatPrice } from '@/shared/lib/format-price/formatPrice'
+import { useCartContext } from '@/entities/cart/model/CartContext.tsx'
+import { useCartDrawerContext } from '@/entities/cart/model/CartDrawerContext.tsx'
 import type { Product } from '@/entities/product/model/types'
-import styles from './ProductDetails.module.scss'
-import { pluralizeRu } from '@/shared/lib/pluralize-ru/pluralizeRu.ts'
-import { PromoMini } from '@/shared/ui/promo-mini'
 import { ProductSizeOptions } from '@/entities/product/ui/product-size-options'
-import { Button } from '@/shared/ui/button'
-import { contacts } from '@/widgets/footer/model/constants.ts'
-import { useCartContext } from '@/features/cart/model/CartContext'
-import { useCartDrawerContext } from '@/features/cart/model/CartDrawerContext'
 import { AddToFavoritesButton } from '@/features/add-to-favorites'
+import { formatPrice } from '@/shared/lib/format-price/formatPrice'
+import { pluralizeRu } from '@/shared/lib/pluralize-ru/pluralizeRu'
+import { Button } from '@/shared/ui/button'
+import { PromoMini } from '@/shared/ui/promo-mini'
+import { contacts } from '@/widgets/footer/ui/constants.ts'
+import { useState } from 'react'
+import styles from './ProductDetails.module.scss'
 
 interface ProductLayoutProps {
   product: Product
@@ -45,7 +45,7 @@ const ProductDetails = ({ product }: ProductLayoutProps) => {
   }
 
   return (
-    <div className="container">
+    <section className={`${styles.productDetails} container`}>
       <div className={styles.inner}>
         <div className={styles.gallery}>
           <div className={styles.thumbs}>
@@ -117,7 +117,7 @@ const ProductDetails = ({ product }: ProductLayoutProps) => {
           </Button>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

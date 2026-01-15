@@ -9,13 +9,14 @@
 }
 
 .text {
-  font-size: rem(16);
+  font-size: 16px;
 }
 
 @keyframes slide {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -23,20 +24,20 @@
 
 // Padding
 .sm {
-  padding-inline: rem(10);
+  padding-inline: 10px;
 }
 
 .lg {
-  padding-inline: rem(100);
+  padding-inline: 100px;
 }
 
 // Variants
 .black {
-  background-color: var(--color-black);
   color: var(--color-white);
+  background-color: var(--color-black);
 }
 
 .green {
-  background-color: var(--color-green);
   color: var(--color-black);
+  background-color: var(--color-green);
 }

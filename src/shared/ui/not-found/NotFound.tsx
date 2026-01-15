@@ -1,5 +1,5 @@
-import styles from './NotFound.module.scss'
 import cn from 'classnames'
+import styles from './NotFound.module.scss'
 
 type NotFoundPadding = 'withoutPadding' | 'withPadding'
 type NotFoundSize = 'sm' | 'lg'
@@ -16,11 +16,9 @@ const NotFound = ({
   size = 'lg',
 }: NotFoundProps) => {
   return (
-    <div className="container">
-      <div className={cn(styles.inner, styles[padding], styles[size])}>
-        <div className={styles.glitch} title={children}>
-          {children}
-        </div>
+    <div className={cn(styles.title, styles[padding], styles[size])}>
+      <div className={styles.glitch} title={children}>
+        {children}
       </div>
     </div>
   )

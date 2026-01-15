@@ -1,4 +1,4 @@
-import { useCartContext } from '@/features/cart/model/CartContext'
+import { useCartContext } from '@/entities/cart/model/CartContext.tsx'
 import styles from './Badge.module.scss'
 
 const CartBadge = () => {

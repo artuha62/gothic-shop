@@ -1,7 +1,6 @@
 import { formatPrice } from '@/shared/lib/format-price/formatPrice.ts'
-import { Link } from 'react-router'
 import type React from 'react'
-import type { GridView } from '@/shared/types/grid'
+import { Link } from 'react-router'
 import styles from './ProductCard.module.scss'
 
 interface ProductCardProps {
@@ -12,14 +11,13 @@ interface ProductCardProps {
     price: number
   }
   actions?: React.ReactNode
-  view?: GridView
 }
 
-const ProductCard = ({ product, actions, view }: ProductCardProps) => {
+const ProductCard = ({ product, actions }: ProductCardProps) => {
   const { slug, images, name, price } = product
 
   return (
-    <div className={`${styles.card} ${view ? styles[view] : ''}`}>
+    <div className={styles.card}>
       <div className={styles.imageWrapper}>
         <Link to={`/product/${slug}`}>
           <img

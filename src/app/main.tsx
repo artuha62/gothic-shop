@@ -1,22 +1,30 @@
+import { CartProvider } from '@/entities/cart/model/CartContext.tsx'
+import { CartDrawerProvider } from '@/entities/cart/model/CartDrawerContext.tsx'
+import { FavoritesProvider } from '@/entities/favorites/model/FavoritesContext.tsx'
+import { FiltersDrawerProvider } from '@/entities/filters/model/FiltersDrawerContext.tsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './styles/index'
-import App from './App'
 import { BrowserRouter } from 'react-router'
-import { FavoritesProvider } from '@/features/favorites/model/FavoritesContext'
-import { CartProvider } from '@/features/cart/model/CartContext'
-import { CartDrawerProvider } from '@/features/cart/model/CartDrawerContext'
+import App from './App'
+import './styles/index'
+
+const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
-    <StrictMode>
-      <CartProvider>
-        <CartDrawerProvider>
-          <FavoritesProvider>
-            <App />
-          </FavoritesProvider>
-        </CartDrawerProvider>
-      </CartProvider>
-    </StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <StrictMode>
+        <CartProvider>
+          <FiltersDrawerProvider>
+            <CartDrawerProvider>
+              <FavoritesProvider>
+                <App />
+              </FavoritesProvider>
+            </CartDrawerProvider>
+          </FiltersDrawerProvider>
+        </CartProvider>
+      </StrictMode>
+    </QueryClientProvider>
   </BrowserRouter>
 )

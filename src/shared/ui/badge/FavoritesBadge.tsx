@@ -1,5 +1,5 @@
+import { useFavoritesContext } from '@/entities/favorites/model/FavoritesContext.tsx'
 import styles from './Badge.module.scss'
-import { useFavoritesContext } from '@/features/favorites/model/FavoritesContext'
 
 const FavoritesBadge = () => {
   const { favoritesIds } = useFavoritesContext()

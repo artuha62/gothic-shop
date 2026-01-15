@@ -1,5 +1,11 @@
 .productsGrid {
-  padding-block: rem(26);
+  padding-top: 30px;
+
+  //  padding-bottom: 60px;
+}
+
+.needPadding {
+  padding-bottom: 60px;
 }
 
 .grid {
@@ -8,40 +14,38 @@
 }
 
 .grid3 {
-  grid-template-columns: repeat(3, 1fr);
   --card-aspect-ratio: 3 / 3.6;
+
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .grid4 {
-  grid-template-columns: repeat(4, 1fr);
   --card-aspect-ratio: 3 / 4;
+
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .grid8 {
-  grid-template-columns: repeat(8, 1fr);
   --card-aspect-ratio: 3 / 10;
+
+  grid-template-columns: repeat(8, 1fr);
 }
 
 /* избранное */
 .favorites {
   align-items: start;
+  padding-bottom: 60px;
 }
 
 .message {
   padding: 2rem 0;
+  font-size: 1rem;
   text-align: center;
   color: var(--muted-foreground);
-  font-size: 1rem;
 }
 
-//.dense {
-//  grid-template-columns: repeat(3, 1fr);
-//}
-//
-//.gridView {
-//  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-//}
-//
-//.spacious {
-//  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-//}
+.loadingMore {
+  padding: 1rem;
+  text-align: center;
+  color: var(--muted-foreground);
+}

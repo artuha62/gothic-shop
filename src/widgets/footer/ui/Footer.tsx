@@ -1,8 +1,8 @@
 import { Button } from '@/shared/ui/button'
 import { RiTelegram2Fill } from 'react-icons/ri'
-import { footerMenus, contacts } from '../model/constants'
-import styles from './Footer.module.scss'
 import { Link } from 'react-router'
+import { contacts, footerMenus } from './constants'
+import styles from './Footer.module.scss'
 
 const Footer = () => {
   const { telegramUrl, email } = contacts
@@ -68,14 +68,13 @@ const Footer = () => {
             </div>
           </nav>
         </div>
-        <div className="container">
-          <div className={styles.bottom}>
-            <div className={styles.copyright}>
-              <div className={styles.requisites}>
-                ООО «ARTUHA62», ИНН 626262, ОГРН 123456789
-              </div>
-              <div className={styles.rights}>© Все права НЕ защищены</div>
+
+        <div className={`${styles.bottom} container`}>
+          <div className={styles.copyright}>
+            <div className={styles.requisites}>
+              ООО «ARTUHA62», ИНН 626262, ОГРН 123456789
             </div>
+            <div className={styles.rights}>© Все права НЕ защищены</div>
           </div>
         </div>
       </div>

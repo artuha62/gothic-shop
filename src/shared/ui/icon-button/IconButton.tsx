@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import styles from './IconButton.module.scss'
 
@@ -17,14 +18,12 @@ const IconButton = ({
   return (
     <button
       type="button"
-      className={[
+      className={cn(
         styles.IconButton,
         styles[variant],
         isActive && styles.active,
-        className,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+        className
+      )}
       {...props}
     >
       {children}

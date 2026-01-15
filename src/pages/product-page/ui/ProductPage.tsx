@@ -1,18 +1,18 @@
-import { useParams } from 'react-router'
-import { ProductDetails } from '@/widgets/product-details'
-import { NotFound } from '@/shared/ui/not-found'
-import { useProduct } from '@/entities/product/model/useProduct.ts'
+import { useProduct } from '@/entities/product/model/useProduct'
 import { Loader } from '@/shared/ui/loader'
+import { NotFound } from '@/shared/ui/not-found'
+import { ProductDetails } from '@/widgets/product-details'
+import { useParams } from 'react-router'
 
 const ProductPage = () => {
   const { slug } = useParams<{ slug: string }>()
-  const { product, loading, error } = useProduct(slug)
+  const { product, isLoading, isError } = useProduct(slug)
 
-  if (loading) {
+  if (isLoading) {
     return <Loader />
   }
 
-  if (error || !product) {
+  if (isError || !product) {
     return <NotFound>Товар не найден...</NotFound>
   }
 
