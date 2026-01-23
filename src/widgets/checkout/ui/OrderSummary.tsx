@@ -1,6 +1,4 @@
-import { CartItemRow } from '@/entities/cart'
-import { useCartStore } from '@/entities/cart/store/useCartStore'
-import { useProductsByIds } from '@/entities/product/model/useProductsByIds'
+import { CartItems } from '@/entities/cart/ui/cart-items-list'
 import { formatPrice } from '@/shared/lib/format-price/formatPrice'
 import { Button } from '@/shared/ui/button'
 import { PromoMini } from '@/shared/ui/promo-mini'
@@ -10,6 +8,13 @@ interface OrderSummaryProps {
   deliveryMethod: 'courier' | 'pickup'
   promocode: string
   discount: number
+  totals: {
+    itemsTotal: number
+    deliveryCost: number
+    discount: number
+    total: number
+    itemsCount: number
+  }
   onPromocodeChange: (code: string) => void
   onApplyPromocode: () => void
 }
@@ -18,31 +23,17 @@ export const OrderSummary = ({
   deliveryMethod,
   promocode,
   discount,
+  totals,
   onPromocodeChange,
   onApplyPromocode,
 }: OrderSummaryProps) => {
-  const items = useCartStore((state) => state.items)
-  const productIds = items.map((item) => item.productId)
-  const { products } = useProductsByIds(productIds)
-  const productsMap = new Map(products.map((p) => [p.id, p]))
-
-  // Расчет итогов
-  const itemsTotal = items.reduce((sum, item) => {
-    const product = productsMap.get(item.productId)
-    if (!product) return sum
-    return sum + product.price * item.quantity
-  }, 0)
-
-  const deliveryCost = deliveryMethod === 'courier' ? 0 : 0 // Бесплатная доставка
-  const total = itemsTotal + deliveryCost - discount
-
   return (
     <div className={styles.summary}>
       <PromoMini>Доставка бесплатна!</PromoMini>
 
       {/* Промокод */}
       <div className={styles.promocode}>
-        <h3 className={styles.title}>ПРОМОКОД</h3>
+        <h3 className={styles.title}>Промокод</h3>
         <div className={styles.promocodeInput}>
           <input
             type="text"
@@ -58,27 +49,15 @@ export const OrderSummary = ({
 
       {/* Состав заказа */}
       <div className={styles.cart}>
-        <h3 className={styles.title}>СОСТАВ ЗАКАЗА</h3>
+        <h3 className={styles.title}>Состав заказа</h3>
         <div className={styles.items}>
-          {items.map(({ productId, size }) => {
-            const product = productsMap.get(productId)
-            if (!product) return null
-
-            return (
-              <CartItemRow
-                key={`${productId}-${size}`}
-                productId={productId}
-                size={size}
-                product={product}
-              />
-            )
-          })}
+          <CartItems />
         </div>
       </div>
 
       {/* Итоги */}
       <div className={styles.totals}>
-        <h3 className={styles.title}>ОПЛАТА</h3>
+        <h3 className={styles.title}>Оплата</h3>
 
         <div className={styles.row}>
           <span>Сумма заказа</span>

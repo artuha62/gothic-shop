@@ -132,15 +132,26 @@ export const selectCartItem =
     )
 
 export const selectCartTotals =
-  (products: Map<string, Product>) => (state: CartStore) => {
+  (
+    products: Map<string, Product>,
+    deliveryMethod: 'courier' | 'pickup' = 'courier',
+    discount: number = 0
+  ) =>
+  (state: CartStore) => {
     const itemsTotal = state.items.reduce((sum, item) => {
       const product = products.get(item.productId)
       if (!product) return sum
       return sum + product.price * item.quantity
     }, 0)
 
+    const deliveryCost = deliveryMethod === 'courier' ? 0 : 0
+    const total = itemsTotal + deliveryCost - discount
+
     return {
       itemsTotal,
+      deliveryCost,
+      discount,
+      total,
       itemsCount: state.items.reduce((sum, item) => sum + item.quantity, 0),
     }
   }

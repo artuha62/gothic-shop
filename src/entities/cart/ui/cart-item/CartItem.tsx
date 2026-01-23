@@ -8,21 +8,21 @@ import { Button } from '@/shared/ui/button'
 import cn from 'classnames'
 import { memo } from 'react'
 import { Link } from 'react-router'
-import styles from './CartItemRow.module.scss'
+import styles from './CartItem.module.scss'
 
-interface CartItemRowProps {
+interface CartItemProps {
   productId: string
   size: number
   product: Product
   variant?: 'drawer' | 'checkout'
 }
 
-const CartItemRow = ({
+const CartItem = ({
   productId,
   size,
   product,
   variant = 'drawer',
-}: CartItemRowProps) => {
+}: CartItemProps) => {
   const item = useCartStore(selectCartItem(productId, size))
 
   const increaseItemQuantity = useCartStore(
@@ -98,4 +98,4 @@ const CartItemRow = ({
   )
 }
 
-export default memo(CartItemRow)
+export default memo(CartItem)

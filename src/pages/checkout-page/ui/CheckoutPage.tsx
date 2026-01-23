@@ -1,4 +1,7 @@
-import { useCartStore } from '@/entities/cart/store/useCartStore'
+import {
+  selectCartTotals,
+  useCartStore,
+} from '@/entities/cart/store/useCartStore'
 import { useProductsByIds } from '@/entities/product/model/useProductsByIds'
 import { Button } from '@/shared/ui/button'
 import { OrderSummary } from '@/widgets/checkout/ui/OrderSummary'
@@ -34,6 +37,10 @@ const CheckoutPage = () => {
   const { products } = useProductsByIds(productIds)
   const productsMap = new Map(products.map((p) => [p.id, p]))
 
+  const totals = useCartStore(
+    selectCartTotals(productsMap, deliveryMethod, discount)
+  )
+
   const {
     register,
     handleSubmit,
@@ -41,22 +48,6 @@ const CheckoutPage = () => {
   } = useForm<FormValues>({
     mode: 'onBlur',
   })
-
-  // Расчет итогов
-  const calculateTotals = () => {
-    const itemsTotal = items.reduce((sum, item) => {
-      const product = productsMap.get(item.productId)
-      if (!product) return sum
-      return sum + product.price * item.quantity
-    }, 0)
-
-    const delivery = deliveryMethod === 'courier' ? 0 : 0
-    const total = itemsTotal + delivery - discount
-
-    return { itemsTotal, delivery, total }
-  }
-
-  const totals = calculateTotals()
 
   const applyPromocode = async () => {
     try {
@@ -104,7 +95,7 @@ const CheckoutPage = () => {
             productId: item.productId,
             size: item.size,
             quantity: item.quantity,
-            price: product?.price || 0, // проверка на сервере
+            price: product?.price || 0,
           }
         }),
         promocode: promocode || undefined,
@@ -251,6 +242,7 @@ const CheckoutPage = () => {
 
                 <div className={styles.deliveryButtons}>
                   <Button
+                    type="button"
                     variant="white"
                     className={
                       deliveryMethod === 'courier' ? styles.active : ''
@@ -260,6 +252,7 @@ const CheckoutPage = () => {
                     КУРЬЕРОМ
                   </Button>
                   <Button
+                    type="button"
                     variant="white"
                     className={deliveryMethod === 'pickup' ? styles.active : ''}
                     onClick={() => setDeliveryMethod('pickup')}
@@ -276,7 +269,10 @@ const CheckoutPage = () => {
                         placeholder="Введите адрес доставки"
                         className={errors.address ? styles.inputError : ''}
                         {...register('address', {
-                          required: 'Введите адрес',
+                          required:
+                            deliveryMethod === 'courier'
+                              ? 'Введите адрес'
+                              : false,
                         })}
                       />
                       <label>Адрес *</label>
@@ -323,6 +319,7 @@ const CheckoutPage = () => {
                 </div>
               </section>
               <Button
+                type="submit"
                 className={styles.submitBtn}
                 variant="black"
                 fullWidth
@@ -339,6 +336,7 @@ const CheckoutPage = () => {
               deliveryMethod={deliveryMethod}
               promocode={promocode}
               discount={discount}
+              totals={totals}
               onPromocodeChange={setPromocode}
               onApplyPromocode={applyPromocode}
             />
