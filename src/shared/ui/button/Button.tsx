@@ -1,15 +1,12 @@
 import cn from 'classnames'
-import type {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
-  ReactNode,
-} from 'react'
+import type { ElementType, ReactNode } from 'react'
 import styles from './Button.module.scss'
 
 type ButtonVariant = 'white' | 'black' | 'green' | 'tsgreen'
 type ButtonSize = 'sm' | 'md' | 'lg'
 
-interface BaseProps {
+interface ButtonProps<T extends ElementType = 'button'> {
+  as?: T
   variant?: ButtonVariant
   size?: ButtonSize
   fullWidth?: boolean
@@ -17,56 +14,32 @@ interface BaseProps {
   className?: string
 }
 
-type ButtonAsButton = BaseProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & { as?: 'button' }
-
-type ButtonAsAnchor = Omit<BaseProps, 'disabled'> &
-  AnchorHTMLAttributes<HTMLAnchorElement> & { as: 'a' }
-
-type ButtonProps = ButtonAsButton | ButtonAsAnchor
-
-const Button = ({
+const Button = <T extends ElementType = 'button'>({
   variant = 'white',
   size = 'md',
   fullWidth = false,
   className,
   children,
-  as = 'button',
+  as,
   ...props
-}: ButtonProps) => {
-  const disabled =
-    as === 'button' ? (props as ButtonAsButton).disabled : undefined
+}: ButtonProps<T> & React.ComponentPropsWithoutRef<T>) => {
+  const Component = as || 'button'
+
   const classes = cn(
     styles.button,
     styles[variant],
     styles[size],
     {
       [styles.fullWidth]: fullWidth,
-      [styles.disabled]: disabled,
+      [styles.disabled]: props.disabled || props.ariaDisabled,
     },
     className
   )
 
-  if (as === 'a') {
-    return (
-      <a
-        className={classes}
-        {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
-      >
-        {children}
-      </a>
-    )
-  }
-
   return (
-    <button
-      type="button"
-      disabled={disabled}
-      className={classes}
-      {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
-    >
+    <Component className={classes} {...props}>
       {children}
-    </button>
+    </Component>
   )
 }
 

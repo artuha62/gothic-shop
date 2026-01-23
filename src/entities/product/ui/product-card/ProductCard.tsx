@@ -1,10 +1,14 @@
+import { AddToFavoritesButton } from '@/features/add-to-favorites'
 import { formatPrice } from '@/shared/lib/format-price/formatPrice.ts'
-import type React from 'react'
+import { IconButton } from '@/shared/ui/icon-button'
+import { ShoppingCart } from 'lucide-react'
+import React, { memo } from 'react'
 import { Link } from 'react-router'
 import styles from './ProductCard.module.scss'
 
 interface ProductCardProps {
   product: {
+    id: string
     slug: string
     images: string[]
     name: string
@@ -13,8 +17,8 @@ interface ProductCardProps {
   actions?: React.ReactNode
 }
 
-const ProductCard = ({ product, actions }: ProductCardProps) => {
-  const { slug, images, name, price } = product
+const ProductCard = ({ product }: ProductCardProps) => {
+  const { slug, images, name, price, id } = product
 
   return (
     <div className={styles.card}>
@@ -33,7 +37,14 @@ const ProductCard = ({ product, actions }: ProductCardProps) => {
             loading="lazy"
           />
         </Link>
-        {actions && <div className={styles.actions}>{actions}</div>}
+        <div className={styles.actions}>
+          <AddToFavoritesButton productId={id} />
+          <Link to={`/product/${slug}`}>
+            <IconButton variant="card" aria-label="Добавить в корзину">
+              <ShoppingCart strokeWidth={1.25} size={24} />
+            </IconButton>
+          </Link>
+        </div>
         <div className={styles.info}>
           <h3 className={styles.name}>{name.toUpperCase()}</h3>
           <p className={styles.price}>{formatPrice(price)}</p>
@@ -43,4 +54,4 @@ const ProductCard = ({ product, actions }: ProductCardProps) => {
   )
 }
 
-export default ProductCard
+export default memo(ProductCard)

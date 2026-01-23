@@ -1,25 +1,26 @@
-import {
-  CATEGORY,
-  COLOR_OPTIONS,
-  PRICE_OPTIONS,
-  SIZES,
-  SORT_OPTIONS,
-} from './constants.ts'
+// types.ts - типы API (источник правды)
+export type ApiCategory = 'HIGHBOOTS' | 'BOOTS' | 'SANDALS'
+export type ApiPriceRange = 'all' | 'to10' | '10to15' | 'from15'
+export type ApiSort = 'all' | 'price_asc' | 'price_desc'
 
-export type Category = (typeof CATEGORY)[number]['value']
+// Тип для query params (что отправляем на сервер)
+export type ApiFilters = {
+  category?: ApiCategory
+  price?: ApiPriceRange // Заметь: price, не priceRange!
+  color?: string
+  sizes?: string // "36,37,38" - строка для query param
+  sort?: ApiSort
+  search?: string
+  page?: number
+  limit?: number
+}
 
-export type PriceRange = (typeof PRICE_OPTIONS)[number]['value']
-
-export type Color = (typeof COLOR_OPTIONS)[number]['value']
-
-export type Sizes = (typeof SIZES)[number]
-
-export type Sort = (typeof SORT_OPTIONS)[number]['value']
-
+// Тип для UI (внутреннее состояние фронта)
 export type Filters = {
-  category: Category | null
-  priceRange: PriceRange
-  sizes: number[]
-  color: Color
-  sort: Sort
+  category: ApiCategory | null
+  priceRange: ApiPriceRange // На фронте удобнее так
+  sizes: number[] // На фронте массив чисел
+  color: string
+  sort: ApiSort
+  search: string
 }

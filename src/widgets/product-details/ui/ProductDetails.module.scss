@@ -33,14 +33,14 @@
 }
 
 .info > *:not(:last-child) {
-  padding-bottom: 10px;
-  border-bottom: var(--small-gray-border);
 }
 
 .productHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 10px;
+  border-bottom: var(--small-gray-border);
 }
 
 .name {
@@ -51,28 +51,20 @@
 }
 
 .price {
+  padding-bottom: 10px;
   font-size: 24px;
   text-align: right;
+  border-bottom: var(--small-gray-border);
 }
 
 .sizesBlock {
   display: flex;
   flex-direction: column;
   row-gap: 30px;
+  border-bottom: var(--small-gray-border);
 }
 
 .sizeTitle {
   font-size: 20px;
   font-weight: bold;
-}
-
-.promo {
-  display: flex;
-  align-items: center;
-  column-gap: 10px;
-  width: 280px;
-  height: 30px;
-  padding: 5px;
-  font-size: 16px;
-  background-color: var(--color-green);
 }

@@ -1,7 +1,12 @@
-.noFavorites {
+.content {
+  min-height: 50vh;
+}
+
+.withoutFavorites {
   @include flex-center;
 
   flex-direction: column;
   row-gap: 20px;
+  padding-top: 70px;
   padding-bottom: 100px;
 }

@@ -2,6 +2,56 @@ import type { Prisma } from '@prisma/client'
 import { Category } from '@prisma/client'
 import { Request, Response } from 'express'
 import prisma from '../prisma'
+import {
+  getSearchWords,
+  normalizeForSearch,
+  stemRussian,
+} from '../utils/normalizeSearch'
+
+// Вспомогательная функция для создания условий поиска
+const buildSearchConditions = (searchStr: string): Prisma.ProductWhereInput => {
+  const searchWords = getSearchWords(searchStr)
+
+  if (searchWords.length === 0) {
+    // Если после удаления стоп-слов ничего не осталось - ищем по оригиналу
+    return {
+      OR: [
+        { name: { contains: searchStr, mode: 'insensitive' } },
+        { description: { contains: searchStr, mode: 'insensitive' } },
+        { sku: { contains: searchStr.toUpperCase(), mode: 'insensitive' } },
+        { color: { contains: searchStr, mode: 'insensitive' } },
+      ],
+    }
+  }
+
+  // Строим AND условия - каждое слово должно быть найдено
+  const andConditions: Prisma.ProductWhereInput[] = searchWords.map((word) => {
+    const stem = stemRussian(word)
+    const shouldUseStem = stem.length >= 6
+
+    if (shouldUseStem) {
+      return {
+        OR: [
+          { name: { contains: word, mode: 'insensitive' } },
+          { name: { contains: stem, mode: 'insensitive' } },
+          { description: { contains: word, mode: 'insensitive' } },
+          { description: { contains: stem, mode: 'insensitive' } },
+          { color: { contains: word, mode: 'insensitive' } },
+        ],
+      }
+    } else {
+      return {
+        OR: [
+          { name: { contains: word, mode: 'insensitive' } },
+          { description: { contains: word, mode: 'insensitive' } },
+          { color: { contains: word, mode: 'insensitive' } },
+        ],
+      }
+    }
+  })
+
+  return { AND: andConditions }
+}
 
 export const getAllProducts = async (req: Request, res: Response) => {
   try {
@@ -9,6 +59,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
       category,
       minPrice,
       maxPrice,
+      price,
       color,
       sizes,
       sort,
@@ -19,23 +70,64 @@ export const getAllProducts = async (req: Request, res: Response) => {
 
     const where: Prisma.ProductWhereInput = {}
 
+    // Category (валидация against enum)
     if (category) {
-      where.category = category as Category
+      const cat = String(category).toUpperCase()
+      if ((Object.values(Category) as string[]).includes(cat)) {
+        where.category = cat as Category
+      } else {
+        return res.status(400).json({ error: 'Invalid category' })
+      }
     }
 
-    if (minPrice || maxPrice) {
+    // Price: поддерживаем канонический параметр `price` (presets)
+    const pricePreset = price ? String(price) : undefined
+
+    const setPriceRange = (gte?: number, lte?: number) => {
       where.price = {}
-      if (minPrice) where.price.gte = parseInt(minPrice as string)
-      if (maxPrice) where.price.lte = parseInt(maxPrice as string)
+      if (typeof gte === 'number') where.price.gte = gte
+      if (typeof lte === 'number') where.price.lte = lte
+    }
+
+    if (pricePreset) {
+      if (pricePreset === 'to10') {
+        setPriceRange(undefined, 9999)
+      } else if (pricePreset === '10to15') {
+        setPriceRange(10000, 15000)
+      } else if (pricePreset === 'from15') {
+        setPriceRange(15001, undefined)
+      } else if (pricePreset === 'all') {
+        // no-op
+      } else {
+        return res.status(400).json({ error: 'Invalid price filter' })
+      }
+    } else if (minPrice || maxPrice) {
+      const gte = minPrice ? Number(minPrice) : undefined
+      const lte = maxPrice ? Number(maxPrice) : undefined
+      if (
+        (gte !== undefined && Number.isNaN(gte)) ||
+        (lte !== undefined && Number.isNaN(lte))
+      ) {
+        return res.status(400).json({ error: 'Invalid minPrice/maxPrice' })
+      }
+      setPriceRange(gte, lte)
     }
 
     if (color) {
-      where.color = { equals: color as string, mode: 'insensitive' }
+      where.color = { equals: String(color), mode: 'insensitive' }
     }
 
-    // Фильтр по размерам: товар должен иметь хотя бы один из указанных размеров в наличии
+    // Фильтр по размерам
     if (sizes) {
-      const sizeArray = (sizes as string).split(',').map(Number)
+      const sizeArray = String(sizes)
+        .split(',')
+        .map((s) => Number(s))
+        .filter((n) => Number.isFinite(n))
+
+      if (sizeArray.length === 0) {
+        return res.status(400).json({ error: 'Invalid sizes' })
+      }
+
       where.sizeStock = {
         some: {
           size: { in: sizeArray },
@@ -44,12 +136,13 @@ export const getAllProducts = async (req: Request, res: Response) => {
       }
     }
 
+    // Полнотекстовый поиск
     if (search) {
-      where.OR = [
-        { name: { contains: search as string, mode: 'insensitive' } },
-        { description: { contains: search as string, mode: 'insensitive' } },
-        { sku: { contains: search as string, mode: 'insensitive' } },
-      ]
+      const searchStr = String(search).trim()
+      if (searchStr.length > 0) {
+        const searchConditions = buildSearchConditions(searchStr)
+        Object.assign(where, searchConditions)
+      }
     }
 
     // Определяем сортировку
@@ -58,6 +151,10 @@ export const getAllProducts = async (req: Request, res: Response) => {
       orderBy = { price: 'asc' }
     } else if (sort === 'price_desc') {
       orderBy = { price: 'desc' }
+    } else if (sort === 'name_asc') {
+      orderBy = { name: 'asc' }
+    } else if (sort === 'name_desc') {
+      orderBy = { name: 'desc' }
     }
 
     const pageNumber = parseInt(page as string) || 1
@@ -93,6 +190,32 @@ export const getAllProducts = async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Error fetching products:', error)
     res.status(500).json({ error: 'Failed to fetch products' })
+  }
+}
+
+// Расширенный поиск с ранжированием по релевантности
+export const searchProducts = async (req: Request, res: Response) => {
+  try {
+    const { query, limit = 20 } = req.query
+
+    if (!query || String(query).trim().length === 0) {
+      return res.json({ data: [] })
+    }
+
+    const searchStr = String(query).trim()
+    const where = buildSearchConditions(searchStr)
+
+    const products = await prisma.product.findMany({
+      where,
+      include: { sizeStock: { orderBy: { size: 'asc' } } },
+      orderBy: { createdAt: 'desc' },
+      take: Number(limit),
+    })
+
+    res.json({ data: products })
+  } catch (error) {
+    console.error('Error searching products:', error)
+    res.status(500).json({ error: 'Failed to search products' })
   }
 }
 
@@ -173,6 +296,7 @@ export const createProduct = async (req: Request, res: Response) => {
     const product = await prisma.product.create({
       data: {
         ...productData,
+        searchName: normalizeForSearch(productData.name),
         sizeStock: {
           create: sizeStock || [],
         },
@@ -194,14 +318,17 @@ export const updateProduct = async (req: Request, res: Response) => {
     const { id } = req.params
     const { sizeStock, ...productData } = req.body
 
+    // Обновляем searchName если изменилось имя
+    if (productData.name) {
+      productData.searchName = normalizeForSearch(productData.name)
+    }
+
     // Если переданы размеры, обновляем их
     if (sizeStock) {
-      // Удаляем старые размеры
       await prisma.sizeStock.deleteMany({
         where: { productId: id },
       })
 
-      // Создаем новые
       await prisma.sizeStock.createMany({
         data: sizeStock.map((item: { size: number; stock: number }) => ({
           productId: id,
@@ -211,7 +338,6 @@ export const updateProduct = async (req: Request, res: Response) => {
       })
     }
 
-    // Обновляем продукт
     const product = await prisma.product.update({
       where: { id },
       data: productData,
@@ -264,11 +390,9 @@ export const getFeaturedProducts = async (_req: Request, res: Response) => {
   }
 }
 
-// Новые эндпоинты для работы с размерами
-
 export const updateSizeStock = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params // id продукта
+    const { id } = req.params
     const { size, stock } = req.body
 
     const sizeStock = await prisma.sizeStock.upsert({

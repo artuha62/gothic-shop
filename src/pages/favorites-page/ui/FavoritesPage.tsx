@@ -1,4 +1,4 @@
-import { useFavoritesContext } from '@/entities/favorites/model/FavoritesContext.tsx'
+import { useFavoritesStore } from '@/entities/favorites/store/useFavoritesStore.ts'
 import { useProductsByIds } from '@/entities/product/model/useProductsByIds.ts'
 import { Button } from '@/shared/ui/button'
 import { Loader } from '@/shared/ui/loader'
@@ -9,7 +9,7 @@ import { Link } from 'react-router'
 import styles from './FavoritesPage.module.scss'
 
 const FavoritesPage = () => {
-  const { favoritesIds } = useFavoritesContext()
+  const favoritesIds = useFavoritesStore((state) => state.favoritesIds)
   const { products, isLoading } = useProductsByIds(favoritesIds.map(String))
 
   const favoriteProducts = products.filter(({ id }) =>
@@ -17,7 +17,11 @@ const FavoritesPage = () => {
   )
 
   if (isLoading) {
-    return <Loader>загружаем артефакты</Loader>
+    return (
+      <div className={styles.content}>
+        <Loader>загружаем артефакты</Loader>
+      </div>
+    )
   }
 
   return (
@@ -31,17 +35,15 @@ const FavoritesPage = () => {
       />
 
       {favoritesIds.length === 0 && (
-        <section className={`${styles.noFavorites} container`}>
+        <section className={`${styles.withoutFavorites} container`}>
           <NotFound size="sm">Твоя коллекция пока пуста...</NotFound>
           <span>
             Найди подходящие артефакты и нажми{' '}
             <Heart strokeWidth={1.5} size={16} />, чтобы сохранить их.
           </span>
-          <Link to="/catalog">
-            <Button variant="black" size="lg">
-              В КАТАЛОГ
-            </Button>
-          </Link>
+          <Button as={Link} to="/catalog" variant="black" size="lg">
+            В КАТАЛОГ
+          </Button>
         </section>
       )}
     </>

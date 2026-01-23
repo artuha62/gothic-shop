@@ -2,11 +2,16 @@ import { useProduct } from '@/entities/product/model/useProduct'
 import { Loader } from '@/shared/ui/loader'
 import { NotFound } from '@/shared/ui/not-found'
 import { ProductDetails } from '@/widgets/product-details'
+import { useLayoutEffect } from 'react'
 import { useParams } from 'react-router'
 
 const ProductPage = () => {
   const { slug } = useParams<{ slug: string }>()
   const { product, isLoading, isError } = useProduct(slug)
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   if (isLoading) {
     return <Loader>Загружаем артефакт</Loader>

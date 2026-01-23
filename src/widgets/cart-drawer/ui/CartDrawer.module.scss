@@ -1,6 +1,4 @@
 .cartDrawer {
-  @include hide;
-
   position: fixed;
   z-index: 3000;
   inset: 0;
@@ -35,7 +33,7 @@
 }
 
 .title {
-  font-size: 24px;
+  font-size: fluid(24, 20);
   font-weight: 400;
 }
 
@@ -49,6 +47,7 @@
 
 .body {
   flex: 1;
+  overflow-y: auto;
   border-block: var(--small-gray-border);
 }
 
@@ -85,10 +84,20 @@
 .summary {
   font-size: 20px;
   font-weight: 700;
+
+  @include mobile {
+    font-size: 17px;
+  }
 }
 
 .actions {
-  @include flex-center;
-
+  display: flex;
+  justify-content: space-between;
   column-gap: 10px;
+
+  @include mobile {
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 10px;
+  }
 }

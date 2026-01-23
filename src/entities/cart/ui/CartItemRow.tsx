@@ -1,35 +1,52 @@
-import { useCartDrawerContext } from '@/entities/cart/model/CartDrawerContext.tsx'
+import {
+  selectCartItem,
+  useCartStore,
+} from '@/entities/cart/store/useCartStore.ts'
 import type { Product } from '@/entities/product/model/types.ts'
 import { formatPrice } from '@/shared/lib/format-price/formatPrice.ts'
 import { Button } from '@/shared/ui/button'
+import cn from 'classnames'
+import { memo } from 'react'
 import { Link } from 'react-router'
 import styles from './CartItemRow.module.scss'
 
 interface CartItemRowProps {
-  product: Product
+  productId: string
   size: number
-  quantity: number
-  isDisabled: boolean
-  onIncrease: () => void
-  onDecrease: () => void
-  onRemove: () => void
+  product: Product
+  variant?: 'drawer' | 'checkout'
 }
 
 const CartItemRow = ({
-  product,
+  productId,
   size,
-  quantity,
-  onIncrease,
-  onDecrease,
-  onRemove,
-  isDisabled,
+  product,
+  variant = 'drawer',
 }: CartItemRowProps) => {
+  const item = useCartStore(selectCartItem(productId, size))
+
+  const increaseItemQuantity = useCartStore(
+    (state) => state.increaseItemQuantity
+  )
+  const decreaseItemQuantity = useCartStore(
+    (state) => state.decreaseItemQuantity
+  )
+  const removeFromCart = useCartStore((state) => state.removeFromCart)
+  const closeCart = useCartStore((state) => state.closeCart)
+
+  if (!item) return null
+
+  const { quantity } = item
   const { slug, price, images, name } = product
-  const { closeCart } = useCartDrawerContext()
+
+  const sizeData = product.sizeStock.find((s) => s.size === size)
+  const maxQuantity = sizeData?.stock ?? 0
+  const isDisabled = quantity >= maxQuantity
+
   const subtotal = price * quantity
 
   return (
-    <div className={styles.item}>
+    <div className={cn(styles.item, styles[variant])}>
       <Link to={`/product/${slug}`}>
         <div className={styles.imageWrapper}>
           <img
@@ -54,7 +71,7 @@ const CartItemRow = ({
             <button
               className={styles.button}
               type="button"
-              onClick={onDecrease}
+              onClick={() => decreaseItemQuantity(productId, size)}
             >
               -
             </button>
@@ -62,16 +79,17 @@ const CartItemRow = ({
             <button
               className={styles.button}
               type="button"
-              onClick={onIncrease}
-              style={{
-                opacity: isDisabled ? 0.2 : 1,
-                cursor: isDisabled ? 'not-allowed' : 'pointer',
-              }}
+              onClick={() => increaseItemQuantity(productId, size, maxQuantity)}
+              disabled={isDisabled}
             >
               +
             </button>
           </div>
-          <Button onClick={onRemove} variant="white" size="sm">
+          <Button
+            onClick={() => removeFromCart(productId, size)}
+            variant="white"
+            size="sm"
+          >
             УДАЛИТЬ
           </Button>
         </div>
@@ -80,4 +98,4 @@ const CartItemRow = ({
   )
 }
 
-export default CartItemRow
+export default memo(CartItemRow)

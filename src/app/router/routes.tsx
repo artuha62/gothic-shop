@@ -1,6 +1,8 @@
 import MainLayout from '@/app/layouts/MainLayout'
 import { CatalogPage } from '@/pages/catalog-page'
+import { CheckoutPage } from '@/pages/checkout-page'
 import { FavoritesPage } from '@/pages/favorites-page'
+import { MainPage } from '@/pages/main-page'
 import { ProductPage } from '@/pages/product-page'
 import type { ReactElement } from 'react'
 
@@ -16,11 +18,12 @@ export const routes: IRoute[] = [
     children: [
       {
         path: '/',
-        element: <div>MAIN PAGE</div>,
+        element: <MainPage />,
       },
       { path: '/catalog', element: <CatalogPage /> },
       { path: '/favorites', element: <FavoritesPage /> },
       { path: '/product/:slug', element: <ProductPage /> },
+      { path: '/checkout', element: <CheckoutPage /> },
     ],
   },
 ]

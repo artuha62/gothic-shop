@@ -1,5 +1,6 @@
 import { Category, PrismaClient } from '@prisma/client'
 import { generateSlug } from '../src/utils/generateSlug'
+import { normalizeForSearch } from '../src/utils/normalizeSearch'
 
 const prisma = new PrismaClient()
 
@@ -12,6 +13,8 @@ const baseProducts = [
     category: Category.SANDALS,
     color: 'black',
     baseSku: 'CD',
+    description:
+      'Дерзкие черные туфли на массивной тракторной подошве. Идеальное сочетание грубой эстетики и утонченного стиля. Высокая подошва добавляет роста и уверенности, а классический черный цвет подходит под любой образ. Прочная конструкция обеспечивает комфорт на весь день.',
     images: [
       'http://localhost:3001/images/CRASH_DOLL/image-1.webp',
       'http://localhost:3001/images/CRASH_DOLL/image-2.webp',
@@ -29,6 +32,8 @@ const baseProducts = [
     category: Category.BOOTS,
     color: 'pink',
     baseSku: 'CK',
+    description:
+      'Экстравагантные розовые ботинки на головокружительной платформе. Яркий цвет и необычный дизайн привлекают внимание и выделяют из толпы. Высокая подошва визуально удлиняет ноги, а удобная колодка позволяет носить их целый день. Для тех, кто не боится быть в центре внимания.',
     images: [
       'http://localhost:3001/images/CANDY_KILL/image-1.webp',
       'http://localhost:3001/images/CANDY_KILL/image-2.webp',
@@ -45,6 +50,8 @@ const baseProducts = [
     category: Category.HIGHBOOTS,
     color: 'black',
     baseSku: 'TTR',
+    description:
+      'Высокие готические сапоги с множеством ремней и пряжек. Воплощение темной эстетики и бунтарского духа. Функциональные ремни позволяют регулировать посадку, а высокое голенище создает драматичный силуэт. Качественные материалы и надежная фурнитура гарантируют долговечность.',
     images: [
       'http://localhost:3001/images/TIED_TO_RULE/image-1.webp',
       'http://localhost:3001/images/TIED_TO_RULE/image-2.webp',
@@ -61,6 +68,8 @@ const baseProducts = [
     category: Category.SANDALS,
     color: 'red',
     baseSku: 'BL',
+    description:
+      'Яркие красные туфли на массивной тракторной подошве. Смелый выбор для тех, кто хочет заявить о себе. Насыщенный красный цвет притягивает взгляды, а устойчивая платформа обеспечивает комфорт при ходьбе. Отлично сочетаются как с повседневными, так и с вечерними образами.',
     images: [
       'http://localhost:3001/images/BLOODLINK/image-1.webp',
       'http://localhost:3001/images/BLOODLINK/image-2.webp',
@@ -78,6 +87,8 @@ const baseProducts = [
     category: Category.BOOTS,
     color: 'green',
     baseSku: 'WA',
+    description:
+      'Необычные зеленые ботинки на высокой платформе. Уникальный оттенок выделяет эту модель из ряда классических вариантов. Высокая подошва создает эффектный силуэт и добавляет роста. Прочная конструкция подходит для городских прогулок в любую погоду. Для смелых и уверенных в себе.',
     images: [
       'http://localhost:3001/images/WAR_ANGEL/image-1.webp',
       'http://localhost:3001/images/WAR_ANGEL/image-2.webp',
@@ -95,6 +106,8 @@ const baseProducts = [
     category: Category.HIGHBOOTS,
     color: 'black',
     baseSku: 'SD',
+    description:
+      'Брутальные высокие сапоги с металлическими шипами и заклепками. Агрессивный дизайн для самых смелых образов. Шипы и декоративные элементы создают неповторимый рок-н-ролльный стиль. Высокое голенище и устойчивая подошва обеспечивают комфорт и уверенность. Настоящий must-have для любителей альтернативной моды.',
     images: [
       'http://localhost:3001/images/SWEET_DAMAGE/image-1.webp',
       'http://localhost:3001/images/SWEET_DAMAGE/image-2.webp',
@@ -108,15 +121,15 @@ const baseProducts = [
 // Дополнительные названия для вариаций
 const nameSuffixes = [
   'PRO',
-  'LITE',
+  'LTE',
   'X',
   'MAX',
-  'ULTRA',
-  'PLUS',
-  'MINI',
-  'NOIR',
-  'DARK',
-  'EDGE',
+  'TS',
+  'JS',
+  'CSS',
+  'S',
+  'D',
+  'W',
 ]
 
 // Функция генерации случайного stock для размеров
@@ -163,6 +176,7 @@ async function main() {
     await prisma.product.create({
       data: {
         name,
+        searchName: normalizeForSearch(name),
         slug: generateSlug(
           `${baseProduct.baseSlug} ${suffix} ${productNumber}`
         ),
@@ -171,7 +185,7 @@ async function main() {
         category: baseProduct.category,
         color: baseProduct.color,
         sku: `${baseProduct.baseSku}-${String(productNumber).padStart(3, '0')}`,
-        description: '',
+        description: baseProduct.description,
         images: baseProduct.images,
         featured: isFeatured,
         sizeStock: {

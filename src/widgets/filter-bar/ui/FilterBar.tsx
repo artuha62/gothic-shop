@@ -1,4 +1,4 @@
-import { useFiltersDrawerContext } from '@/entities/filters/model/FiltersDrawerContext.tsx'
+import { useFiltersStore } from '@/entities/filters/store/useFiltersStore.ts'
 import type { GridView } from '@/shared/types/grid'
 import { Button } from '@/shared/ui/button'
 import { IconButton } from '@/shared/ui/icon-button'
@@ -16,11 +16,12 @@ const FilterBar = ({
   onChangeGrid,
   currentView,
 }: FilterBarProps) => {
-  const { openFilters } = useFiltersDrawerContext()
+  const openFilters = useFiltersStore((state) => state.openFilters)
 
   return (
     <section className={`${styles.filterBar} container`}>
       <div className={styles.zaglushka}>/// КАТАЛОГ</div>
+
       <div className={styles.filters}>
         <div className={styles.viewControls}>
           <IconButton

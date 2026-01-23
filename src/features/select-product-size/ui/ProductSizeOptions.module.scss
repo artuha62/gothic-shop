@@ -1,0 +1,48 @@
+.fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 20px;
+  border: none;
+}
+
+.legend {
+  padding: 0 0 30px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  opacity: 0;
+
+  &:checked + .sizeBox {
+    color: var(--color-white);
+    background-color: var(--color-dark-gray);
+    border-color: var(--color-dark-gray);
+  }
+}
+
+.sizeBox {
+  @include square(36px);
+  @include flex-center(true);
+
+  font-size: 13px;
+  border: 1px solid var(--color-gray-alt);
+  transition-duration: var(--transition-duration);
+
+  @include hover {
+    color: var(--color-white);
+    background-color: var(--color-dark-gray);
+    border-color: var(--color-dark-gray);
+  }
+}

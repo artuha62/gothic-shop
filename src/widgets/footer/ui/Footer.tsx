@@ -31,7 +31,7 @@ const Footer = () => {
         <div className={styles.main}>
           <div className={styles.logo}>
             <Link to="/catalog" aria-label="Перейти в каталог">
-              <img src="/images/logo-white.png" alt="Логотип" />
+              <img src="/images/logo-white.webp" alt="Логотип" />
             </Link>
           </div>
 

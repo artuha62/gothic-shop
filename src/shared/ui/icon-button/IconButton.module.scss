@@ -5,34 +5,42 @@
 }
 
 // Variants
-// header icons
+// default
+.default {
+  color: var(--color-black);
+
+  @include hover {
+    color: var(--color-green);
+  }
+}
+
+// header
 .header {
   min-width: 48px;
   height: 48px;
   padding: 12px;
-  color: var(--color-black);
-  border-left: var(--small-gray-border);
+  color: var(--header-text-color);
 
-  &:hover {
-    color: var(--color-white);
-    background-color: var(--color-black);
+  @include hover {
+    color: var(--header-hover-color);
+    background-color: var(--header-hover-bg);
   }
 }
 
-// card icons
+// card
 .card svg {
   color: var(--color-light-gray);
   transition-duration: var(--transition-duration);
   fill: transparent;
   stroke: var(--color-light-gray);
 
-  &:hover {
+  @include hover {
     transform: scale(1.04);
     fill: var(--color-light-gray);
   }
 }
 
-// grid view controller icons
+// grid
 .grid svg {
   color: var(--color-light-gray);
   fill: transparent;

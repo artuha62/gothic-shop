@@ -1,7 +1,11 @@
-import type { Filters } from '@/entities/filters/model/types'
+import type { Filters } from '@/entities/filters/model/types.ts'
 import type { PaginatedResponse, Product } from '@/entities/product/model/types'
 
 export const API_URL = 'http://localhost:3001/api/products'
+
+const FETCH_DELAY = 2000
+
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export async function getAllProducts(
   page: number = 1,
@@ -17,13 +21,8 @@ export async function getAllProducts(
       url.searchParams.append('category', filters.category)
     }
 
-    if (filters.priceRange === 'to10') {
-      url.searchParams.append('maxPrice', '9999')
-    } else if (filters.priceRange === '10to15') {
-      url.searchParams.append('minPrice', '10000')
-      url.searchParams.append('maxPrice', '15000')
-    } else if (filters.priceRange === 'from15') {
-      url.searchParams.append('minPrice', '15001')
+    if (filters.priceRange && filters.priceRange !== 'all') {
+      url.searchParams.append('price', filters.priceRange)
     }
 
     if (filters.color) {
@@ -37,10 +36,15 @@ export async function getAllProducts(
     if (filters.sort !== 'all') {
       url.searchParams.append('sort', filters.sort)
     }
+
+    if (filters.search) {
+      url.searchParams.append('search', filters.search)
+    }
   }
 
-  //FIXME убрать тестовую задержку
-  await new Promise((resolve) => setTimeout(resolve, 2000))
+  if (FETCH_DELAY) {
+    await delay(FETCH_DELAY)
+  }
 
   const response = await fetch(url.toString())
 
@@ -49,14 +53,6 @@ export async function getAllProducts(
   }
 
   return response.json()
-
-  // const response = await fetch(url.toString())
-  //
-  // if (!response.ok) {
-  //   throw new Error('Failed to fetch products')
-  // }
-  //
-  // return response.json()
 }
 
 export async function getProductBySlug(slug: string): Promise<Product> {

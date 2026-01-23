@@ -1,8 +1,8 @@
-import { useFavoritesContext } from '@/entities/favorites/model/FavoritesContext.tsx'
+import { useFavoritesStore } from '@/entities/favorites/store/useFavoritesStore.ts'
 import styles from './Badge.module.scss'
 
 const FavoritesBadge = () => {
-  const { favoritesIds } = useFavoritesContext()
+  const favoritesIds = useFavoritesStore((state) => state.favoritesIds)
   return (
     <>
       {favoritesIds.length > 0 && (

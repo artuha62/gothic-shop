@@ -7,6 +7,16 @@
   margin: -1px 0 0 -1px;
   border: var(--product-card-border);
   cursor: pointer;
+
+  @include hover(false) {
+    .front {
+      opacity: 0;
+    }
+
+    .back {
+      opacity: 1;
+    }
+  }
 }
 
 /* КАРТИНКА ТОВАРА */
@@ -34,14 +44,6 @@
 
 .back {
   opacity: 0;
-}
-
-.card:hover .front {
-  opacity: 0;
-}
-
-.card:hover .back {
-  opacity: 1;
 }
 
 /* КНОПКИ ИЗБРАННОЕ/КОРЗИНА */
@@ -77,10 +79,9 @@
   font-weight: 400;
   background: var(--color-white);
   transition-duration: 0.2s;
-}
 
-.card:hover .name,
-.card:hover .price {
-  color: var(--color-green);
-  background: black;
+  @include hover(false) {
+    color: var(--color-green);
+    background: black;
+  }
 }

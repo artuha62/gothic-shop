@@ -1,7 +1,23 @@
 .header {
   position: relative;
-  padding-top: 40px;
-  background: var(--color-white);
+  padding-top: fluid(40, 20);
+  background: transparent;
+
+  @include mobile {
+  }
+}
+
+// Variants
+.default {
+  --header-text-color: var(--color-black);
+  --header-hover-bg: var(--color-black);
+  --header-hover-color: var(--color-white);
+}
+
+.light {
+  --header-text-color: var(--color-white);
+  --header-hover-bg: var(--color-white);
+  --header-hover-color: var(--color-black);
 }
 
 .inner {
@@ -16,7 +32,6 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  border-right: var(--small-gray-border);
 }
 
 .navigation {
@@ -24,7 +39,7 @@
   height: 48px;
 }
 
-.navigationLink {
+.link {
   display: flex;
   align-items: center;
   width: 100%;
@@ -32,13 +47,16 @@
   padding-inline: 16px;
   font-size: 16px;
   text-transform: uppercase;
-  color: var(--color-black);
-  border-left: var(--small-gray-border);
+  color: var(--header-text-color);
   transition: color 0.2s ease;
 
-  &:hover {
-    color: var(--color-white);
-    background-color: var(--color-black);
+  @include hover {
+    color: var(--header-hover-color);
+    background-color: var(--header-hover-bg);
+  }
+
+  @include mobile {
+    @include hide;
   }
 }
 
@@ -53,24 +71,37 @@
   width: 180px;
   opacity: 1;
   transform: translate(-50%, -50%);
+
+  .light & {
+    filter: brightness(0) invert(1);
+  }
+
+  @include mobile {
+    width: 100px;
+  }
 }
 
 /* ПРАВАЯ ЧАСТЬ */
-.actions {
+.right {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.actions button:first-child {
-  border-left: var(--small-gray-border);
-}
-
-.actions button + button {
-  border-left: var(--small-gray-border);
-}
-
 .userActive {
   color: var(--color-green);
   background-color: var(--color-black);
+}
+
+// БОРДЕРЫ
+.right > *:not(:last-child) {
+  border-right: var(--small-gray-border);
+}
+
+.right > *:first-child {
+  border-left: var(--small-gray-border);
+}
+
+.navigation > * {
+  border-right: var(--small-gray-border);
 }

@@ -10,6 +10,7 @@ datasource db {
 model Product {
   id          String        @id @default(uuid())
   name        String
+  searchName  String?
   slug        String        @unique
   price       Int
   oldPrice    Int?
@@ -25,6 +26,7 @@ model Product {
 
   @@index([category])
   @@index([sku])
+  @@index([searchName])
 }
 
 model SizeStock {

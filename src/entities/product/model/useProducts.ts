@@ -1,6 +1,7 @@
-import type { Filters } from '@/entities/filters/model/types'
+import type { Filters } from '@/entities/filters/model/types.ts'
 import { getAllProducts } from '@/entities/product/api/products'
 import { useInfiniteQuery } from '@tanstack/react-query'
+import { useMemo } from 'react'
 
 type UseProductsParams = {
   filters: Filters
@@ -16,13 +17,23 @@ export const useProducts = ({ filters }: UseProductsParams) => {
     staleTime: 1000 * 60 * 5,
   })
 
+  const products = useMemo(
+    () => query.data?.pages.flatMap((page) => page.data) ?? [],
+    [query.data]
+  )
+
+  const totalProducts = useMemo(
+    () => query.data?.pages[0]?.meta?.total ?? 0,
+    [query.data]
+  )
+
   return {
-    products: query.data?.pages.flatMap((page) => page.data) ?? [],
+    products,
     isLoading: query.isLoading,
     fetchNextPage: query.fetchNextPage,
     hasNextPage: query.hasNextPage,
     isError: query.isError,
     isFetchingNextPage: query.isFetchingNextPage,
-    totalProducts: query.data?.pages[0]?.meta?.total ?? 0,
+    totalProducts,
   }
 }

@@ -1,3 +1,4 @@
+// Variant drawer
 .item {
   display: flex;
   column-gap: 12px;
@@ -25,12 +26,24 @@
 
 .imageWrapper {
   @include square(90px);
+
+  @include mobile {
+    @include square(60px);
+  }
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.name {
+  font-size: fluid(16, 14);
+}
+
+.price {
+  font-size: fluid(16, 14);
 }
 
 .size {
@@ -41,28 +54,55 @@
 .actions {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  column-gap: 5px;
 }
 
 .quantity {
   display: flex;
-  align-items: center;
   border: var(--small-smoke-border);
 }
 
 .button {
-  @include square(36px);
-  @include flex-center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+  font-size: fluid(16, 14);
+  line-height: 1;
 
-  flex-direction: column;
-  height: 100%;
-  font-size: 16px;
+  &:disabled {
+    @include disabled;
 
-  &:nth-child(odd):hover {
-    color: var(--color-white);
-    background-color: var(--color-black);
+    pointer-events: none;
+  }
+
+  &:nth-child(odd) {
+    @include hover {
+      color: var(--color-white);
+      background-color: var(--color-black);
+    }
   }
 
   &:not(:last-child) {
     border-right: var(--small-smoke-border);
   }
+}
+
+// Variant checkout
+.name {
+  font-size: 14px;
+}
+
+.price {
+  font-size: 14px;
+}
+
+.button {
+  font-size: 14px;
 }

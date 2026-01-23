@@ -1,25 +1,21 @@
 .button {
   @include flex-center(true);
 
-  font-size: 18px;
+  padding: 10px 20px;
+  font-size: fluid(18, 14);
   font-weight: 400;
   text-transform: uppercase;
   border: var(--small-gray-border);
   transition-duration: var(--transition-duration);
 }
 
-// Size
+// size
 .sm {
-  min-width: 100px;
-  height: 38px;
-  padding: 11px;
   font-size: 14px;
 }
 
 .md {
-  min-width: 180px;
-  height: 48px;
-  padding: 16px;
+  font-size: fluid(18, 16);
 }
 
 .lg {
@@ -32,7 +28,7 @@
   color: var(--color-black);
   background-color: var(--color-white);
 
-  &:hover {
+  @include hover {
     color: var(--color-white);
     background-color: var(--color-black);
     border-color: var(--color-black);
@@ -44,7 +40,7 @@
   background-color: var(--color-black);
   border: none;
 
-  &:hover {
+  @include hover {
     background-color: var(--color-dark-gray-2);
   }
 }
@@ -54,7 +50,7 @@
   background-color: var(--color-green);
   border: none;
 
-  &:hover {
+  @include hover {
     background-color: var(--color-dark-green);
   }
 }
@@ -65,14 +61,13 @@
   background-color: transparent;
   border-color: var(--color-green);
 
-  &:hover {
+  @include hover {
     color: var(--color-black);
     background-color: var(--color-green);
   }
 }
 
 // Full width
-
 .fullWidth {
   width: 100%;
 }

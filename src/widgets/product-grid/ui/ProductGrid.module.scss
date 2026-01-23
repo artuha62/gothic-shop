@@ -1,7 +1,5 @@
 .productsGrid {
   padding-top: 30px;
-
-  //  padding-bottom: 60px;
 }
 
 .needPadding {
@@ -17,6 +15,10 @@
   --card-aspect-ratio: 3 / 3.6;
 
   grid-template-columns: repeat(3, 1fr);
+
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .grid4 {

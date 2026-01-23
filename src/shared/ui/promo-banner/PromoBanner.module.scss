@@ -1,4 +1,6 @@
 .promo {
+  position: sticky;
+  z-index: 200;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -10,6 +12,10 @@
 
 .text {
   font-size: 16px;
+
+  @include mobile {
+    font-size: 14px;
+  }
 }
 
 @keyframes slide {

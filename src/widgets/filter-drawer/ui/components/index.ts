@@ -1,3 +1,6 @@
 export { default as FilterBlock } from './FilterBlock.tsx'
+export { default as FilterDrawerBody } from './FilterDrawerBody'
+export { default as FilterDrawerFooter } from './FilterDrawerFooter'
+export { default as FilterDrawerHeader } from './FilterDrawerHeader'
 export { default as RadioOptions } from './RadioOptions.tsx'
 export { default as SizeOptions } from './SizeOptions.tsx'
