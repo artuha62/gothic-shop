@@ -30,14 +30,16 @@
   padding-top: 30px;
   padding-bottom: 60px;
 
-  &.grid {
+  &.catalog {
+    --card-aspect-ratio: 3 / 3.6;
+
     grid-template-columns: repeat(3, 1fr);
-    gap: 0;
   }
 
-  &.list {
-    grid-template-columns: 1fr;
-    gap: 0;
+  &.favorites {
+    --card-aspect-ratio: 3 / 4.4;
+
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -54,7 +56,7 @@
 .image {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 3 / 3.6;
+  aspect-ratio: var(--card-aspect-ratio);
   background-color: var(--color-black);
   animation: pulse 1.5s ease-in-out infinite;
 

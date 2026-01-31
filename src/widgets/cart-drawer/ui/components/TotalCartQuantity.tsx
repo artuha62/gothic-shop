@@ -1,11 +1,11 @@
 import {
-  selectTotalQuantity,
+  totalQuantitySelector,
   useCartStore,
 } from '@/entities/cart/store/useCartStore.ts'
 import styles from '@/widgets/cart-drawer/ui/CartDrawer.module.scss'
 
 const TotalCartQuantity = () => {
-  const totalQuantity = useCartStore(selectTotalQuantity)
+  const totalQuantity = useCartStore(totalQuantitySelector)
 
   if (totalQuantity === 0) return null
 

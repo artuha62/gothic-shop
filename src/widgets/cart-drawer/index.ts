@@ -1,1 +1,1 @@
-export { default as CartDrawer } from './ui/CartDrawer'
+export { CartDrawer } from './ui/CartDrawer'

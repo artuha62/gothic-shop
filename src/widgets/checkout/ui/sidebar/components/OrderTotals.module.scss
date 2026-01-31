@@ -1,0 +1,28 @@
+.totals {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  padding-block: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 14px;
+  border-bottom: var(--small-smoke-border);
+
+  .discount {
+    color: var(--color-red);
+  }
+}
+
+.totalPrice {
+  font-size: 17px;
+}

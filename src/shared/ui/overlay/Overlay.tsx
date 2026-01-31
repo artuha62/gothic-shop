@@ -4,8 +4,6 @@ interface OverlayProps {
   onClick?: () => void
 }
 
-const Overlay = ({ onClick }: OverlayProps) => {
+export const Overlay = ({ onClick }: OverlayProps) => {
   return <div className={styles.overlay} onClick={onClick}></div>
 }
-
-export default Overlay

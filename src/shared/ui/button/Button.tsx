@@ -14,12 +14,18 @@ interface ButtonProps<T extends ElementType = 'button'> {
   className?: string
 }
 
-const Button = <T extends ElementType = 'button'>({
+export const Button = <T extends ElementType = 'button'>({
+  /* вариант кнопки */
   variant = 'white',
+  /* размер кнопки */
   size = 'md',
+  /* на всю ширину */
   fullWidth = false,
+  /* перезаписывающие стили */
   className,
+  /* контент */
   children,
+  /* тип(кнопка или ссылка) */
   as,
   ...props
 }: ButtonProps<T> & React.ComponentPropsWithoutRef<T>) => {
@@ -42,5 +48,3 @@ const Button = <T extends ElementType = 'button'>({
     </Component>
   )
 }
-
-export default Button

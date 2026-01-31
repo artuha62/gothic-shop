@@ -1,10 +1,9 @@
 import { Category, PrismaClient } from '@prisma/client'
-import { generateSlug } from '../src/utils/generateSlug'
-import { normalizeForSearch } from '../src/utils/normalizeSearch'
+import { generateSlug } from '../src/utils/GenerateSlug'
+import { normalizeForSearch } from '../src/utils/NormalizeSearch'
 
 const prisma = new PrismaClient()
 
-// Базовые шаблоны товаров
 const baseProducts = [
   {
     name: 'CRASH DOLL',

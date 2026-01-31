@@ -8,7 +8,7 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isActive?: boolean
 }
 
-const IconButton = ({
+export const IconButton = ({
   children,
   className,
   variant = 'default',
@@ -30,5 +30,3 @@ const IconButton = ({
     </button>
   )
 }
-
-export default IconButton

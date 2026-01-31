@@ -1,8 +1,9 @@
+import { LoginModal } from '@/features/auth'
+import { SearchDropdown } from '@/features/search'
 import { PromoBanner } from '@/shared/ui/promo-banner'
 import { CartDrawer } from '@/widgets/cart-drawer'
 import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'
-import { SearchDropdown } from '@/widgets/search-dropdown'
 import { Outlet, useLocation } from 'react-router'
 
 const MainLayout = () => {
@@ -13,6 +14,7 @@ const MainLayout = () => {
     <>
       <CartDrawer />
       <SearchDropdown />
+      <LoginModal />
 
       <PromoBanner variant="black" padding="sm">
         /// БЕСПЛАТНАЯ ДОСТАВКА ОТ 10 000 ₽ ///

@@ -128,7 +128,7 @@ html {
  */
 html,
 :has(:target) {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 }
 
 body {

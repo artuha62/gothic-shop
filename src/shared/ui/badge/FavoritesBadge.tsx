@@ -1,7 +1,7 @@
-import { useFavoritesStore } from '@/entities/favorites/store/useFavoritesStore.ts'
+import { useFavoritesStore } from '@/entities/favorites/store/useFavoritesStore'
 import styles from './Badge.module.scss'
 
-const FavoritesBadge = () => {
+export const FavoritesBadge = () => {
   const favoritesIds = useFavoritesStore((state) => state.favoritesIds)
   return (
     <>
@@ -11,5 +11,3 @@ const FavoritesBadge = () => {
     </>
   )
 }
-
-export default FavoritesBadge

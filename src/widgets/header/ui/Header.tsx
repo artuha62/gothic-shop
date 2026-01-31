@@ -1,11 +1,12 @@
+import { useAuthStore } from '@/entities/auth/store/useAuthStore'
 import { useCartStore } from '@/entities/cart/store/useCartStore.ts'
-import { useSearchStore } from '@/entities/search/store/useSearchStore.ts'
-import { CartBadge } from '@/shared/ui/badge'
-import FavoritesBadge from '@/shared/ui/badge/FavoritesBadge'
+import { useSearchStore } from '@/features/search/store/useSearchStore.ts'
+import { useUIStore } from '@/shared/store/useUIStore'
+import { CartBadge, FavoritesBadge } from '@/shared/ui/badge'
 import { IconButton } from '@/shared/ui/icon-button'
 import cn from 'classnames'
 import { Heart, Menu, Search, ShoppingCart, User } from 'lucide-react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import styles from './Header.module.scss'
 
 interface HeaderProps {
@@ -13,9 +14,20 @@ interface HeaderProps {
 }
 
 const Header = ({ variant = 'default' }: HeaderProps) => {
+  const navigate = useNavigate()
   const openCart = useCartStore((state) => state.openCart)
-
   const openSearch = useSearchStore((state) => state.openSearch)
+  const openLoginModal = useUIStore((state) => state.openLoginModal)
+  const user = useAuthStore((state) => state.user)
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+
+  const handleProfileClick = () => {
+    if (isAuthenticated && user) {
+      navigate('/profile')
+    } else {
+      openLoginModal()
+    }
+  }
 
   return (
     <header className={cn(styles.header, styles[variant], 'container')}>
@@ -60,7 +72,12 @@ const Header = ({ variant = 'default' }: HeaderProps) => {
             <CartBadge />
           </IconButton>
 
-          <IconButton variant="header" aria-label="Профиль">
+          <IconButton
+            isActive={isAuthenticated}
+            onClick={handleProfileClick}
+            variant="header"
+            aria-label="Профиль"
+          >
             <User strokeWidth={1.5} size={17} />
           </IconButton>
         </div>

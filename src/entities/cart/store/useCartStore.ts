@@ -1,14 +1,12 @@
-import type { CartItem } from '@/entities/cart/store/types.ts'
+import type { CartItem } from '@/entities/cart/model/types.ts'
 import type { Product } from '@/entities/product/model/types.ts'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 interface CartStore {
-  // State
   items: CartItem[]
   isCartOpen: boolean
 
-  // Cart actions
   addToCart: (productId: string, size: number) => void
   removeFromCart: (productId: string, size: number) => void
   increaseItemQuantity: (
@@ -19,7 +17,6 @@ interface CartStore {
   decreaseItemQuantity: (productId: string, size: number) => void
   clearCart: () => void
 
-  // UI actions
   openCart: () => void
   closeCart: () => void
 }
@@ -27,11 +24,9 @@ interface CartStore {
 export const useCartStore = create<CartStore>()(
   persist(
     (set) => ({
-      // Initial state
       items: [],
       isCartOpen: false,
 
-      // Cart actions
       addToCart: (productId, size) => {
         set((state) => {
           const existingItem = state.items.find(
@@ -103,7 +98,6 @@ export const useCartStore = create<CartStore>()(
         set({ items: [] })
       },
 
-      // UI actions
       openCart: () => {
         set({ isCartOpen: true })
       },
@@ -119,39 +113,36 @@ export const useCartStore = create<CartStore>()(
   )
 )
 
-// Selectors
-export const selectTotalQuantity = (state: CartStore) =>
-  state.items.reduce((sum, item) => sum + item.quantity, 0)
+export const totalQuantitySelector = (state: CartStore) =>
+  state.items.reduce((sum, i) => sum + i.quantity, 0)
 
-export const selectItemsLength = (state: CartStore) => state.items.length
-
-export const selectCartItem =
+export const cartItemQuantitySelector =
   (productId: string, size: number) => (state: CartStore) =>
-    state.items.find(
-      (item) => item.productId === productId && item.size === size
+    state.items.find((i) => i.productId === productId && i.size === size)
+      ?.quantity ?? 0
+
+export const cartItemSubtotalSelector =
+  (productId: string, size: number, price: number) => (state: CartStore) => {
+    const item = state.items.find(
+      (i) => i.productId === productId && i.size === size
+    )
+    return item ? item.quantity * price : 0
+  }
+
+export const cartTotalSelector =
+  (products: Product[]) => (state: CartStore) => {
+    const priceMap = new Map(
+      products.map((product) => [product.id, product.price])
     )
 
-export const selectCartTotals =
-  (
-    products: Map<string, Product>,
-    deliveryMethod: 'courier' | 'pickup' = 'courier',
-    discount: number = 0
-  ) =>
-  (state: CartStore) => {
-    const itemsTotal = state.items.reduce((sum, item) => {
-      const product = products.get(item.productId)
-      if (!product) return sum
-      return sum + product.price * item.quantity
+    return state.items.reduce((sum, item) => {
+      const price = priceMap.get(item.productId) ?? 0
+      return sum + price * item.quantity
     }, 0)
-
-    const deliveryCost = deliveryMethod === 'courier' ? 0 : 0
-    const total = itemsTotal + deliveryCost - discount
-
-    return {
-      itemsTotal,
-      deliveryCost,
-      discount,
-      total,
-      itemsCount: state.items.reduce((sum, item) => sum + item.quantity, 0),
-    }
   }
+
+export const cartIsEmptySelector = (state: CartStore) =>
+  state.items.length === 0
+
+export const productsIdsSelector = (state: CartStore) =>
+  Array.from(new Set(state.items.map((item) => item.productId)))

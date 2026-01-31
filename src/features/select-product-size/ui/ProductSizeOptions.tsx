@@ -14,9 +14,14 @@ type Props = {
   onToggle: (size: number) => void
 }
 
-const ProductSizeOptions = ({ name, sizeStock, selected, onToggle }: Props) => {
+export const ProductSizeOptions = ({
+  name,
+  sizeStock,
+  selected,
+  onToggle,
+}: Props) => {
   return (
-    <fieldset className={styles.fieldset}>
+    <fieldset role="radiogroup" className={styles.fieldset}>
       <legend className={styles.legend}>{name}</legend>
       {sizeStock &&
         sizeStock.map(({ size, stock }) => {
@@ -39,5 +44,3 @@ const ProductSizeOptions = ({ name, sizeStock, selected, onToggle }: Props) => {
     </fieldset>
   )
 }
-
-export default ProductSizeOptions

@@ -12,7 +12,7 @@ interface PromoBannerProps {
   children: ReactNode
 }
 
-const PromoBanner = ({
+export const PromoBanner = ({
   variant = 'black',
   padding = 'sm',
   repeat = 10,
@@ -30,5 +30,3 @@ const PromoBanner = ({
     </div>
   )
 }
-
-export default PromoBanner

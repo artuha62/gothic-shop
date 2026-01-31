@@ -1,19 +1,25 @@
 .loaderWrapper {
-  @include flex-center;
+  &.default {
+    @include flex-center;
 
-  height: 200px;
-  text-align: center;
-}
+    height: 200px;
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
+  }
 
-// Variants
-// With Padding
-.withPadding {
-  padding: 30px 20px;
-}
+  &.code {
+    padding: 0;
+    font-family: 'JetBrains Mono', monospace;
+  }
 
-// Without Padding
-.withoutPadding {
-  padding-bottom: 20px;
+  /* Варианты с паддингами */
+  &.withPadding {
+    padding: 0;
+  }
+
+  &.withoutPadding {
+    padding-bottom: 20px;
+  }
 }
 
 .loader {
@@ -24,8 +30,16 @@
     content: '';
     animation: dots 1s steps(3, end) infinite;
   }
+
+  &.code::after {
+    content: '|';
+    display: inline-block;
+    width: 1ch;
+    animation: caret 0.5s infinite;
+  }
 }
 
+/* Анимация точек */
 @keyframes dots {
   0% {
     content: '';
@@ -41,5 +55,18 @@
 
   100% {
     content: '...';
+  }
+}
+
+/* Анимация курсора */
+@keyframes caret {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
   }
 }

@@ -10,22 +10,36 @@ export const useFilters = () => {
 
   const filters = apiParamsToFilters(searchParams)
 
-  const setFilter = <K extends keyof Filters>(key: K, value: Filters[K]) => {
-    const newFilters = { ...filters, [key]: value }
-    const apiParams = filtersToApiParams(newFilters)
+  const updateParams = (nextFilters: Filters) => {
+    const apiParams = filtersToApiParams(nextFilters)
+    const params = new URLSearchParams(searchParams)
 
-    const params = new URLSearchParams()
     Object.entries(apiParams).forEach(([key, value]) => {
-      if (value !== undefined) params.set(key, String(value))
+      if (value === undefined || value === null || value === 'all') {
+        params.delete(key)
+      } else {
+        params.set(key, String(value))
+      }
     })
-    setSearchParams(params)
+
+    setSearchParams(params, { replace: true })
+  }
+
+  const setFilter = <K extends keyof Filters>(key: K, value: Filters[K]) => {
+    const nextFilters = apiParamsToFilters(searchParams)
+    nextFilters[key] = value
+
+    updateParams(nextFilters)
   }
 
   const toggleSize = (size: number) => {
-    const sizes = filters.sizes.includes(size)
-      ? filters.sizes.filter((s) => s !== size)
-      : [...filters.sizes, size]
-    setFilter('sizes', sizes)
+    const nextFilters = apiParamsToFilters(searchParams)
+
+    nextFilters.sizes = nextFilters.sizes.includes(size)
+      ? nextFilters.sizes.filter((s) => s !== size)
+      : [...nextFilters.sizes, size]
+
+    updateParams(nextFilters)
   }
 
   const clearFilters = () => {

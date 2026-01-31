@@ -1,1 +1,2 @@
-export { SearchInput } from './ui/SearchInput'
+export { SearchDropdown } from './ui/search-dropdown/SearchDropdown'
+export { SearchInput } from './ui/search-input/SearchInput'

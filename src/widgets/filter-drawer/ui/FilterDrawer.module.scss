@@ -121,11 +121,15 @@
   transition-duration: var(--transition-duration);
 }
 
-// Квадрат превью цвета
+// Превью цвета
 .colorPreview {
   display: inline-block;
   width: 35px;
   height: 20px;
+}
+
+.whitePreview {
+  border: var(--product-card-border);
 }
 
 // Стили кнопок Размеров
@@ -165,7 +169,7 @@
   background-color: var(--color-dark-gray);
 }
 
-// Низ Drawer'а
+// Футер
 .footer {
   display: flex;
   justify-content: space-between;

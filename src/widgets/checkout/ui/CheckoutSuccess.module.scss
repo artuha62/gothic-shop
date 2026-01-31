@@ -1,0 +1,27 @@
+.successWrapper {
+  @include flex-center;
+
+  flex-direction: column;
+  padding-block: 100px;
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  padding-bottom: 20px;
+  font-family: 'JetBrains Mono', serif;
+}
+
+.title {
+  font-size: 35px;
+  font-weight: 400;
+}
+
+.descriptionWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  padding-bottom: 20px;
+  font-size: 20px;
+}

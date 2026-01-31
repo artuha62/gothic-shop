@@ -4,6 +4,7 @@ import { X } from 'lucide-react'
 
 const FilterDrawerHeader = () => {
   const closeFilters = useFiltersStore((state) => state.closeFilters)
+
   return (
     <header className={styles.header}>
       <h2 className={styles.title} id="filters-title">

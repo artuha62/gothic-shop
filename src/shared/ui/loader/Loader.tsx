@@ -5,14 +5,19 @@ import styles from './Loader.module.scss'
 interface LoaderProps {
   children: ReactNode
   variant?: 'withPadding' | 'withoutPadding'
+  style?: 'default' | 'code'
 }
 
-const Loader = ({ children, variant = 'withPadding' }: LoaderProps) => {
+export const Loader = ({
+  children,
+  variant = 'withPadding',
+  style = 'default',
+}: LoaderProps) => {
   return (
-    <div className={cn(styles.loaderWrapper, styles[variant])}>
-      <p className={styles.loader}>{children}</p>
+    <div className={cn(styles.loaderWrapper, styles[variant], styles[style])}>
+      <span className={cn(styles.loader, style === 'code' && styles.code)}>
+        {children}
+      </span>
     </div>
   )
 }
-
-export default Loader

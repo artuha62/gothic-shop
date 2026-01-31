@@ -1,1 +1,1 @@
-export { default as AddToFavoritesButton } from './ui/AddToFavoritesButton'
+export { AddToFavoritesButton } from './ui/AddToFavoritesButton'

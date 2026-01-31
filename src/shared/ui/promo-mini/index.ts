@@ -1,1 +1,1 @@
-export { default as PromoMini } from './PromoMini'
+export { PromoMini } from './PromoMini'

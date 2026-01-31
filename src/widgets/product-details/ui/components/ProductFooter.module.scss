@@ -1,0 +1,37 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.toggle {
+  display: none;
+}
+
+.checkbox {
+  display: inline-block;
+  width: fit-content;
+  font-family: 'Arial', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--color-black);
+  border-bottom: var(--small-gray-border);
+  cursor: pointer;
+  user-select: none;
+
+  @include hover {
+    border-color: var(--color-black);
+  }
+}
+
+.content {
+  @include hide;
+
+  padding-top: 10px;
+  font-size: 16px;
+}
+
+.toggle:checked ~ .content {
+  @include show;
+}

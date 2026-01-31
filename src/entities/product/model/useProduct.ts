@@ -9,6 +9,8 @@ export const useProduct = (slug: string | undefined) => {
       return getProductBySlug(slug)
     },
     enabled: !!slug,
+    //FIXME: убрать для финала(отключает авто refetch tanstack query)
+    retry: false,
   })
 
   return {

@@ -7,7 +7,7 @@ interface Props {
   productId: string
 }
 
-const AddToFavoritesButton = ({ productId }: Props) => {
+export const AddToFavoritesButton = ({ productId }: Props) => {
   const isFavorite = useFavoritesStore((state) => state.isFavorite(productId))
   const toggleFavorites = useFavoritesStore((state) => state.toggleFavorite)
   return (
@@ -21,5 +21,3 @@ const AddToFavoritesButton = ({ productId }: Props) => {
     </IconButton>
   )
 }
-
-export default AddToFavoritesButton

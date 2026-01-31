@@ -1,0 +1,25 @@
+@keyframes caret {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 30px;
+  font-weight: 500;
+  text-transform: uppercase;
+
+  &::after {
+    content: '|';
+    display: inline-block;
+    width: 1ch;
+    animation: caret 0.5s infinite;
+  }
+}

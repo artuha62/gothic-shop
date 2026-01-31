@@ -1,1 +1,1 @@
-export { default as ProductSizeOptions } from './ui/ProductSizeOptions'
+export { ProductSizeOptions } from './ui/ProductSizeOptions'

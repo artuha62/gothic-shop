@@ -8,15 +8,20 @@ type PromoMiniSize = 'sm' | 'md'
 interface PromoMiniProps {
   size?: PromoMiniSize
   children: ReactNode
+  withoutIcon?: boolean
 }
 
-const PromoMini = ({ size = 'md', children }: PromoMiniProps) => {
+export const PromoMini = ({
+  size = 'md',
+  children,
+  withoutIcon = false,
+}: PromoMiniProps) => {
   return (
     <div className={cn(styles.promoMini, styles[size])}>
-      <CircleAlert strokeWidth={2} size={18} />
+      {!withoutIcon && (
+        <CircleAlert strokeWidth={2} size={18} className={styles.icon} />
+      )}
       <span>{children}</span>
     </div>
   )
 }
-
-export default PromoMini

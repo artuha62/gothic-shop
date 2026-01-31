@@ -82,6 +82,8 @@
 }
 
 .summary {
+  display: flex;
+  column-gap: 5px;
   font-size: 20px;
   font-weight: 700;
 

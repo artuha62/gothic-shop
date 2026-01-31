@@ -1,4 +1,5 @@
 export const CATEGORY = [
+  { value: 'all' as const, label: 'Все' },
   { value: 'HIGHBOOTS' as const, label: 'САПОГИ' },
   { value: 'BOOTS' as const, label: 'БОТИНКИ' },
   { value: 'SANDALS' as const, label: 'ТУФЛИ' },
@@ -12,7 +13,8 @@ export const PRICE_OPTIONS = [
 ] as const
 
 export const COLOR_OPTIONS = [
-  { value: '', label: 'Все' },
+  { value: 'all', label: 'Все' },
+  { value: 'white', label: 'Белый', previewColor: '#fff' },
   { value: 'black', label: 'Черный', previewColor: '#000' },
   { value: 'pink', label: 'Розовый', previewColor: '#FFC0CB' },
   { value: 'red', label: 'Красный', previewColor: '#ed0000' },

@@ -1,10 +1,8 @@
 import { useFiltersStore } from '@/entities/filters/store/useFiltersStore.ts'
 import { Overlay } from '@/shared/ui/overlay'
-import {
-  FilterDrawerBody,
-  FilterDrawerFooter,
-  FilterDrawerHeader,
-} from '@/widgets/filter-drawer/ui/components'
+import FilterDrawerBody from './components/FilterDrawerBody'
+import FilterDrawerFooter from './components/FilterDrawerFooter'
+import FilterDrawerHeader from './components/FilterDrawerHeader'
 import styles from './FilterDrawer.module.scss'
 
 const FilterDrawer = () => {

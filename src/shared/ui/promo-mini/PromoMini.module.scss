@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   column-gap: 10px;
-  padding: 5px;
+  padding: 5px 10px;
   font-size: fluid(16, 14);
   background-color: var(--color-green);
 }
@@ -15,7 +15,6 @@
 .md {
 }
 
-.text {
-  margin: 0;
-  padding: 0;
+.icon {
+  flex-shrink: 0;
 }

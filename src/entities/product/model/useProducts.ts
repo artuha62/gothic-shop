@@ -8,32 +8,44 @@ type UseProductsParams = {
 }
 
 export const useProducts = ({ filters }: UseProductsParams) => {
-  const query = useInfiniteQuery({
+  const {
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isError,
+    refetch,
+    data,
+  } = useInfiniteQuery({
     queryKey: ['products', filters],
     queryFn: ({ pageParam = 1 }) => getAllProducts(pageParam, 12, filters),
     initialPageParam: 1,
     getNextPageParam: (lastPage) =>
       lastPage.meta.hasNext ? lastPage.meta.page + 1 : undefined,
     staleTime: 1000 * 60 * 5,
+    //FIXME: убрать для финала(отключает авто refetch tanstack query)
+    retry: false,
   })
 
   const products = useMemo(
-    () => query.data?.pages.flatMap((page) => page.data) ?? [],
-    [query.data]
+    () => data?.pages.flatMap((page) => page.data) ?? [],
+    [data]
   )
 
-  const totalProducts = useMemo(
-    () => query.data?.pages[0]?.meta?.total ?? 0,
-    [query.data]
-  )
+  const totalProducts = useMemo(() => data?.pages[0]?.meta?.total ?? 0, [data])
+
+  const isInitialError = isError && products.length === 0
+  const isPaginationError = isError && products.length > 0
 
   return {
     products,
-    isLoading: query.isLoading,
-    fetchNextPage: query.fetchNextPage,
-    hasNextPage: query.hasNextPage,
-    isError: query.isError,
-    isFetchingNextPage: query.isFetchingNextPage,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isError: isInitialError,
+    isFetchingNextPage,
+    isPaginationError,
     totalProducts,
+    refetch,
   }
 }

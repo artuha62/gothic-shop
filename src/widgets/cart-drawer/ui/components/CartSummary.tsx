@@ -1,21 +1,15 @@
-import { useCartStore } from '@/entities/cart/store/useCartStore.ts'
-import { useProductsByIds } from '@/entities/product/model/useProductsByIds.ts'
-import { formatPrice } from '@/shared/lib/format-price/formatPrice.ts'
+import { useCartTotal } from '@/entities/cart/model/hooks'
+import { formatPrice } from '@/shared/lib/format-price/formatPrice'
+import { Loader } from '@/shared/ui/loader'
 
 const CartSummary = () => {
-  const items = useCartStore((state) => state.items)
+  const { total, isLoading } = useCartTotal()
 
-  const productIds = items.map((item) => item.productId)
-  const { products } = useProductsByIds(productIds)
+  if (isLoading) {
+    return <Loader style="code">undefined</Loader>
+  }
 
-  const productsMap = new Map(products.map((product) => [product.id, product]))
-
-  const totalPrice = items.reduce((sum, { productId, quantity }) => {
-    const product = productsMap.get(productId)
-    return product ? sum + product.price * quantity : sum
-  }, 0)
-
-  return <span>{formatPrice(totalPrice)}</span>
+  return <span>{formatPrice(total)}</span>
 }
 
 export default CartSummary

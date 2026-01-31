@@ -1,9 +1,11 @@
-import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import productRoutes from './routes/products'
-import prisma from './prisma'
+import express from 'express'
 import path from 'path'
+import { errorHandler } from './middleware/ErrorHandler'
+import prisma from './prisma'
+import authRoutes from './routes/AuthRoutes'
+import productRoutes from './routes/ProductRoutes'
 
 dotenv.config()
 
@@ -23,6 +25,7 @@ app.use(express.json())
 app.use('/images', express.static(path.join(__dirname, '../public/images')))
 
 // Routes
+app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)
 
 // Health check
@@ -39,18 +42,7 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' })
 })
 
-// Error handler
-app.use(
-  (
-    err: Error,
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction
-  ) => {
-    console.error(err.stack)
-    res.status(500).json({ error: 'Something went wrong!' })
-  }
-)
+app.use(errorHandler)
 
 // Graceful shutdown
 const gracefulShutdown = async () => {
@@ -66,4 +58,5 @@ process.on('SIGTERM', gracefulShutdown)
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`)
   console.log(`📦 API available at http://localhost:${PORT}/api`)
+  console.log(`🔐 Auth available at http://localhost:${PORT}/api/auth`)
 })

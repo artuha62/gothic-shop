@@ -1,37 +1,31 @@
-import {
-  selectItemsLength,
-  useCartStore,
-} from '@/entities/cart/store/useCartStore'
+import { useAuthStore } from '@/entities/auth/store/useAuthStore'
+import { useCartStore } from '@/entities/cart/store/useCartStore'
+import { DeliveryPromo } from '@/features/delivery-promo'
+import { useUIStore } from '@/shared/store/useUIStore'
 import { Button } from '@/shared/ui/button'
-import { PromoMini } from '@/shared/ui/promo-mini'
-import { Link } from 'react-router'
+import { useNavigate } from 'react-router'
 import styles from '../CartDrawer.module.scss'
 import CartSummary from './CartSummary'
 
-const CartDrawerFooter = () => {
-  const itemsLength = useCartStore(selectItemsLength)
+export const CartDrawerFooter = () => {
+  const navigate = useNavigate()
   const closeCart = useCartStore((state) => state.closeCart)
+  const openLoginModal = useUIStore((state) => state.openLoginModal)
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
 
-  if (itemsLength === 0) {
-    return (
-      <footer className={styles.footer}>
-        <Button
-          as={Link}
-          to="/catalog"
-          onClick={closeCart}
-          variant="black"
-          size="md"
-          fullWidth
-        >
-          В КАТАЛОГ
-        </Button>
-      </footer>
-    )
+  const handleCheckoutClick = () => {
+    if (isAuthenticated) {
+      closeCart()
+      navigate('/checkout')
+    } else {
+      closeCart()
+      openLoginModal()
+    }
   }
 
   return (
     <footer className={styles.footer}>
-      <PromoMini size="md">Доставка бесплатна!</PromoMini>
+      <DeliveryPromo />
       <div className={styles.summary}>
         <span>ИТОГО: </span>
         <CartSummary />
@@ -41,9 +35,7 @@ const CartDrawerFooter = () => {
           ПРОДОЛЖИТЬ ОХОТУ
         </Button>
         <Button
-          as={Link}
-          to="/checkout"
-          onClick={closeCart}
+          onClick={handleCheckoutClick}
           variant="black"
           size="md"
           style={{ flex: '1' }}
@@ -54,5 +46,3 @@ const CartDrawerFooter = () => {
     </footer>
   )
 }
-
-export default CartDrawerFooter

@@ -11,6 +11,7 @@ import { FilterBlock, RadioOptions, SizeOptions } from './index'
 
 const FilterDrawerBody = () => {
   const { filters, setFilter, toggleSize } = useFilters()
+
   const { category, sort, priceRange, sizes, color } = filters
 
   return (

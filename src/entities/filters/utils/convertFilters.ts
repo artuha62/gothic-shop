@@ -19,9 +19,9 @@ export const filtersToApiParams = (filters: Filters): ApiFilters => {
 
 export const apiParamsToFilters = (params: URLSearchParams): Filters => {
   return {
-    category: (params.get('category') as ApiCategory) || null,
+    category: (params.get('category') as ApiCategory) || 'all',
     priceRange: (params.get('price') as ApiPriceRange) || 'all',
-    color: params.get('color') || '',
+    color: params.get('color') || 'all',
     sizes: params.get('sizes')
       ? params.get('sizes')!.split(',').map(Number)
       : [],

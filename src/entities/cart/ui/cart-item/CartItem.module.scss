@@ -1,4 +1,7 @@
 // Variant drawer
+.drawer {
+}
+
 .item {
   display: flex;
   column-gap: 12px;
@@ -22,6 +25,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  column-gap: 20px;
 }
 
 .imageWrapper {
@@ -44,6 +48,7 @@
 
 .price {
   font-size: fluid(16, 14);
+  white-space: nowrap;
 }
 
 .size {
@@ -94,14 +99,17 @@
 }
 
 // Variant checkout
-.name {
-  font-size: 14px;
-}
+.checkout {
+  .name {
+    font-size: 12px;
+  }
 
-.price {
-  font-size: 14px;
-}
+  .price {
+    font-size: 14px;
+    white-space: nowrap;
+  }
 
-.button {
-  font-size: 14px;
+  .button {
+    font-size: 14px;
+  }
 }

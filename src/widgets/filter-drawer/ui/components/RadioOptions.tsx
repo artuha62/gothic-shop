@@ -1,3 +1,4 @@
+import cn from 'classnames'
 import styles from '../FilterDrawer.module.scss'
 
 export type RadioOption<T extends string> = {
@@ -25,6 +26,7 @@ const RadioOptions = <T extends string>({
 
       {options.map((option) => {
         const isSelected = value === option.value
+        const isWhiteColor = option.value === 'white'
 
         return (
           <label key={option.value} className={styles.option}>
@@ -35,12 +37,16 @@ const RadioOptions = <T extends string>({
               value={option.value}
               checked={isSelected}
               onChange={() => onChange(option.value)}
+              tabIndex={isSelected ? 0 : -1}
             />
 
             <span className={styles.optionBox}>
               {option.previewColor && (
                 <span
-                  className={styles.colorPreview}
+                  className={cn(
+                    styles.colorPreview,
+                    isWhiteColor && styles.whitePreview
+                  )}
                   style={{ backgroundColor: option.previewColor }}
                   aria-hidden="true"
                 />

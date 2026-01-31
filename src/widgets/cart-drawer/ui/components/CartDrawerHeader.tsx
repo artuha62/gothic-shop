@@ -4,7 +4,7 @@ import { X } from 'lucide-react'
 import styles from '../CartDrawer.module.scss'
 import TotalCartQuantity from './TotalCartQuantity'
 
-const CartDrawerHeader = () => {
+export const CartDrawerHeader = () => {
   const closeCart = useCartStore((state) => state.closeCart)
 
   return (
@@ -24,5 +24,3 @@ const CartDrawerHeader = () => {
     </header>
   )
 }
-
-export default CartDrawerHeader

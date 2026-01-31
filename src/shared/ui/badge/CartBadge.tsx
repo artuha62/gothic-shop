@@ -1,11 +1,11 @@
 import {
-  selectTotalQuantity,
+  totalQuantitySelector,
   useCartStore,
-} from '@/entities/cart/store/useCartStore.ts'
+} from '@/entities/cart/store/useCartStore'
 import styles from './Badge.module.scss'
 
-const CartBadge = () => {
-  const totalQuantity = useCartStore(selectTotalQuantity)
+export const CartBadge = () => {
+  const totalQuantity = useCartStore(totalQuantitySelector)
 
   return (
     <>
@@ -15,5 +15,3 @@ const CartBadge = () => {
     </>
   )
 }
-
-export default CartBadge
