@@ -2,7 +2,7 @@ import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/entities/auth/api/auth'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-export const BASE_URL = '/api'
+export const BASE_URL = import.meta.env.VITE_API_URL
 
 export const api = axios.create({
   baseURL: BASE_URL,

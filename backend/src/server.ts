@@ -11,10 +11,21 @@ dotenv.config()
 const app = express()
 const PORT = Number(process.env.PORT) || 3001
 
+const allowedOrigins = [
+  'http://localhost:5173', // dev Vite
+  'https://gothic-shop-xwsn.vercel.app', // prod Vercel
+]
+
 // CORS и JSON
 app.use(
   cors({
-    origin: true,
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
     credentials: true,
   })
 )
@@ -38,6 +49,7 @@ app.use((_, res) => {
   res.status(404).json({ error: 'Route not found' })
 })
 
+// Общий error handler
 app.use(errorHandler)
 
 // Корректное завершение

@@ -11,21 +11,12 @@ export default defineConfig({
         additionalData: `@use "@/app/styles/helpers" as *;`,
       },
     },
+    postcss: './postcss.config.js',
   },
 
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-  },
-
-  server: {
-    host: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-      },
     },
   },
 })
