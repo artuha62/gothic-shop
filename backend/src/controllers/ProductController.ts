@@ -78,12 +78,10 @@ export const updateProduct = asyncHandler(
   }
 )
 
-export const getFeaturedProducts = asyncHandler(
-  async (req: Request, res: Response) => {
-    const products = await productService.getFeaturedProducts()
-    res.json(products)
-  }
-)
+export const getFeaturedProducts = asyncHandler(async (_, res: Response) => {
+  const products = await productService.getFeaturedProducts()
+  res.json(products)
+})
 
 export const getSizeStock = asyncHandler(
   async (req: Request, res: Response) => {

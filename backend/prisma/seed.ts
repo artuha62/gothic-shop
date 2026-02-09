@@ -15,13 +15,13 @@ const baseProducts = [
     description:
       'Дерзкие черные туфли на массивной тракторной подошве. Идеальное сочетание грубой эстетики и утонченного стиля. Высокая подошва добавляет роста и уверенности, а классический черный цвет подходит под любой образ. Прочная конструкция обеспечивает комфорт на весь день.',
     images: [
-      'http://localhost:3001/images/CRASH_DOLL/image-1.webp',
-      'http://localhost:3001/images/CRASH_DOLL/image-2.webp',
-      'http://localhost:3001/images/CRASH_DOLL/image-3.webp',
-      'http://localhost:3001/images/CRASH_DOLL/image-4.webp',
-      'http://localhost:3001/images/CRASH_DOLL/image-5.webp',
-      'http://localhost:3001/images/CRASH_DOLL/image-6.webp',
-      'http://localhost:3001/images/CRASH_DOLL/image-7.webp',
+      '/images/CRASH_DOLL/image-1.webp',
+      '/images/CRASH_DOLL/image-2.webp',
+      '/images/CRASH_DOLL/image-3.webp',
+      '/images/CRASH_DOLL/image-4.webp',
+      '/images/CRASH_DOLL/image-5.webp',
+      '/images/CRASH_DOLL/image-6.webp',
+      '/images/CRASH_DOLL/image-7.webp',
     ],
   },
   {
@@ -34,12 +34,12 @@ const baseProducts = [
     description:
       'Экстравагантные розовые ботинки на головокружительной платформе. Яркий цвет и необычный дизайн привлекают внимание и выделяют из толпы. Высокая подошва визуально удлиняет ноги, а удобная колодка позволяет носить их целый день. Для тех, кто не боится быть в центре внимания.',
     images: [
-      'http://localhost:3001/images/CANDY_KILL/image-1.webp',
-      'http://localhost:3001/images/CANDY_KILL/image-2.webp',
-      'http://localhost:3001/images/CANDY_KILL/image-3.webp',
-      'http://localhost:3001/images/CANDY_KILL/image-4.webp',
-      'http://localhost:3001/images/CANDY_KILL/image-5.webp',
-      'http://localhost:3001/images/CANDY_KILL/image-6.webp',
+      '/images/CANDY_KILL/image-1.webp',
+      '/images/CANDY_KILL/image-2.webp',
+      '/images/CANDY_KILL/image-3.webp',
+      '/images/CANDY_KILL/image-4.webp',
+      '/images/CANDY_KILL/image-5.webp',
+      '/images/CANDY_KILL/image-6.webp',
     ],
   },
   {
@@ -52,12 +52,12 @@ const baseProducts = [
     description:
       'Высокие готические сапоги с множеством ремней и пряжек. Воплощение темной эстетики и бунтарского духа. Функциональные ремни позволяют регулировать посадку, а высокое голенище создает драматичный силуэт. Качественные материалы и надежная фурнитура гарантируют долговечность.',
     images: [
-      'http://localhost:3001/images/TIED_TO_RULE/image-1.webp',
-      'http://localhost:3001/images/TIED_TO_RULE/image-2.webp',
-      'http://localhost:3001/images/TIED_TO_RULE/image-3.webp',
-      'http://localhost:3001/images/TIED_TO_RULE/image-4.webp',
-      'http://localhost:3001/images/TIED_TO_RULE/image-5.webp',
-      'http://localhost:3001/images/TIED_TO_RULE/image-6.webp',
+      '/images/TIED_TO_RULE/image-1.webp',
+      '/images/TIED_TO_RULE/image-2.webp',
+      '/images/TIED_TO_RULE/image-3.webp',
+      '/images/TIED_TO_RULE/image-4.webp',
+      '/images/TIED_TO_RULE/image-5.webp',
+      '/images/TIED_TO_RULE/image-6.webp',
     ],
   },
   {
@@ -70,13 +70,13 @@ const baseProducts = [
     description:
       'Яркие красные туфли на массивной тракторной подошве. Смелый выбор для тех, кто хочет заявить о себе. Насыщенный красный цвет притягивает взгляды, а устойчивая платформа обеспечивает комфорт при ходьбе. Отлично сочетаются как с повседневными, так и с вечерними образами.',
     images: [
-      'http://localhost:3001/images/BLOODLINK/image-1.webp',
-      'http://localhost:3001/images/BLOODLINK/image-2.webp',
-      'http://localhost:3001/images/BLOODLINK/image-3.webp',
-      'http://localhost:3001/images/BLOODLINK/image-4.webp',
-      'http://localhost:3001/images/BLOODLINK/image-5.webp',
-      'http://localhost:3001/images/BLOODLINK/image-6.webp',
-      'http://localhost:3001/images/BLOODLINK/image-7.webp',
+      '/images/BLOODLINK/image-1.webp',
+      '/images/BLOODLINK/image-2.webp',
+      '/images/BLOODLINK/image-3.webp',
+      '/images/BLOODLINK/image-4.webp',
+      '/images/BLOODLINK/image-5.webp',
+      '/images/BLOODLINK/image-6.webp',
+      '/images/BLOODLINK/image-7.webp',
     ],
   },
   {
@@ -89,13 +89,13 @@ const baseProducts = [
     description:
       'Необычные зеленые ботинки на высокой платформе. Уникальный оттенок выделяет эту модель из ряда классических вариантов. Высокая подошва создает эффектный силуэт и добавляет роста. Прочная конструкция подходит для городских прогулок в любую погоду. Для смелых и уверенных в себе.',
     images: [
-      'http://localhost:3001/images/WAR_ANGEL/image-1.webp',
-      'http://localhost:3001/images/WAR_ANGEL/image-2.webp',
-      'http://localhost:3001/images/WAR_ANGEL/image-3.webp',
-      'http://localhost:3001/images/WAR_ANGEL/image-4.webp',
-      'http://localhost:3001/images/WAR_ANGEL/image-5.webp',
-      'http://localhost:3001/images/WAR_ANGEL/image-6.webp',
-      'http://localhost:3001/images/WAR_ANGEL/image-7.webp',
+      '/images/WAR_ANGEL/image-1.webp',
+      '/images/WAR_ANGEL/image-2.webp',
+      '/images/WAR_ANGEL/image-3.webp',
+      '/images/WAR_ANGEL/image-4.webp',
+      '/images/WAR_ANGEL/image-5.webp',
+      '/images/WAR_ANGEL/image-6.webp',
+      '/images/WAR_ANGEL/image-7.webp',
     ],
   },
   {
@@ -108,16 +108,15 @@ const baseProducts = [
     description:
       'Брутальные высокие сапоги с металлическими шипами и заклепками. Агрессивный дизайн для самых смелых образов. Шипы и декоративные элементы создают неповторимый рок-н-ролльный стиль. Высокое голенище и устойчивая подошва обеспечивают комфорт и уверенность. Настоящий must-have для любителей альтернативной моды.',
     images: [
-      'http://localhost:3001/images/SWEET_DAMAGE/image-1.webp',
-      'http://localhost:3001/images/SWEET_DAMAGE/image-2.webp',
-      'http://localhost:3001/images/SWEET_DAMAGE/image-3.webp',
-      'http://localhost:3001/images/SWEET_DAMAGE/image-4.webp',
-      'http://localhost:3001/images/SWEET_DAMAGE/image-5.webp',
+      '/images/SWEET_DAMAGE/image-1.webp',
+      '/images/SWEET_DAMAGE/image-2.webp',
+      '/images/SWEET_DAMAGE/image-3.webp',
+      '/images/SWEET_DAMAGE/image-4.webp',
+      '/images/SWEET_DAMAGE/image-5.webp',
     ],
   },
 ]
 
-// Дополнительные названия для вариаций
 const nameSuffixes = [
   'PRO',
   'LTE',
@@ -131,16 +130,14 @@ const nameSuffixes = [
   'W',
 ]
 
-// Функция генерации случайного stock для размеров
 function generateRandomSizeStock() {
   const sizes = [36, 37, 38, 39, 40, 41, 42]
   return sizes.map((size) => ({
     size,
-    stock: Math.floor(Math.random() * 15), // 0-14 штук
+    stock: Math.floor(Math.random() * 15),
   }))
 }
 
-// Функция генерации случайной цены с вариацией ±30%
 function randomizePrice(basePrice: number): number {
   const variation = 0.3
   const multiplier = 1 + (Math.random() * 2 - 1) * variation
@@ -148,29 +145,25 @@ function randomizePrice(basePrice: number): number {
 }
 
 async function main() {
-  console.log('Seeding database with 200 products...')
-
-  // Очистка базы (SizeStock удалится автоматически из-за onDelete: Cascade)
   await prisma.product.deleteMany()
 
-  const totalProducts = 200
+  const totalProducts = 60
+  console.log(`Seeding database with ${totalProducts} products...`)
   let createdCount = 0
 
   for (let i = 0; i < totalProducts; i++) {
-    // Выбираем случайный базовый товар
     const baseProduct = baseProducts[i % baseProducts.length]
 
-    // Генерируем вариации
     const suffix = nameSuffixes[Math.floor(Math.random() * nameSuffixes.length)]
     const productNumber = i + 1
 
     const name = `${baseProduct.name} ${suffix} ${productNumber}`
     const price = randomizePrice(baseProduct.price)
-    const hasDiscount = Math.random() > 0.7 // 30% товаров со скидкой
+    const hasDiscount = Math.random() > 0.7
     const oldPrice = hasDiscount
       ? Math.round(price * (1.1 + Math.random() * 0.3))
       : price
-    const isFeatured = Math.random() > 0.8 // 20% featured
+    const isFeatured = Math.random() > 0.8
 
     await prisma.product.create({
       data: {

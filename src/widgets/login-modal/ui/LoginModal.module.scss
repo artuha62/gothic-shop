@@ -1,0 +1,165 @@
+.overlay {
+  position: fixed;
+  z-index: 3000;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  position: fixed;
+  z-index: 3010;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  padding: 60px;
+  text-align: center;
+  color: var(--color-white);
+  background: var(--color-black);
+  transform: translate(-50%, -50%);
+
+  @include mobile {
+    width: 90%;
+    padding: 30px;
+  }
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: fluid(36, 24);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin-bottom: 30px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.form {
+  display: grid;
+  row-gap: 20px;
+  width: 100%;
+}
+
+.field input {
+  position: relative;
+  width: 100%;
+  padding: 12px;
+  font-size: 20px;
+  color: var(--color-white);
+  background: transparent;
+  border: var(--input-border-1);
+  outline: none;
+  transition: none;
+
+  &::placeholder {
+    font-size: 16px;
+    color: var(--color-gray-alt);
+  }
+
+  &:focus {
+    border-color: var(--color-green);
+    outline: none;
+  }
+
+  &::-webkit-search-cancel-button {
+    cursor: pointer;
+  }
+
+  @include mobile {
+    font-size: 16px;
+  }
+}
+
+.field label {
+  position: absolute;
+  z-index: 4000;
+  margin-left: 10px;
+  padding: 0 4px;
+  font-size: 13px;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background-color: var(--color-black);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.checkbox input {
+  @include square(20px);
+
+  appearance: none;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  background-color: transparent;
+  border: var(--input-border-1);
+  border-radius: 2px;
+  cursor: pointer;
+
+  &:checked {
+    background-color: var(--color-green);
+    border-color: var(--color-green);
+  }
+
+  &:checked::before {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--color-black);
+    transform: translate(-50%, -50%);
+  }
+}
+
+.checkbox label {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.error {
+  margin-bottom: 30px;
+  padding: 10px;
+  font-size: 16px;
+  color: var(--color-red);
+}
+
+.codeInput {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 10px;
+  text-align: center;
+}
+
+.backButton {
+  margin-top: 10px;
+  color: #888888;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: var(--color-white);
+
+  @include mobile {
+    top: 10px;
+    right: 10px;
+  }
+}

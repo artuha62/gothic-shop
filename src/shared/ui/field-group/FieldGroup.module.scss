@@ -1,0 +1,96 @@
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.subtitle {
+  font-size: fluid(20, 18);
+  font-weight: 500;
+  text-transform: uppercase;
+
+  @include mobile {
+    padding-bottom: 10px;
+  }
+}
+
+.fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  &.product {
+    padding-bottom: 20px;
+  }
+}
+
+.legend {
+  @include visually-hidden;
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  opacity: 0;
+}
+
+// Радиокнопка
+.radio {
+  @include flex-center(true);
+
+  column-gap: 5px;
+  min-width: 100px;
+  height: 38px;
+  padding: 11px;
+  font-size: 14px;
+  font-weight: 400;
+  border: var(--small-gray-border);
+  transition-duration: var(--transition-duration);
+}
+
+// Чекбокс
+.checkbox {
+  @include square(50px);
+  @include flex-center(inline);
+
+  font-size: fluid(16, 14);
+  border: 1px solid var(--color-black);
+  transition-duration: var(--transition-duration);
+
+  @include mobile {
+    @include square(40px);
+  }
+}
+
+// Превью цвета
+.colorPreview {
+  display: inline-block;
+  width: 35px;
+  height: 20px;
+}
+
+.borderedPreview {
+  border: var(--product-card-border);
+}
+
+// АНИМАЦИИ
+// CHECKED состояние
+.input:checked + .radio,
+.input:checked + .checkbox {
+  color: var(--color-white);
+  background-color: var(--color-dark-gray);
+}
+
+// HOVER состояние
+.radio,
+.checkbox {
+  @include hover(false) {
+    color: var(--color-white);
+    background-color: var(--color-dark-gray);
+  }
+}

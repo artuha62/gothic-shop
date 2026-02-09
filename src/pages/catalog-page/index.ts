@@ -1,1 +1,1 @@
-export { default as CatalogPage } from './ui/CatalogPage'
+export { CatalogPageAsync as CatalogPage } from './ui/CatalogPage.async'

@@ -10,26 +10,26 @@ import productRoutes from './routes/ProductRoutes'
 dotenv.config()
 
 const app = express()
-const PORT = process.env.PORT || 3001
+const PORT = Number(process.env.PORT) || 3001
 
-// Middleware
+// CORS и JSON
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: true,
     credentials: true,
   })
 )
 app.use(express.json())
 
-// Static files
+// Статические файлы
 app.use('/images', express.static(path.join(__dirname, '../public/images')))
 
-// Routes
+// Роуты
 app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)
 
 // Health check
-app.get('/api/health', (req, res) => {
+app.get('/api/health', (_, res) => {
   res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
@@ -37,14 +37,14 @@ app.get('/api/health', (req, res) => {
   })
 })
 
-// 404 handler
-app.use((req, res) => {
+// 404
+app.use((_, res) => {
   res.status(404).json({ error: 'Route not found' })
 })
 
 app.use(errorHandler)
 
-// Graceful shutdown
+// Корректное завершение
 const gracefulShutdown = async () => {
   console.log('\n🔄 Shutting down gracefully...')
   await prisma.$disconnect()
@@ -54,8 +54,8 @@ const gracefulShutdown = async () => {
 process.on('SIGINT', gracefulShutdown)
 process.on('SIGTERM', gracefulShutdown)
 
-// Start server
-app.listen(PORT, () => {
+// Запуск сервера
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`)
   console.log(`📦 API available at http://localhost:${PORT}/api`)
   console.log(`🔐 Auth available at http://localhost:${PORT}/api/auth`)

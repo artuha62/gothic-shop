@@ -1,10 +1,11 @@
-import { useCartStore } from '@/entities/cart/store/useCartStore'
 import { Button } from '@/shared/ui/button'
+import { useCartDrawerStore } from '@/widgets/cart-drawer/store/useCartDrawerStore'
 import styles from '@/widgets/cart-drawer/ui/CartDrawer.module.scss'
 import { Link } from 'react-router'
 
 export const EmptyCart = () => {
-  const closeCart = useCartStore((state) => state.closeCart)
+  const currentFilters = location.search
+  const closeCart = useCartDrawerStore((state) => state.closeCart)
 
   return (
     <>
@@ -20,7 +21,7 @@ export const EmptyCart = () => {
       <footer className={styles.footer}>
         <Button
           as={Link}
-          to="/catalog"
+          to={`/catalog${currentFilters}`}
           onClick={closeCart}
           variant="black"
           size="md"

@@ -1,6 +1,6 @@
 import type { Product } from '@/entities/product/model/types.ts'
 import { ProductCard } from '@/entities/product/ui/product-card'
-import type { GridView } from '@/shared/types/grid.ts'
+import type { GridView } from '@/features/switch-grid-view/model/types'
 import cn from 'classnames'
 import styles from './ProductGrid.module.scss'
 
@@ -19,11 +19,7 @@ const ProductGrid = ({
 }: ProductGridProps) => {
   return (
     <section
-      className={cn(
-        styles.productsGrid,
-        'container',
-        !hasNext && styles.needPadding
-      )}
+      className={cn(styles.productsGrid, !hasNext && styles.needPadding)}
     >
       <div className={`${styles.grid} ${styles[view]} ${styles[variant]}`}>
         {products.map((product) => (

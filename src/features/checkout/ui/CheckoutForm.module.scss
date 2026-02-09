@@ -21,19 +21,23 @@
   align-items: flex-start;
   column-gap: 20px;
   padding-bottom: 30px;
+
+  @include mobile {
+    flex-direction: column;
+    row-gap: 30px;
+  }
 }
 
 .field {
-  flex: 1;
   position: relative;
-  min-width: 350px;
+  width: 100%;
 }
 
 .field input {
   position: relative;
   width: 100%;
   padding: 14px;
-  font-size: 14px;
+  font-size: 16px;
   border: 1px solid #cccccc;
   outline: none;
 }

@@ -1,11 +1,11 @@
-import type { Filters } from '@/entities/filters/model/types.ts'
-import { filtersToApiParams } from '@/entities/filters/utils/convertFilters'
 import type { PaginatedResponse, Product } from '@/entities/product/model/types'
+import type { Filters } from '@/features/filter-products/model/types.ts'
+import { filtersToApiParams } from '@/features/filter-products/utils/convertFilters'
 import { api } from '@/shared/api/axios'
 
 export async function getAllProducts(
   page: number = 1,
-  limit: number = 12,
+  limit: number = 24,
   filters?: Filters
 ): Promise<PaginatedResponse<Product>> {
   const params: Record<string, string | number> = {
@@ -22,6 +22,8 @@ export async function getAllProducts(
       }
     ),
   }
+
+  // await new Promise((resolve) => setTimeout(resolve, 2000))
 
   const { data } = await api.get<PaginatedResponse<Product>>('/products', {
     params,

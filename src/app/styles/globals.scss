@@ -10,7 +10,12 @@ body {
 }
 
 main {
-  flex-grow: 1;
+  flex: 1;
+}
+
+main:has([class*='hero']) {
+  max-width: none;
+  padding: 0;
 }
 
 button {

@@ -1,11 +1,11 @@
-import { useCartStore } from '@/entities/cart/store/useCartStore'
 import { IconButton } from '@/shared/ui/icon-button'
+import { useCartDrawerStore } from '@/widgets/cart-drawer/store/useCartDrawerStore'
 import { X } from 'lucide-react'
 import styles from '../CartDrawer.module.scss'
 import TotalCartQuantity from './TotalCartQuantity'
 
 export const CartDrawerHeader = () => {
-  const closeCart = useCartStore((state) => state.closeCart)
+  const closeCart = useCartDrawerStore((state) => state.closeCart)
 
   return (
     <header className={styles.header}>

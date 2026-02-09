@@ -1,10 +1,41 @@
 .badge {
-  @include square(18px);
   @include flex-center(true);
 
   margin-left: 8px;
-  font-size: 16px;
   font-weight: 400;
+}
+
+// Sizes
+.sm {
+  @include square(16px);
+
+  font-size: 14px;
+}
+
+.md {
+  @include square(18px);
+
+  font-size: 16px;
+}
+
+.lg {
+  @include square(24px);
+
+  font-size: 18px;
+}
+
+// Variants
+.default {
   color: var(--color-black);
   background: var(--color-green);
+}
+
+.black {
+  color: var(--color-white);
+  background: var(--color-black);
+}
+
+.red {
+  color: var(--color-white);
+  background: var(--color-red);
 }

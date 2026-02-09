@@ -1,8 +1,7 @@
-import { Button } from '@/shared/ui/button'
 import { useForm } from 'react-hook-form'
 import styles from './CheckoutForm.module.scss'
 
-type FormValues = {
+export type FormValues = {
   firstName: string
   lastName: string
   email: string
@@ -14,15 +13,10 @@ type FormValues = {
 
 interface CheckoutFormProps {
   onSubmit: (data: FormValues) => void
-  isLoading: boolean
   errorMessage: string | null
 }
 
-export const CheckoutForm = ({
-  onSubmit,
-  isLoading,
-  errorMessage,
-}: CheckoutFormProps) => {
+export const CheckoutForm = ({ onSubmit, errorMessage }: CheckoutFormProps) => {
   const {
     register,
     handleSubmit,
@@ -32,7 +26,7 @@ export const CheckoutForm = ({
   })
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+    <form id="checkout-form" onSubmit={handleSubmit(onSubmit)} noValidate>
       {/* Данные  */}
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>1. ДАННЫЕ ПОЛУЧАТЕЛЯ</h2>
@@ -172,17 +166,6 @@ export const CheckoutForm = ({
           {errorMessage}
         </div>
       )}
-
-      <Button
-        type="submit"
-        className={styles.submitBtn}
-        variant="black"
-        fullWidth
-        disabled={isLoading}
-        aria-busy={isLoading}
-      >
-        {isLoading ? 'ОБРАБОТКА...' : 'ПОДТВЕРДИТЬ ЗАКАЗ'}
-      </Button>
     </form>
   )
 }

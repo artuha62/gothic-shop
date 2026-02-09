@@ -18,14 +18,17 @@ export const PromoBanner = ({
   repeat = 10,
   children,
 }: PromoBannerProps) => {
+  const content = Array.from({ length: repeat }).map((_, index) => (
+    <span key={index} className={cn(styles.text, styles[padding])}>
+      {children}
+    </span>
+  ))
+
   return (
     <div className={cn(styles.promo, styles[variant])}>
       <div className={styles.inner}>
-        {Array.from({ length: repeat }).map((_, index) => (
-          <span key={index} className={cn(styles.text, styles[padding])}>
-            {children}
-          </span>
-        ))}
+        {content}
+        {content}
       </div>
     </div>
   )

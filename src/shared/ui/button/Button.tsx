@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import type { ElementType, ReactNode } from 'react'
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 import styles from './Button.module.scss'
 
 type ButtonVariant = 'white' | 'black' | 'green' | 'tsgreen'
@@ -28,7 +28,7 @@ export const Button = <T extends ElementType = 'button'>({
   /* тип(кнопка или ссылка) */
   as,
   ...props
-}: ButtonProps<T> & React.ComponentPropsWithoutRef<T>) => {
+}: ButtonProps<T> & ComponentPropsWithoutRef<T>) => {
   const Component = as || 'button'
 
   const classes = cn(

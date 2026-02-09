@@ -1,6 +1,4 @@
-/**
- * Русские стоп-слова (предлоги, союзы, частицы) - только самые короткие
- */
+// Короткие русские стоп-слова
 const RUSSIAN_STOP_WORDS = new Set([
   'а',
   'в',
@@ -32,16 +30,13 @@ const RUSSIAN_STOP_WORDS = new Set([
   'про',
 ])
 
-/**
- * Упрощённый русский стеммер - обрезает окончания слов
- * Возвращает корень слова для поиска похожих форм
- */
+// Stemmer для русского языка
 export function stemRussian(word: string): string {
   if (word.length < 4) return word.toLowerCase()
 
   const lower = word.toLowerCase()
 
-  // Длинные окончания сначала (от длинных к коротким)
+  // Окончания
   const endings = [
     // Причастия/деепричастия
     'ывшись',
@@ -125,9 +120,7 @@ export function stemRussian(word: string): string {
   return lower
 }
 
-/**
- * Разбивает текст на значимые слова (убирает стоп-слова)
- */
+// Делит текст на значимые слова без стоп-слов
 export function getSearchWords(text: string): string[] {
   return text
     .toLowerCase()
@@ -136,10 +129,7 @@ export function getSearchWords(text: string): string[] {
     .filter((word) => word.length >= 2 && !RUSSIAN_STOP_WORDS.has(word))
 }
 
-/**
- * Нормализует строку для поиска: убирает пробелы, дефисы, спецсимволы,
- * приводит к нижнему регистру
- */
+// Нормализация строки для поиска
 export function normalizeForSearch(text: string): string {
   return text
     .toLowerCase()
@@ -147,9 +137,7 @@ export function normalizeForSearch(text: string): string {
     .trim()
 }
 
-/**
- * Транслитерирует русский текст в латиницу для поиска по slug
- */
+// Транслитерация русского текста в латиницу
 export function transliterate(text: string): string {
   return text
     .toLowerCase()

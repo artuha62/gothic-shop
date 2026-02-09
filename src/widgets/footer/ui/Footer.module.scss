@@ -2,6 +2,10 @@
   padding-block: 60px;
   color: var(--color-white);
   background-color: var(--color-black);
+
+  @include mobile {
+    padding-block: 40px;
+  }
 }
 
 .inner {
@@ -40,14 +44,24 @@
   margin-top: 100px;
   padding-block: 50px;
   border-block: 1px solid #404040;
+
+  @include mobile {
+    row-gap: 30px;
+    margin-top: 60px;
+    padding-block: 30px;
+  }
 }
 
 // Лого
 .logo {
   width: 180px;
+
+  @include mobile {
+    width: 120px;
+  }
 }
 
-// Менюшки
+// Меню
 .menus {
   display: flex;
   flex-wrap: nowrap;
@@ -55,6 +69,11 @@
   align-items: flex-start;
   gap: 20px;
   width: 100%;
+
+  @include mobile {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .menu {
@@ -84,7 +103,7 @@
   color: var(--color-light-gray);
   transition-duration: var(--transition-duration);
 
-  &:hover {
+  @include hover {
     color: var(--color-green);
   }
 }
@@ -95,14 +114,22 @@
   flex-direction: column;
   row-gap: 20px;
   width: 350px;
+
+  @include mobile {
+    width: auto;
+  }
 }
 
 .email {
   text-decoration: underline;
   transition-duration: var(--transition-duration);
 
-  &:hover {
+  @include hover {
     color: var(--color-green);
+  }
+
+  @include mobile {
+    font-size: 14px;
   }
 }
 
@@ -119,4 +146,11 @@
 .copyright {
   display: flex;
   justify-content: space-between;
+
+  @include mobile {
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 5px;
+    text-align: center;
+  }
 }

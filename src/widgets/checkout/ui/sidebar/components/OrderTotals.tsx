@@ -18,7 +18,7 @@ export const OrderTotals = () => {
       <div className={styles.totals}>
         <h3 className={styles.title}>Оплата</h3>
         <div className={styles.row}>
-          <Loader>undefined</Loader>
+          <Loader style="code">undefined</Loader>
         </div>
       </div>
     )

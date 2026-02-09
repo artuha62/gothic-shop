@@ -1,0 +1,1 @@
+export { FavoritesBadge } from './FavoritesBadge'

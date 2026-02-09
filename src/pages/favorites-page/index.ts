@@ -1,1 +1,1 @@
-export { default as FavoritesPage } from './ui/FavoritesPage'
+export { FavoritesPageAsync as FavoritesPage } from './ui/FavoritesPage.async'

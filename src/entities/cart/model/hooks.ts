@@ -1,9 +1,9 @@
-import { useProductsByIds } from '@/entities/product/model/useProductsByIds'
-import { usePromoCodeStore } from '@/features/apply-promocode/store/usePromoCodeStore.ts'
 import {
   DELIVERY_COST,
   FREE_DELIVERY_THRESHOLD,
-} from '@/widgets/checkout/model/constants.ts'
+} from '@/entities/cart/model/constants.ts'
+import { useProductsByIds } from '@/entities/product/model/useProductsByIds'
+import { usePromoCodeStore } from '@/features/apply-promocode/store/usePromoCodeStore.ts'
 import { useShallow } from 'zustand/react/shallow'
 import {
   cartTotalSelector,

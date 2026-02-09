@@ -16,6 +16,12 @@
     .back {
       opacity: 1;
     }
+
+    .price,
+    .name {
+      color: var(--color-green);
+      background: black;
+    }
   }
 }
 
@@ -57,6 +63,14 @@
   color: var(--color-light-gray);
 }
 
+.icon {
+  @include square(26px);
+
+  @include mobile {
+    @include square(24px);
+  }
+}
+
 /* ИНФОРМАЦИЯ О ТОВАРЕ */
 .info {
   position: absolute;
@@ -68,6 +82,7 @@
   justify-content: start;
   align-items: start;
   gap: 5px;
+  width: 100%;
   padding: 10px;
 }
 
@@ -80,8 +95,8 @@
   background: var(--color-white);
   transition-duration: 0.2s;
 
-  @include hover(false) {
-    color: var(--color-green);
-    background: black;
+  @include mobile {
+    padding: 1px;
+    font-size: 14px;
   }
 }

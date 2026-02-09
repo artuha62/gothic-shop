@@ -21,7 +21,7 @@
   padding: 12px;
   color: var(--header-text-color);
 
-  @include hover {
+  @include hover(false) {
     color: var(--header-hover-color);
     background-color: var(--header-hover-bg);
   }
@@ -29,13 +29,6 @@
   &.active {
     color: var(--color-green);
     background-color: var(--color-black);
-  }
-
-  &.active:hover {
-    @include hover {
-      color: var(--color-black);
-      background-color: var(--color-white);
-    }
   }
 }
 

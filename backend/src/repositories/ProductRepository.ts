@@ -1,13 +1,8 @@
 import type { Prisma } from '@prisma/client'
 import prisma from '../prisma'
 
-/**
- * Repository для работы с продуктами в БД
- */
 export class ProductRepository {
-  /**
-   * Получить все продукты с фильтрацией и пагинацией
-   */
+  // Получить все продукты (фильтрация, пагинация)
   async findAll(
     where: Prisma.ProductWhereInput,
     orderBy: Prisma.ProductOrderByWithRelationInput,
@@ -25,16 +20,10 @@ export class ProductRepository {
     })
   }
 
-  /**
-   * Подсчитать количество продуктов по условию
-   */
   async count(where: Prisma.ProductWhereInput) {
     return prisma.product.count({ where })
   }
 
-  /**
-   * Найти продукт по slug
-   */
   async findBySlug(slug: string) {
     return prisma.product.findUnique({
       where: { slug },
@@ -46,9 +35,6 @@ export class ProductRepository {
     })
   }
 
-  /**
-   * Найти продукт по ID
-   */
   async findById(id: string) {
     return prisma.product.findUnique({
       where: { id },
@@ -60,9 +46,7 @@ export class ProductRepository {
     })
   }
 
-  /**
-   * Найти продукты по массиву ID
-   */
+  // Найти продукты по массиву ID
   async findByIds(ids: string[]) {
     return prisma.product.findMany({
       where: {
@@ -76,9 +60,6 @@ export class ProductRepository {
     })
   }
 
-  /**
-   * Найти продукт по SKU
-   */
   async findBySku(sku: string) {
     return prisma.product.findUnique({
       where: { sku },
@@ -90,9 +71,6 @@ export class ProductRepository {
     })
   }
 
-  /**
-   * Создать новый продукт
-   */
   async create(data: Prisma.ProductCreateInput) {
     return prisma.product.create({
       data,
@@ -102,9 +80,6 @@ export class ProductRepository {
     })
   }
 
-  /**
-   * Обновить продукт
-   */
   async update(id: string, data: Prisma.ProductUpdateInput) {
     return prisma.product.update({
       where: { id },
@@ -117,18 +92,13 @@ export class ProductRepository {
     })
   }
 
-  /**
-   * Удалить продукт
-   */
   async delete(id: string) {
     return prisma.product.delete({
       where: { id },
     })
   }
 
-  /**
-   * Получить избранные продукты
-   */
+  // Избранные продукты
   async findFeatured(limit: number = 8) {
     return prisma.product.findMany({
       where: { featured: true },
@@ -142,18 +112,14 @@ export class ProductRepository {
     })
   }
 
-  /**
-   * Удалить все размеры для продукта
-   */
+  // Удалить все размеры продукта
   async deleteSizeStock(productId: string) {
     return prisma.sizeStock.deleteMany({
       where: { productId },
     })
   }
 
-  /**
-   * Создать размеры для продукта
-   */
+  // Создать размеры продукта
   async createSizeStock(
     productId: string,
     sizeStock: Array<{ size: number; stock: number }>
@@ -167,9 +133,7 @@ export class ProductRepository {
     })
   }
 
-  /**
-   * Обновить или создать размер для продукта
-   */
+  // Обновить или создать размер
   async upsertSizeStock(productId: string, size: number, stock: number) {
     return prisma.sizeStock.upsert({
       where: {
@@ -189,9 +153,6 @@ export class ProductRepository {
     })
   }
 
-  /**
-   * Получить информацию о размере
-   */
   async findSizeStock(productId: string, size: number) {
     return prisma.sizeStock.findUnique({
       where: {

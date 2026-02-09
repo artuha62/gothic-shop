@@ -1,1 +1,1 @@
-export { default as FilterDrawer } from './ui/FilterDrawer'
+export { FilterDrawer } from './ui/FilterDrawer'

@@ -4,12 +4,12 @@ import { authMiddleware } from '../middleware/AuthMiddleware'
 
 const router = Router()
 
-// Публичные роуты
-router.post('/send-code', authController.sendCode) // Вместо старого register
-router.post('/login', authController.login) // Проверка кода
-router.post('/refresh', authController.refresh) // Обновление токена
+// Публичные
+router.post('/send-code', authController.sendCode)
+router.post('/login', authController.login)
+router.post('/refresh', authController.refresh)
 
-// Защищённые роуты
+// Для авторизованных
 router.get('/me', authMiddleware, authController.getMe)
 
 export default router

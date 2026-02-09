@@ -17,7 +17,7 @@
   flex-direction: column;
   width: 460px;
   max-width: 100%;
-  height: 100vh;
+  height: 100dvh;
   padding: 30px 20px;
   background-color: var(--color-white);
 
@@ -49,127 +49,10 @@
 
 .body {
   flex: 1;
+  overflow-y: auto;
   border-block: var(--small-gray-border);
 }
 
-.filters {
-  display: flex;
-  flex-direction: column;
-  row-gap: 20px;
-  padding-block: 20px;
-
-  @include mobile {
-    row-gap: 15px;
-    padding-block: 10px;
-  }
-}
-
-.subtitle {
-  padding-bottom: 20px;
-  font-size: fluid(20, 18);
-  font-weight: 500;
-
-  @include mobile {
-    padding-bottom: 10px;
-  }
-}
-
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-  align-items: center;
-  gap: 10px;
-}
-
-.fieldset {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  border: none;
-
-  &.product {
-    padding-bottom: 20px;
-  }
-}
-
-// Радиокнопки
-.legend {
-  @include visually-hidden;
-}
-
-.radio {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  opacity: 0;
-}
-
-.optionBox {
-  @include flex-center(true);
-
-  column-gap: 5px;
-  min-width: 100px;
-  height: 38px;
-  padding: 11px;
-  font-size: 14px;
-  font-weight: 400;
-  border: var(--small-gray-border);
-  transition-duration: var(--transition-duration);
-}
-
-// Превью цвета
-.colorPreview {
-  display: inline-block;
-  width: 35px;
-  height: 20px;
-}
-
-.whitePreview {
-  border: var(--product-card-border);
-}
-
-// Стили кнопок Размеров
-.checkbox {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  opacity: 0;
-}
-
-.sizeBox {
-  @include square(50px);
-  @include flex-center(inline);
-
-  font-size: fluid(16, 14);
-  border: 1px solid var(--color-black);
-  transition-duration: var(--transition-duration);
-
-  @include mobile {
-    @include square(40px);
-  }
-}
-
-// АНИМАЦИИ
-// CHECKED СОСТОЯНИЕ ЧЕКБОКСА И РАДИОКНОПКИ
-.radio:checked + .optionBox,
-.checkbox:checked + .sizeBox {
-  color: var(--color-white);
-  background-color: var(--color-dark-gray);
-}
-
-// HOVER ЧЕКБОСА И РАДИОКНОПКИ
-.sizeBox:hover,
-.optionBox:hover {
-  color: var(--color-white);
-  background-color: var(--color-dark-gray);
-}
-
-// Футер
 .footer {
   display: flex;
   justify-content: space-between;

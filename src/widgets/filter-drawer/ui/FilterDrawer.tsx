@@ -1,31 +1,34 @@
-import { useFiltersStore } from '@/entities/filters/store/useFiltersStore.ts'
+import { FilterList } from '@/features/filter-products'
+import { useScrollLock } from '@/shared/hooks/useScrollLock'
 import { Overlay } from '@/shared/ui/overlay'
-import FilterDrawerBody from './components/FilterDrawerBody'
+import { useFilterDrawerStore } from '@/widgets/filter-drawer/store/useFilterDrawerStore.ts'
 import FilterDrawerFooter from './components/FilterDrawerFooter'
 import FilterDrawerHeader from './components/FilterDrawerHeader'
 import styles from './FilterDrawer.module.scss'
 
-const FilterDrawer = () => {
-  const isFiltersOpen = useFiltersStore((state) => state.isFiltersOpen)
-  const closeFilters = useFiltersStore((state) => state.closeFilters)
+export const FilterDrawer = () => {
+  const isFiltersOpen = useFilterDrawerStore((state) => state.isFiltersOpen)
+  const closeFilters = useFilterDrawerStore((state) => state.closeFilters)
+
+  useScrollLock(isFiltersOpen)
+
+  if (!isFiltersOpen) return null
 
   return (
-    isFiltersOpen && (
-      <div className={styles.filterDrawer}>
-        <Overlay onClick={closeFilters} />
-        <aside
-          className={styles.panel}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="filters-title"
-        >
-          <FilterDrawerHeader />
-          <FilterDrawerBody />
-          <FilterDrawerFooter />
-        </aside>
-      </div>
-    )
+    <div className={styles.filterDrawer}>
+      <Overlay onClick={closeFilters} />
+      <aside
+        className={styles.panel}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="filters-title"
+      >
+        <FilterDrawerHeader />
+        <div className={styles.body}>
+          <FilterList />
+        </div>
+        <FilterDrawerFooter />
+      </aside>
+    </div>
   )
 }
-
-export default FilterDrawer

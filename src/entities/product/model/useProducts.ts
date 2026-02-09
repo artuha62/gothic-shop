@@ -1,5 +1,5 @@
-import type { Filters } from '@/entities/filters/model/types.ts'
 import { getAllProducts } from '@/entities/product/api/products'
+import type { Filters } from '@/features/filter-products/model/types.ts'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
 
@@ -14,11 +14,12 @@ export const useProducts = ({ filters }: UseProductsParams) => {
     hasNextPage,
     isFetchingNextPage,
     isError,
+    isSuccess,
     refetch,
     data,
   } = useInfiniteQuery({
     queryKey: ['products', filters],
-    queryFn: ({ pageParam = 1 }) => getAllProducts(pageParam, 12, filters),
+    queryFn: ({ pageParam = 1 }) => getAllProducts(pageParam, 24, filters),
     initialPageParam: 1,
     getNextPageParam: (lastPage) =>
       lastPage.meta.hasNext ? lastPage.meta.page + 1 : undefined,
@@ -43,6 +44,7 @@ export const useProducts = ({ filters }: UseProductsParams) => {
     fetchNextPage,
     hasNextPage,
     isError: isInitialError,
+    isSuccess,
     isFetchingNextPage,
     isPaginationError,
     totalProducts,

@@ -6,7 +6,7 @@ export const ProtectedRoute = () => {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
   const isLoading = useAuthStore((state) => state.isLoading)
 
-  if (isLoading) return <Loader style="code">загружаем</Loader>
+  if (isLoading) return <Loader className="contentDVH">загружаем</Loader>
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/catalog" replace />
 }

@@ -9,7 +9,7 @@ interface CartItemsProps {
   variant?: 'drawer' | 'checkout'
 }
 
-const CartItems = ({ variant }: CartItemsProps) => {
+export const CartItems = ({ variant }: CartItemsProps) => {
   const items = useCartStore((state) => state.items)
   const { products, isLoading } = useCartProducts()
 
@@ -45,5 +45,3 @@ const CartItems = ({ variant }: CartItemsProps) => {
     </div>
   )
 }
-
-export default CartItems

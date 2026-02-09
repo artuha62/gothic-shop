@@ -1,0 +1,52 @@
+.skeleton {
+  display: inline-block;
+  cursor: default;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonImageWrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  font-size: 0;
+  line-height: 0;
+  cursor: none;
+}
+
+.loadingLine::after {
+  content: '';
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 8px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-green),
+    transparent
+  );
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}

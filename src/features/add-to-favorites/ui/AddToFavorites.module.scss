@@ -1,0 +1,11 @@
+.favorite svg {
+  fill: var(--color-light-gray);
+}
+
+.icon {
+  @include square(26px);
+
+  @include mobile {
+    @include square(24px);
+  }
+}

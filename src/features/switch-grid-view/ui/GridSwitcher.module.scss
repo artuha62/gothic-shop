@@ -1,0 +1,8 @@
+.gridSwitcher {
+  display: flex;
+  column-gap: 10px;
+
+  @include mobile {
+    display: none;
+  }
+}

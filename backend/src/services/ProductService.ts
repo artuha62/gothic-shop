@@ -49,13 +49,8 @@ interface UpdateProductData {
   sizeStock?: Array<{ size: number; stock: number }>
 }
 
-/**
- * Сервис для бизнес-логики работы с продуктами
- */
 export class ProductService {
-  /**
-   * Получить список продуктов с фильтрацией и пагинацией
-   */
+  // Получить список продуктов с фильтрами и пагинацией
   async getProducts(params: GetProductsParams) {
     const {
       category,
@@ -82,7 +77,7 @@ export class ProductService {
       }
     }
 
-    // Фильтр по цене (presets или диапазон)
+    // Фильтр по цене
     if (price) {
       if (price === 'to10') {
         setPriceRange(where, undefined, 9999)
@@ -140,7 +135,7 @@ export class ProductService {
       }
     }
 
-    // Сортировка
+    // Сортировка и фильтрация по популярным (featured)
     let orderBy: Prisma.ProductOrderByWithRelationInput = { createdAt: 'desc' }
     if (sort === 'price_asc') {
       orderBy = { price: 'asc' }
@@ -150,11 +145,13 @@ export class ProductService {
       orderBy = { name: 'asc' }
     } else if (sort === 'name_desc') {
       orderBy = { name: 'desc' }
+    } else if (sort === 'popular') {
+      where.featured = true
     }
 
     // Пагинация
     const pageNumber = parseInt(page || '1') || 1
-    const pageSize = parseInt(limit || '12') || 12
+    const pageSize = parseInt(limit || '24') || 24
     const skip = (pageNumber - 1) * pageSize
 
     // Получаем данные
@@ -178,9 +175,7 @@ export class ProductService {
     }
   }
 
-  /**
-   * Поиск продуктов с ранжированием
-   */
+  // Поиск продуктов
   async searchProducts(params: SearchProductsParams) {
     const { query, limit = 20 } = params
 
@@ -201,9 +196,6 @@ export class ProductService {
     return { data: products }
   }
 
-  /**
-   * Получить продукт по slug
-   */
   async getProductBySlug(slug: string) {
     const product = await productRepository.findBySlug(slug)
 
@@ -214,9 +206,6 @@ export class ProductService {
     return product
   }
 
-  /**
-   * Получить продукт по ID
-   */
   async getProductById(id: string) {
     const product = await productRepository.findById(id)
 
@@ -227,9 +216,7 @@ export class ProductService {
     return product
   }
 
-  /**
-   * Получить продукты по массиву ID
-   */
+  // Получить продукты по массиву ID
   async getProductsByIds(idsString: string) {
     const idArray = idsString
       .split(',')
@@ -247,9 +234,6 @@ export class ProductService {
     return productRepository.findByIds(idArray)
   }
 
-  /**
-   * Получить продукт по SKU
-   */
   async getProductBySku(sku: string) {
     const product = await productRepository.findBySku(sku)
 
@@ -260,9 +244,6 @@ export class ProductService {
     return product
   }
 
-  /**
-   * Создать новый продукт
-   */
   async createProduct(data: CreateProductData) {
     const { sizeStock, ...productData } = data
 
@@ -275,18 +256,13 @@ export class ProductService {
     })
   }
 
-  /**
-   * Обновить продукт
-   */
   async updateProduct(id: string, data: UpdateProductData) {
     const { sizeStock, ...productData } = data
 
-    // Обновляем searchName если изменилось имя
     if (productData.name) {
       productData.searchName = normalizeForSearch(productData.name)
     }
 
-    // Если переданы размеры, обновляем их
     if (sizeStock) {
       await productRepository.deleteSizeStock(id)
       await productRepository.createSizeStock(id, sizeStock)
@@ -295,30 +271,20 @@ export class ProductService {
     return productRepository.update(id, productData)
   }
 
-  /**
-   * Удалить продукт
-   */
   async deleteProduct(id: string) {
     return productRepository.delete(id)
   }
 
-  /**
-   * Получить избранные продукты
-   */
   async getFeaturedProducts() {
     return productRepository.findFeatured(8)
   }
 
-  /**
-   * Обновить остаток размера
-   */
+  // Обновить остаток размера
   async updateSizeStock(id: string, size: number, stock: number) {
     return productRepository.upsertSizeStock(id, size, stock)
   }
 
-  /**
-   * Получить информацию о размере
-   */
+  // Получить информацию о размере
   async getSizeStock(id: string, size: number) {
     const sizeStock = await productRepository.findSizeStock(id, size)
 

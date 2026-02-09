@@ -5,7 +5,10 @@ import {
 } from '@/entities/cart/store/useCartStore.ts'
 import type { Product } from '@/entities/product/model/types.ts'
 import { formatPrice } from '@/shared/lib/format-price/formatPrice.ts'
+import { getImageUrl } from '@/shared/lib/getImageURL/getImageURL'
 import { Button } from '@/shared/ui/button'
+import { IconButton } from '@/shared/ui/icon-button'
+import { useCartDrawerStore } from '@/widgets/cart-drawer/store/useCartDrawerStore'
 import cn from 'classnames'
 import { memo } from 'react'
 import { Link } from 'react-router'
@@ -26,7 +29,6 @@ export const CartItem = memo(
     const subtotal = useCartStore(
       cartItemSubtotalSelector(productId, size, price)
     )
-
     const increaseItemQuantity = useCartStore(
       (state) => state.increaseItemQuantity
     )
@@ -34,7 +36,7 @@ export const CartItem = memo(
       (state) => state.decreaseItemQuantity
     )
     const removeFromCart = useCartStore((state) => state.removeFromCart)
-    const closeCart = useCartStore((state) => state.closeCart)
+    const closeCart = useCartDrawerStore((state) => state.closeCart)
 
     if (quantity === 0) return null
 
@@ -45,13 +47,14 @@ export const CartItem = memo(
 
     return (
       <div className={cn(styles.item, styles[variant])}>
-        <Link to={`/product/${slug}`}>
+        <Link to={`/product/${slug}`} onClick={closeCart}>
           <div className={styles.imageWrapper}>
             <img
-              onClick={closeCart}
               className={styles.image}
-              src={images[0]}
+              src={getImageUrl(images[0])}
               alt={name}
+              width={810}
+              height={1080}
               loading="lazy"
             />
           </div>
@@ -66,15 +69,15 @@ export const CartItem = memo(
           <div className={styles.size}>{`Размер: ${size} ${quantity} Шт.`}</div>
           <div className={styles.actions}>
             <div className={styles.quantity}>
-              <button
+              <IconButton
                 className={styles.button}
                 type="button"
                 onClick={() => decreaseItemQuantity(productId, size)}
               >
                 -
-              </button>
+              </IconButton>
               <span className={styles.button}>{quantity}</span>
-              <button
+              <IconButton
                 className={styles.button}
                 type="button"
                 onClick={() =>
@@ -83,7 +86,7 @@ export const CartItem = memo(
                 disabled={isDisabled}
               >
                 +
-              </button>
+              </IconButton>
             </div>
             <Button
               onClick={() => removeFromCart(productId, size)}

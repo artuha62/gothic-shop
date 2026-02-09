@@ -1,2 +1,1 @@
-export { CartBadge } from './CartBadge'
-export { FavoritesBadge } from './FavoritesBadge'
+export { Badge } from './Badge'

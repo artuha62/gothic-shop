@@ -1,6 +1,6 @@
 import { Button } from '@/shared/ui/button'
-import cn from 'classnames'
 import { Check } from 'lucide-react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import styles from './CheckoutSuccess.module.scss'
 
@@ -11,8 +11,12 @@ interface CheckoutSuccessProps {
 export const CheckoutSuccess = ({ orderId }: CheckoutSuccessProps) => {
   const navigate = useNavigate()
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [])
+
   return (
-    <div className={cn(styles.successWrapper, 'container')}>
+    <div className={styles.successWrapper}>
       <div className={styles.titleWrapper}>
         <h2 className={styles.title}>Заказ успешно оформлен!</h2>
         <Check size={30} />

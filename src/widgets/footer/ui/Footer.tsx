@@ -1,7 +1,7 @@
 import { Button } from '@/shared/ui/button'
 import { RiTelegram2Fill } from 'react-icons/ri'
 import { Link } from 'react-router'
-import { contacts, footerMenus } from './constants'
+import { contacts, footerMenus } from '../model/constants'
 import styles from './Footer.module.scss'
 
 const Footer = () => {
@@ -31,7 +31,13 @@ const Footer = () => {
         <div className={styles.main}>
           <div className={styles.logo}>
             <Link to="/catalog" aria-label="Перейти в каталог">
-              <img src="/images/logo-white.webp" alt="Логотип" />
+              <img
+                src="/images/logo-white.webp"
+                alt="Логотип"
+                width={480}
+                height={233}
+                loading="lazy"
+              />
             </Link>
           </div>
 

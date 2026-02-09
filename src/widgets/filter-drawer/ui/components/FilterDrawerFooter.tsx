@@ -1,13 +1,13 @@
-import { useFilters } from '@/entities/filters/model/useFilters.ts'
-import { useFiltersStore } from '@/entities/filters/store/useFiltersStore.ts'
 import { useProducts } from '@/entities/product/model/useProducts.ts'
+import { useFilters } from '@/features/filter-products/model/useFilters.ts'
 import { pluralizeRu } from '@/shared/lib/pluralize-ru/pluralizeRu.ts'
 import { Button } from '@/shared/ui/button'
+import { useFilterDrawerStore } from '@/widgets/filter-drawer/store/useFilterDrawerStore.ts'
 import styles from '@/widgets/filter-drawer/ui/FilterDrawer.module.scss'
 
 const FilterDrawerFooter = () => {
   const { clearFilters, filters } = useFilters()
-  const closeFilters = useFiltersStore((state) => state.closeFilters)
+  const closeFilters = useFilterDrawerStore((state) => state.closeFilters)
 
   const { totalProducts } = useProducts({ filters })
 

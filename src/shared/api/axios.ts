@@ -2,7 +2,7 @@ import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from '@/entities/auth/api/auth'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-export const BASE_URL = 'http://localhost:3001/api'
+export const BASE_URL = '/api'
 
 export const api = axios.create({
   baseURL: BASE_URL,

@@ -5,7 +5,6 @@ import { persist } from 'zustand/middleware'
 
 interface CartStore {
   items: CartItem[]
-  isCartOpen: boolean
 
   addToCart: (productId: string, size: number) => void
   removeFromCart: (productId: string, size: number) => void
@@ -16,16 +15,12 @@ interface CartStore {
   ) => void
   decreaseItemQuantity: (productId: string, size: number) => void
   clearCart: () => void
-
-  openCart: () => void
-  closeCart: () => void
 }
 
 export const useCartStore = create<CartStore>()(
   persist(
     (set) => ({
       items: [],
-      isCartOpen: false,
 
       addToCart: (productId, size) => {
         set((state) => {
@@ -96,14 +91,6 @@ export const useCartStore = create<CartStore>()(
 
       clearCart: () => {
         set({ items: [] })
-      },
-
-      openCart: () => {
-        set({ isCartOpen: true })
-      },
-
-      closeCart: () => {
-        set({ isCartOpen: false })
       },
     }),
     {

@@ -1,16 +1,16 @@
 import { useAuthStore } from '@/entities/auth/store/useAuthStore'
-import { useCartStore } from '@/entities/cart/store/useCartStore'
-import { DeliveryPromo } from '@/features/delivery-promo'
-import { useUIStore } from '@/shared/store/useUIStore'
+import { DeliveryPromo } from '@/entities/cart/ui/delivery-promo'
 import { Button } from '@/shared/ui/button'
+import { useCartDrawerStore } from '@/widgets/cart-drawer/store/useCartDrawerStore'
+import { useLoginModalStore } from '@/widgets/login-modal/store/useLoginModalStore'
 import { useNavigate } from 'react-router'
 import styles from '../CartDrawer.module.scss'
 import CartSummary from './CartSummary'
 
 export const CartDrawerFooter = () => {
   const navigate = useNavigate()
-  const closeCart = useCartStore((state) => state.closeCart)
-  const openLoginModal = useUIStore((state) => state.openLoginModal)
+  const closeCart = useCartDrawerStore((state) => state.closeCart)
+  const openLoginModal = useLoginModalStore((state) => state.openLoginModal)
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
 
   const handleCheckoutClick = () => {
@@ -18,7 +18,6 @@ export const CartDrawerFooter = () => {
       closeCart()
       navigate('/checkout')
     } else {
-      closeCart()
       openLoginModal()
     }
   }
@@ -38,7 +37,7 @@ export const CartDrawerFooter = () => {
           onClick={handleCheckoutClick}
           variant="black"
           size="md"
-          style={{ flex: '1' }}
+          className={styles.checkoutButton}
         >
           КУПИТЬ
         </Button>

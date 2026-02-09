@@ -64,3 +64,63 @@ enum Category {
   BOOTS
   SANDALS
 }
+
+model Order {
+  id        String      @id @default(uuid())
+  orderNumber Int      @unique @default(autoincrement())
+
+  // Customer info
+  firstName    String
+  lastName     String
+  email        String
+  phone        String
+  address      String
+  apartment    String?
+  comment      String?
+
+  // Order details
+  status       OrderStatus @default(PENDING)
+  subtotal     Int
+  discount     Int         @default(0)
+  discountCode String?
+  deliveryCost Int
+  total        Int
+
+  // Relations
+  items        OrderItem[]
+
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  // Product snapshot
+  productId   String
+  productName String
+  productSlug String
+  size        Int
+  quantity    Int
+  price       Int     // цена за единицу на момент заказа
+
+  createdAt DateTime @default(now())
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}

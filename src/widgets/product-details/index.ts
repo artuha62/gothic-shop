@@ -1,1 +1,2 @@
-export { default as ProductDetails } from './ui/ProductDetails'
+export { ProductDetails } from './ui/ProductDetails'
+export { ProductDetailsSkeleton } from './ui/ProductDetailsSkeleton'

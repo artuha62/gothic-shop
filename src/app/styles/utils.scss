@@ -8,3 +8,9 @@
 .hide {
   display: none;
 }
+
+.contentDVH {
+  @include flex-center;
+
+  min-height: 70dvh;
+}
