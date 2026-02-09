@@ -27,11 +27,16 @@ export const useAuthStore = create<AuthStore>((set) => ({
   // State
   user: null,
   isAuthenticated: false,
-  isLoading: true,
+  isLoading: false,
 
   // Actions
   sendCode: async (email) => {
-    await sendCode({ email })
+    set({ isLoading: true })
+    try {
+      await sendCode({ email })
+    } finally {
+      set({ isLoading: false })
+    }
   },
 
   login: async (data) => {

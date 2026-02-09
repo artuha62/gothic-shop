@@ -186,8 +186,6 @@ export const LoginModal = () => {
         aria-label="Закрыть модальное окно"
       />
       <div className={styles.content}>
-        {isLoading && <div className={styles.loadingLine} aria-hidden="true" />}
-
         <h2 className={styles.title}>
           {step === 'email' ? 'ВВЕДИТЕ ЭЛЕКТРОННУЮ ПОЧТУ' : 'ВВЕДИТЕ КОД'}
         </h2>
