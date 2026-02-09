@@ -26,20 +26,21 @@ export class AuthService {
     const otp = crypto.randomInt(100000, 999999).toString()
     const expiresAt = new Date(Date.now() + 5 * 60 * 1000)
     await authRepository.saveOtp(email, otp, expiresAt)
-    if (process.env.NODE_ENV === 'development') {
-      console.log(`🔑 [DEV] OTP для ${email}: ${otp}`)
-    } else {
-      try {
-        await transporter.sendMail({
-          from: 'Gothic Shop <noreply@gothicshop.com>',
-          to: email,
-          subject: 'Код подтверждения входа',
-          text: `Ваш код для входа: ${otp}. Он действителен 5 минут.`,
-        })
-      } catch (error) {
-        console.error('Email send error:', error)
-      }
+
+    console.log(`🔑 [DEV] OTP для ${email}: ${otp}`)
+
+    try {
+      await transporter.sendMail({
+        from: 'Gothic Shop <noreply@gothicshop.com>',
+        to: email,
+        subject: 'Код подтверждения входа',
+        text: `Ваш код для входа: ${otp}. Он действителен 5 минут.`,
+      })
+      console.log('✅ Email успешно отправлен на', email)
+    } catch (error) {
+      console.error('❌ Email send error:', error)
     }
+
     return { message: 'Код успешно отправлен на вашу почту' }
   }
 

@@ -22,8 +22,6 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
   }
 
   const result = await authService.verifyOtp(email, code, !!rememberMe)
-  // Можно отправить refreshToken в httpOnly cookie для безопасности
-  // res.cookie('refreshToken', result.refreshToken, { httpOnly: true, secure: true })
   res.json(result)
 })
 
@@ -37,6 +35,6 @@ export const getMe = asyncHandler(async (req: Request, res: Response) => {
   const userId = req.user?.id
   if (!userId) throw new AppError('Unauthorized', 401)
 
-  const user = await authService.getUserById(userId) // Вернуть/адаптировать метод в AuthService или использовать repo
+  const user = await authService.getUserById(userId)
   res.json(user)
 })
