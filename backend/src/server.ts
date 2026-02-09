@@ -13,7 +13,7 @@ const PORT = Number(process.env.PORT) || 3001
 
 const allowedOrigins = [
   'http://localhost:5173', // dev Vite
-  'https://gothic-shop-xwsn.vercel.app', // prod Vercel
+  'https://gothic-shop.vercel.app', // prod Vercel
 ]
 
 // CORS и JSON
