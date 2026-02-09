@@ -1,4 +1,3 @@
-import { getImageUrl } from '@/shared/lib/getImageURL/getImageURL'
 import cn from 'classnames'
 import type { TouchEvent } from 'react'
 import { useState } from 'react'
@@ -46,7 +45,7 @@ export const ProductGallery = ({ images, name }: ProductGalleryProps) => {
             onClick={() => setCurrentIndex(index)}
             className={styles.thumb}
             key={image}
-            src={getImageUrl(image)}
+            src={image}
             alt={`${name} - превью ${index + 1}`}
             width={810}
             height={1080}
@@ -62,7 +61,7 @@ export const ProductGallery = ({ images, name }: ProductGalleryProps) => {
       >
         <img
           className={styles.mainImage}
-          src={getImageUrl(images[currentIndex])}
+          src={images[currentIndex]}
           alt={name}
           width={810}
           height={1080}

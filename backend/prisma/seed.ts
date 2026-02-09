@@ -15,13 +15,13 @@ const baseProducts = [
     description:
       'Дерзкие черные туфли на массивной тракторной подошве. Идеальное сочетание грубой эстетики и утонченного стиля. Высокая подошва добавляет роста и уверенности, а классический черный цвет подходит под любой образ. Прочная конструкция обеспечивает комфорт на весь день.',
     images: [
-      '/images/CRASH_DOLL/image-1.webp',
-      '/images/CRASH_DOLL/image-2.webp',
-      '/images/CRASH_DOLL/image-3.webp',
-      '/images/CRASH_DOLL/image-4.webp',
-      '/images/CRASH_DOLL/image-5.webp',
-      '/images/CRASH_DOLL/image-6.webp',
-      '/images/CRASH_DOLL/image-7.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645874/image-1_uacjej.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645874/image-2_ncewol.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645875/image-3_ql8csh.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645875/image-4_laqbbq.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645876/image-5_rx1dkd.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645877/image-6_k4yvml.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645877/image-7_lmqfoi.webp',
     ],
   },
   {
@@ -34,12 +34,12 @@ const baseProducts = [
     description:
       'Экстравагантные розовые ботинки на головокружительной платформе. Яркий цвет и необычный дизайн привлекают внимание и выделяют из толпы. Высокая подошва визуально удлиняет ноги, а удобная колодка позволяет носить их целый день. Для тех, кто не боится быть в центре внимания.',
     images: [
-      '/images/CANDY_KILL/image-1.webp',
-      '/images/CANDY_KILL/image-2.webp',
-      '/images/CANDY_KILL/image-3.webp',
-      '/images/CANDY_KILL/image-4.webp',
-      '/images/CANDY_KILL/image-5.webp',
-      '/images/CANDY_KILL/image-6.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645872/image-1_mimjdn.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645873/image-2_fkqraq.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645873/image-3_sokig0.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645873/image-4_kta6wq.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645873/image-5_lrv0kb.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645873/image-6_sojlnb.webp',
     ],
   },
   {
@@ -52,12 +52,12 @@ const baseProducts = [
     description:
       'Высокие готические сапоги с множеством ремней и пряжек. Воплощение темной эстетики и бунтарского духа. Функциональные ремни позволяют регулировать посадку, а высокое голенище создает драматичный силуэт. Качественные материалы и надежная фурнитура гарантируют долговечность.',
     images: [
-      '/images/TIED_TO_RULE/image-1.webp',
-      '/images/TIED_TO_RULE/image-2.webp',
-      '/images/TIED_TO_RULE/image-3.webp',
-      '/images/TIED_TO_RULE/image-4.webp',
-      '/images/TIED_TO_RULE/image-5.webp',
-      '/images/TIED_TO_RULE/image-6.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645879/image-1_pz1att.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645878/image-2_l3tnvc.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645878/image-3_ybao00.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645879/image-4_r8fwon.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645880/image-5_pm2aod.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645880/image-6_bi4azp.webp',
     ],
   },
   {
@@ -70,13 +70,13 @@ const baseProducts = [
     description:
       'Яркие красные туфли на массивной тракторной подошве. Смелый выбор для тех, кто хочет заявить о себе. Насыщенный красный цвет притягивает взгляды, а устойчивая платформа обеспечивает комфорт при ходьбе. Отлично сочетаются как с повседневными, так и с вечерними образами.',
     images: [
-      '/images/BLOODLINK/image-1.webp',
-      '/images/BLOODLINK/image-2.webp',
-      '/images/BLOODLINK/image-3.webp',
-      '/images/BLOODLINK/image-4.webp',
-      '/images/BLOODLINK/image-5.webp',
-      '/images/BLOODLINK/image-6.webp',
-      '/images/BLOODLINK/image-7.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645872/image-1_ylte5e.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645872/image-2_vc5rug.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645872/image-3_ofzauf.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645872/image-4_xxqmw6.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645873/image-5_mgmfv7.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645873/image-6_eicshs.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645872/image-7_k1sqfa.webp',
     ],
   },
   {
@@ -89,13 +89,13 @@ const baseProducts = [
     description:
       'Необычные зеленые ботинки на высокой платформе. Уникальный оттенок выделяет эту модель из ряда классических вариантов. Высокая подошва создает эффектный силуэт и добавляет роста. Прочная конструкция подходит для городских прогулок в любую погоду. Для смелых и уверенных в себе.',
     images: [
-      '/images/WAR_ANGEL/image-1.webp',
-      '/images/WAR_ANGEL/image-2.webp',
-      '/images/WAR_ANGEL/image-3.webp',
-      '/images/WAR_ANGEL/image-4.webp',
-      '/images/WAR_ANGEL/image-5.webp',
-      '/images/WAR_ANGEL/image-6.webp',
-      '/images/WAR_ANGEL/image-7.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645880/image-1_qr20vy.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645881/image-2_rugszn.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645881/image-3_q6xyts.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645883/image-4_fbqy5x.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645881/image-5_il4yko.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645882/image-6_rir0uh.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645886/image-7_fglvam.webp',
     ],
   },
   {
@@ -108,11 +108,11 @@ const baseProducts = [
     description:
       'Брутальные высокие сапоги с металлическими шипами и заклепками. Агрессивный дизайн для самых смелых образов. Шипы и декоративные элементы создают неповторимый рок-н-ролльный стиль. Высокое голенище и устойчивая подошва обеспечивают комфорт и уверенность. Настоящий must-have для любителей альтернативной моды.',
     images: [
-      '/images/SWEET_DAMAGE/image-1.webp',
-      '/images/SWEET_DAMAGE/image-2.webp',
-      '/images/SWEET_DAMAGE/image-3.webp',
-      '/images/SWEET_DAMAGE/image-4.webp',
-      '/images/SWEET_DAMAGE/image-5.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645877/image-1_ud0ot4.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645877/image-2_wzoaxu.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645877/image-3_zxkvt1.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645877/image-4_mt7vbv.webp',
+      'https://res.cloudinary.com/dfzvex7py/image/upload/v1770645878/image-5_dtttq5.webp',
     ],
   },
 ]

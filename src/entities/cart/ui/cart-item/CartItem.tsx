@@ -5,7 +5,6 @@ import {
 } from '@/entities/cart/store/useCartStore.ts'
 import type { Product } from '@/entities/product/model/types.ts'
 import { formatPrice } from '@/shared/lib/format-price/formatPrice.ts'
-import { getImageUrl } from '@/shared/lib/getImageURL/getImageURL'
 import { Button } from '@/shared/ui/button'
 import { IconButton } from '@/shared/ui/icon-button'
 import { useCartDrawerStore } from '@/widgets/cart-drawer/store/useCartDrawerStore'
@@ -51,7 +50,7 @@ export const CartItem = memo(
           <div className={styles.imageWrapper}>
             <img
               className={styles.image}
-              src={getImageUrl(images[0])}
+              src={images[0]}
               alt={name}
               width={810}
               height={1080}

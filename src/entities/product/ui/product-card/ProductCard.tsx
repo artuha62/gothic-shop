@@ -1,6 +1,5 @@
 import { AddToFavorites } from '@/features/add-to-favorites'
 import { formatPrice } from '@/shared/lib/format-price/formatPrice.ts'
-import { getImageUrl } from '@/shared/lib/getImageURL/getImageURL'
 import { IconButton } from '@/shared/ui/icon-button'
 import { ShoppingCart } from 'lucide-react'
 import React, { memo } from 'react'
@@ -26,7 +25,7 @@ export const ProductCard = memo(({ product }: ProductCardProps) => {
       <div className={styles.imageWrapper}>
         <Link to={`/product/${slug}`}>
           <img
-            src={getImageUrl(images[0])}
+            src={images[0]}
             alt={name}
             width={810}
             height={1080}
@@ -34,7 +33,7 @@ export const ProductCard = memo(({ product }: ProductCardProps) => {
             loading="lazy"
           />
           <img
-            src={getImageUrl(images[1])}
+            src={images[1]}
             alt={name}
             width={810}
             height={1080}
