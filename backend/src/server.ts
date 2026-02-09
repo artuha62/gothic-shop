@@ -1,7 +1,6 @@
 import cors from 'cors'
 import dotenv from 'dotenv'
 import express from 'express'
-import path from 'path'
 import { errorHandler } from './middleware/ErrorHandler'
 import prisma from './prisma'
 import authRoutes from './routes/AuthRoutes'
@@ -20,9 +19,6 @@ app.use(
   })
 )
 app.use(express.json())
-
-// Статические файлы
-app.use('/images', express.static(path.join(__dirname, '../public/images')))
 
 // Роуты
 app.use('/api/auth', authRoutes)
