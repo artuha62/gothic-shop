@@ -1,5 +1,6 @@
 import { SkeletonElement } from '@/shared/ui/skeleton'
 import styles from '@/widgets/product-details/ui/ProductDetails.module.scss'
+import galleryStyles from '@/widgets/product-details/ui/components/ProductGallery.module.scss'
 import skeletonStyles from './ProductDetailsSkeleton.module.scss'
 
 export const ProductDetailsSkeleton = () => {
@@ -8,9 +9,9 @@ export const ProductDetailsSkeleton = () => {
       <section className={styles.productDetails}>
         <div className={styles.inner}>
           {/* Галерея */}
-          <div className={styles.gallery}>
+          <div className={galleryStyles.gallery}>
             {/* Миниатюры */}
-            <div className={`${styles.thumbs} ${skeletonStyles.thumbs}`}>
+            <div className={`${galleryStyles.thumbs} ${skeletonStyles.thumbs}`}>
               <SkeletonElement
                 variant="image"
                 width={50}
@@ -20,12 +21,12 @@ export const ProductDetailsSkeleton = () => {
             </div>
 
             {/* Главное изображение */}
-            <div className={styles.main}>
+            <div className={galleryStyles.main}>
               <SkeletonElement
                 variant="image"
                 width={810}
                 height={1080}
-                className={styles.mainImage}
+                className={galleryStyles.mainImage}
                 loadingLine
               />
             </div>

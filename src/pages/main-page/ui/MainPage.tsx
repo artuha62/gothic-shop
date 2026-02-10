@@ -1,6 +1,9 @@
+import { useTitle } from '@/shared/hooks/useTitle'
 import styles from './MainPage.module.scss'
 
 export const MainPage = () => {
+  useTitle()
+
   return (
     <>
       <h1 className="visually-hidden">Главная страница</h1>

@@ -7,7 +7,7 @@ import { AppError } from '../utils/AppError'
 const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_SECRET || 'access_secret'
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'refresh_secret'
 
-// Транспорт для отправки почты
+// Транспортер для отправки почты
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {

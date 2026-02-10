@@ -4,9 +4,11 @@ import {
 } from '@/entities/cart/store/useCartStore'
 import { CheckoutForm } from '@/features/checkout'
 import { useCheckout } from '@/features/checkout/model/useCheckout'
+import { useTitle } from '@/shared/hooks/useTitle'
 import { Button } from '@/shared/ui/button'
 import { CheckoutSidebar, CheckoutSuccess } from '@/widgets/checkout'
 import { EmptyState } from '@/widgets/empty-state'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import styles from './CheckoutPage.module.scss'
 
@@ -14,13 +16,19 @@ const CheckoutPage = () => {
   const isEmpty = useCartStore(cartIsEmptySelector)
   const navigate = useNavigate()
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useTitle('Оформление заказа')
+
   const { isSuccess, orderData, submitOrder, isLoading, errorMessage } =
     useCheckout()
 
   if (isEmpty && !isSuccess) {
     return (
       <EmptyState
-        description="Корзина пуста"
+        title="Корзина пуста"
         action={
           <Button onClick={() => navigate('/catalog')} variant="black">
             Перейти в каталог

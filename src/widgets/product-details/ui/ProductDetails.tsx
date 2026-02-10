@@ -17,7 +17,6 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
 
   return (
     <section className={styles.productDetails}>
-      <h1 className="visually-hidden">{`Страница товара - ${name}`}</h1>
       <div className={styles.inner}>
         <ProductGallery images={images} name={name} />
 
@@ -52,7 +51,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
               <label htmlFor="desc-toggle" className={styles.trigger}>
                 Описание
               </label>
-              <span className={styles.content}>{description}</span>
+              <span className={styles.description}>{description}</span>
             </div>
           )}
         </div>

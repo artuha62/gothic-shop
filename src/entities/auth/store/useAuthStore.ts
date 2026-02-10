@@ -27,7 +27,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
   // State
   user: null,
   isAuthenticated: false,
-  isLoading: false,
+  isLoading: true,
 
   // Actions
   sendCode: async (email) => {
@@ -66,7 +66,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
     try {
       const user = await getMe()
       set({ user, isAuthenticated: true })
-    } catch (error) {
+    } catch {
       await logoutUser()
       set({ user: null, isAuthenticated: false })
     } finally {

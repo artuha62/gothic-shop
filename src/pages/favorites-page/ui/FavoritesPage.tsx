@@ -2,6 +2,7 @@ import { useFavoritesStore } from '@/entities/favorites/store/useFavoritesStore.
 import { useProductsByIds } from '@/entities/product/model/useProductsByIds.ts'
 import { ProductCardSkeleton } from '@/entities/product/ui/product-card-skeleton'
 import { ProductGrid } from '@/entities/product/ui/product-grid'
+import { useTitle } from '@/shared/hooks/useTitle'
 import { EmptyState } from '@/widgets/empty-state'
 import { ErrorState } from '@/widgets/error-state'
 import { Heart } from 'lucide-react'
@@ -17,6 +18,8 @@ const FavoritesPage = () => {
   const favoriteProducts = products.filter(({ id }) =>
     favoritesIds.includes(id)
   )
+
+  useTitle('Избранное')
 
   if (isLoading)
     return <ProductCardSkeleton view="favorites" variant="favorites" />

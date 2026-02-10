@@ -1,8 +1,9 @@
 .emptyWrapper {
-  display: flex;
+  @include flex-center;
+
   flex-direction: column;
-  align-items: center;
   row-gap: 20px;
+  min-height: 30dvh;
   padding-block: 100px;
   text-align: center;
 }

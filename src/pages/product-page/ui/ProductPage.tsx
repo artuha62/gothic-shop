@@ -1,4 +1,5 @@
 import { useProduct } from '@/entities/product/model/useProduct'
+import { useTitle } from '@/shared/hooks/useTitle'
 import { ErrorState } from '@/widgets/error-state'
 import { ProductDetails } from '@/widgets/product-details'
 import { ProductDetailsSkeleton } from '@/widgets/product-details/ui/ProductDetailsSkeleton'
@@ -13,13 +14,20 @@ const ProductPage = () => {
     window.scrollTo(0, 0)
   }, [])
 
+  useTitle(`${product?.name}`)
+
   if (isLoading) return <ProductDetailsSkeleton />
 
   if (isError || !product) {
     return <ErrorState title="Товар не найден" onRetry={refetch} />
   }
 
-  return <ProductDetails product={product} />
+  return (
+    <>
+      <h1 className="visually-hidden">{`Страница товара - ${product.name}`}</h1>
+      <ProductDetails product={product} />
+    </>
+  )
 }
 
 export default ProductPage

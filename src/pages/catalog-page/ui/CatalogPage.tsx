@@ -7,6 +7,7 @@ import {
 } from '@/features/filter-products/lib/filtersCounter'
 import { useFilters } from '@/features/filter-products/model/useFilters'
 import { useGridViewFromURL } from '@/features/switch-grid-view/model/useGridViewFromURL'
+import { useTitle } from '@/shared/hooks/useTitle'
 import { Button } from '@/shared/ui/button'
 import { Loader } from '@/shared/ui/loader'
 import { CatalogBar } from '@/widgets/catalog-bar'
@@ -23,6 +24,8 @@ const CatalogPage = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })
   }, [searchParams])
+
+  useTitle('Каталог')
 
   const { filters, clearFilters } = useFilters()
   const { gridView, setGridView } = useGridViewFromURL()

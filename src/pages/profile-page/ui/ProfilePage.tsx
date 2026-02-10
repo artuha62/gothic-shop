@@ -1,10 +1,13 @@
 import { useAuthStore } from '@/entities/auth/store/useAuthStore'
+import { useTitle } from '@/shared/hooks/useTitle'
 import { Button } from '@/shared/ui/button'
 import styles from './ProfilePage.module.scss'
 
 const ProfilePage = () => {
   const user = useAuthStore((state) => state.user)
   const logout = useAuthStore((state) => state.logout)
+
+  useTitle('Профиль')
 
   return (
     <div className={styles.content}>

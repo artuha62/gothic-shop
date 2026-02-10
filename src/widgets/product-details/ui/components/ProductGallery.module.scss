@@ -41,6 +41,13 @@
   opacity: 1;
 }
 
+.mainImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 @include mobile {
   .gallery {
     flex-direction: column;

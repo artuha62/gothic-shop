@@ -83,13 +83,13 @@
   }
 }
 
-.content {
+.description {
   @include hide;
 
   padding-top: 10px;
   font-size: 16px;
 }
 
-.toggle:checked ~ .content {
+.toggle:checked ~ .description {
   @include show;
 }

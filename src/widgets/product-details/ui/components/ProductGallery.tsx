@@ -1,3 +1,4 @@
+import { getOptimizedURL } from '@/shared/lib/get-optimized-url/getOptimizedURL'
 import cn from 'classnames'
 import type { TouchEvent } from 'react'
 import { useState } from 'react'
@@ -45,10 +46,10 @@ export const ProductGallery = ({ images, name }: ProductGalleryProps) => {
             onClick={() => setCurrentIndex(index)}
             className={styles.thumb}
             key={image}
-            src={image}
+            src={getOptimizedURL(image, 'f_auto,q_auto,w_100,c_scale')}
             alt={`${name} - превью ${index + 1}`}
-            width={810}
-            height={1080}
+            width={50}
+            height={67}
             loading="lazy"
           />
         ))}
