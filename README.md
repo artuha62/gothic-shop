@@ -4,6 +4,7 @@ Gothic Shop is a frontend e-commerce project built with modern React.
 It implements basic e-commerce functionality: catalog browsing, product pages, shopping cart, server-side product filtering and search, checkout, user authentication.
 
 Technologies:
+
 - React + TypeScript  
 - Zustand
 - React Router
@@ -18,3 +19,7 @@ Technologies:
 - LocalStorage (cart sync between tabs)  
 - React Hook Form
 - Custom backend (Node.js + Express, REST API)
+
+Credits:
+
+Design inspired by [Убей Скуку](https://ubeiskuku.ru/)
